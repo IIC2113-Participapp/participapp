@@ -13,8 +13,22 @@
 
 class Content < ActiveRecord::Base
 
-  # Agrega metodo "user"
-  # Pre-condición: Ninguna
-  # Post-condición: Retorna el "user" al que pertenece un Content.
-  belongs_to :user
+  # - Agrega metodo "author".
+  # - Pre-condición: ninguna.
+  # - Post-condición: retorna el "user" al que pertenece un Content.
+  belongs_to :author, class_name: "User", foreign_key: "user_id"
+
+  # - Cambia el "authorization_status" de una instancia de content a "status".
+  # - Pre-condición: el "status" de esta instancia tiene el valor "por aprobar".
+  # - Post-condición: el "status" de esta instancia tiene el valor "aprobado" o
+  # "rechazado".
+  def change_status status
+  end
+
+  # - Retorna el content que corresponde enviarle al usuario que recibe como
+  # parámetro.
+  # - Pre-condición: ninguna
+  # - Post-condición: ninguna
+  def self.info_fetcher user
+  end
 end
