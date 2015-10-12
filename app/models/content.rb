@@ -11,6 +11,7 @@
 #  updated_at           :datetime         not null
 #
 
+# Modela una noticia del la Reforma Tributaria.
 class Content < ActiveRecord::Base
 
   # - Agrega metodo "author".
