@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :forum
   resources :comment, only: [:create, :update, :destroy]
 
