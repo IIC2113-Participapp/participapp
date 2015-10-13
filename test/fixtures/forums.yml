@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: forums
+#
+#  id          :integer          not null, primary key
+#  topic       :string
+#  description :string
+#  opinion     :text
+#  content_id  :integer
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: MyString
+  description: MyString
+  opinion: MyText
+  content_id: 
+  user_id: 
+
+two:
+  topic: MyString
+  description: MyString
+  opinion: MyText
+  content_id: 
+  user_id: 
