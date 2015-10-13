@@ -12,30 +12,36 @@ class ForumsController < ApplicationController
 
 	#POST 	/forum(.:format)
 	# - Crea un foro con los parámetros enviados a través del formulario adjunto
-	# al HTTP Request.
-	# - Pre-condiciones: los parámetros del forumlario son validados por el modelo,
+	# con el HTTP Request.
+	# Pre-condiciones: los parámetros del forumlario son validados por el modelo,
 	# agregando toda la información necesaria y datos relevantes.
-	# - Post-condiciones: la tabla "Forum" contiene una entrada con los parámetros
+	# Post-condiciones: la tabla "Forum" contiene una entrada con los parámetros
 	# indicados en el formulario.
 	def create
 	end
 
 	# GET    /forums/:id(.:format)
 	# - Muestra un foro en particular. Recibe en la HTTP Request el parametro
-	# "id" correspondiente a dicho foro.
+	# ID correspondiente a dicho foro.
+	# Pre-condiciones: la tabla "Forums" cuenta con una entrada que tiene como
+	# ID el entregado por el HTTP Request.
 	def show
 	end
 
 	# GET    /forums/:id/edit(.:format)
 	# - Despliega la vista para editar un foro existente. Recibe el parametro
-	# "id" correspondiente a un foro en la HTTP Request.
+	# ID correspondiente a un foro en la HTTP Request.
+	# Pre-condiciones: la tabla "Forums" cuenta con una entrada que tiene como
+	# ID el entregado por el HTTP Request.
 	def edit
 	end
 
 	# PUT    /forum/:id(.:format)
 	# - Actualiza un foro a partir de los parametros que recibe por la HTTP
 	# Request. Solamente puede cambiar la sección Opinion.
-	# - Post-condiciones: se actualizan las columnas de la tabla "forum" con
+	# Pre-condiciones: la tabla "Forums" cuenta con una entrada que tiene como
+	# ID el entregado por el HTTP Request.
+	# Post-condiciones: se actualizan las columnas de la tabla "forum" con
 	# los parametros entregados por la HTTP Request.
 	def update
 	end
@@ -72,7 +78,7 @@ class ForumsController < ApplicationController
 		@forum = Forum.find_by(id: params[:id])
     end
 
-    def content_params
+    def forum_params
 		params.require(:forum).permit(:topic, :description, :opinion, :content_id, :user_id)
     end
 end
