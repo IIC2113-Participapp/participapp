@@ -11,6 +11,12 @@ class ForumsController < ApplicationController
 	end
 
 	#POST 	/forum(.:format)
+	# - Crea un foro con los parámetros enviados a través del formulario adjunto
+	# al HTTP Request.
+	# - Pre-condiciones: los parámetros del forumlario son validados por el modelo,
+	# agregando toda la información necesaria y datos relevantes.
+	# - Post-condiciones: la tabla "Forum" contiene una entrada con los parámetros
+	# indicados en el formulario.
 	def create
 	end
 
