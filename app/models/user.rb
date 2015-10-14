@@ -12,5 +12,5 @@ end
 # controladores, que a pesar de no estar explicitamente en el proyecto son una parte escencial del funcionamiento de
 # la aplicación.
 #
-# Por esta razón se agrega en este mismo directorio el archivo userManager.txt, que indica la funcionalidad
+# Por esta razón se agrega en este mismo directorio el archivo ./../controllers/userManager.txt, que indica la funcionalidad
 # de cada método junto con sus pre y postcondiciones.

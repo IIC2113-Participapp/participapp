@@ -1,31 +1,40 @@
-Este documento tiene por objetivo clarificar los métodos usados de los 
+Este documento tiene por objetivo clarificar los métodos usados de los
 controladores de devise.
 
 class Devise::RegistrationsController < DeviseController
 
   # GET    /resource/sign_up(.:format)
   # - Genera y muestra el formulario de registro
+  # Precondiciones: El usuarios hace click en register y espera respuesta
+  # Postcondiciones: El usuario recibe el formulario de registro
   def new
   end
 
   # POST   /resource(.:format)
   # - Registra un usuario
+  # Precondiciones: El usuario envía el formulario de registro
+  # Postcondiciones: El usuario está creado en el modelo y existe en la base de datos
   def create
   end
 
   # GET    /resource/edit(.:format)
   # - Muestra el formulario para la edición de un usuario
+  # Precondiciones: El usuarios hace click en el enlace para editar su perfil
+  # Postcondiciones: El usuario recibe el formulario de edición de su perfil
   def edit
   end
 
   # PUT    /resource
-  # - Modifica al usuario correspondiente 
+  # - Modifica al usuario correspondiente
+  # Precondiciones: El usuario envía el formulario de edición de su perfil
+  # Postcondiciones: Los datos del usuario están actualizados en la base de datos.
   def update
   end
 
   # DELETE /resource(.:format)
   # - Elimina al usuario correspondiente
-  def destroy
+  # Precondiciones: El usuarios hace click en eliminar, o un administrador decide eliminarlo
+  # Postcondiciones: El usuario es destruido y eliminado de la base de datos
   end
 
 end
@@ -67,7 +76,7 @@ class Devise::PasswordsController < DeviseController
   end
 
   # PUT    /resource/password
-  # - Cambia la contraseña, recibe el input de la versión URL del cambio de 
+  # - Cambia la contraseña, recibe el input de la versión URL del cambio de
   # contraseña
   def update
   end
@@ -92,4 +101,3 @@ class Devise::ConfirmationsController < DeviseController
   end
 
 end
-
