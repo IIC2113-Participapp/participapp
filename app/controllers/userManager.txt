@@ -1,0 +1,95 @@
+Este documento tiene por objetivo clarificar los métodos usados de los 
+controladores de devise.
+
+class Devise::RegistrationsController < DeviseController
+
+  # GET    /resource/sign_up(.:format)
+  # - Genera y muestra el formulario de registro
+  def new
+  end
+
+  # POST   /resource(.:format)
+  # - Registra un usuario
+  def create
+  end
+
+  # GET    /resource/edit(.:format)
+  # - Muestra el formulario para la edición de un usuario
+  def edit
+  end
+
+  # PUT    /resource
+  # - Modifica al usuario correspondiente 
+  def update
+  end
+
+  # DELETE /resource(.:format)
+  # - Elimina al usuario correspondiente
+  def destroy
+  end
+
+end
+
+class Devise::SessionsController < DeviseController
+
+  # GET    /resource/sign_in(.:format)
+  # - Muestra el formulario de ingreso
+  def new
+  end
+
+  # POST   /resource/sign_in(.:format)
+  # - Realiza login de un usuario
+  def create
+  end
+
+  # DELETE /resource/sign_out(.:format)
+  # - Cierra la sesión de un usuario
+  def destroy
+  end
+
+end
+
+class Devise::PasswordsController < DeviseController
+
+  # GET    /resource/password/new
+  # - Formulario de cambio de contraseña
+  def new
+  end
+
+  # POST   /resource/password
+  # - Cambia la contraseña
+  def create
+  end
+
+  # GET    /resource/password/edit?reset_password_token=abcdef
+  # - Versión de cambio de contraseña mediante URL enviado al correo del usuario
+  def edit
+  end
+
+  # PUT    /resource/password
+  # - Cambia la contraseña, recibe el input de la versión URL del cambio de 
+  # contraseña
+  def update
+  end
+
+end
+
+class Devise::ConfirmationsController < DeviseController
+
+  # GET    /resource/confirmation/new
+  # - Muestra mensaje de confirmación
+  def new
+  end
+
+  # POST   /resource/confirmation
+  # - Crea una solicitud de confirmación
+  def create
+  end
+
+  # GET    /resource/confirmation?confirmation_token=abcdef
+  # - Recibe una solicitud de confirmación
+  def show
+  end
+
+end
+
