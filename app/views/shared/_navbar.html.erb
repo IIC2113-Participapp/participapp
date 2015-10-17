@@ -26,7 +26,10 @@
               Crear Cuenta
             </button>
           <% else %>
-            <button class="btn btn-default btn-lg"><i class="fa fa-sign-out"></i> Cerrar Sesión </button>
+            <%= link_to "<i class='fa fa-sign-out'></i> Cerrar Sesión".html_safe,
+                        destroy_user_session_path,
+                        method: :delete,
+                        class: 'btn btn-default btn-lg' %>
           <% end %>
         </li>
       </ul>
