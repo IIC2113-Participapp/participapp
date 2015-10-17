@@ -24,9 +24,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 
-#Usermanager devise gem
+# User Manager devise gem
 gem 'devise'
 
+# Import Font Awesome
+gem "font-awesome-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

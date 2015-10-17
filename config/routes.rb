@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   root to: 'static_pages#home'
 
   get 'static_pages/about'
@@ -10,7 +8,7 @@ Rails.application.routes.draw do
   resources :forum
   resources :comment, only: [:create, :update, :destroy]
 
-  # Rutas para la API versión 1. Cada ruta redirige el request a un 
+  # Rutas para la API versión 1. Cada ruta redirige el request a un
   # controller distinto segun su función.
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -19,7 +17,7 @@ Rails.application.routes.draw do
       get 'contents/category/:id', to: 'categories#show'
     end
   end
-  
+
   resources :contents
   resources :categories
 end

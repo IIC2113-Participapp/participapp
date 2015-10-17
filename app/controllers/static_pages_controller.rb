@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-  	render layout:false
+    @user = User.new
   end
 
   def about

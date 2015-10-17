@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.center-align-space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 100%;
+}
+
+.content {
+  padding-top: 100px;
+  padding-bottom: 250px;
+}
+
+.footer {
+  position: absolute;
+  height: 250px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
