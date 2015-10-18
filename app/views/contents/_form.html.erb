@@ -1,0 +1,11 @@
+<%= form_for @content do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Título', class: 'control-label' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body, 'Contenido', class: 'control-label' %>
+  <%= f.cktext_area :body, ckeditor: {:language => 'es'} %>
+  </div>
+<% end%>

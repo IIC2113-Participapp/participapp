@@ -30,6 +30,9 @@ gem 'devise'
 # Import Font Awesome
 gem "font-awesome-rails"
 
+# Import CKEditor
+gem 'ckeditor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

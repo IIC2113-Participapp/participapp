@@ -15,6 +15,7 @@ class ContentsController < ApplicationController
   # GET    /content/new(.:format)
   # - Despliega la vista para crear un nuevo content.
   def new
+    @content = Content.new
   end
 
   # POST   /content(.:format)
