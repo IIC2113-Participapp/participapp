@@ -6,6 +6,10 @@
 
   <div class="form-group">
     <%= f.label :body, 'Contenido', class: 'control-label' %>
-  <%= f.cktext_area :body, ckeditor: {:language => 'es'} %>
+    <%= f.cktext_area :body, ckeditor: {:language => 'es'} %>
+  </div>
+
+  <div class="center-align">
+    <%= f.submit '¡Listo!', class: 'btn btn-default btn-lg' %>
   </div>
 <% end%>

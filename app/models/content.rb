@@ -19,6 +19,9 @@ class Content < ActiveRecord::Base
   # - Post-condición: retorna el "user" al que pertenece un Content.
   belongs_to :author, class_name: "User", foreign_key: "user_id"
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   # - Cambia el "authorization_status" de una instancia de content a "status".
   # - Pre-condición: el "status" de esta instancia tiene el valor "por aprobar".
   # - Post-condición: el "status" de esta instancia tiene el valor "aprobado" o

@@ -4,9 +4,21 @@ html, body {
   padding: 0;
 }
 
+.center-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .center-align-space-around {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+.center-align-space-between {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -26,6 +38,11 @@ html, body {
   width: 100%;
   bottom: 0;
   left: 0;
+}
+
+.navbar-nav>li>a, .navbar-nav>li .btn-lg, .btn-group-lg>.btn {
+  padding-right: 2px;
+  padding-left: 2px;
 }
 
 ul {

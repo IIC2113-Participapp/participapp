@@ -15,6 +15,9 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  first_name             :string
+#  last_name              :string
+#  admin                  :boolean
 #
 
 class User < ActiveRecord::Base
@@ -22,6 +25,22 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def toggle_admin
+    toggle!(:admin)
+  end
+
+  def toggle_editor
+
+  end
+
+  def admin?
+    return admin
+  end
+
+  def editor?
+    return false
+  end
 end
 
 

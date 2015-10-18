@@ -26,6 +26,22 @@ class ContentsController < ApplicationController
   # atributos iguales a los parametros entregados por la HTTP Request, ademas
   # del "user_id" correspondiente al usuario que la creo.
   def create
+    @content = Content.new content_params
+    @content.author = current_user
+
+    if @content.save
+      if current_user.admin? || current_user.editor?
+        flash[:success] = "La noticia ha sido creada exitosamente."
+        @content.update_attribute(:authorization_status, 'authorized')
+      else
+        flash[:success] = "La noticia ha sido creada exitosamente. Los editores deberán aprobarla ahora."
+        @content.update_attribute(:authorization_status, 'unauthorized')
+      end
+      redirect_to content_path @content
+    else
+      flash[:danger] = "Hubo un problema al crear la noticia. Inténtalo nuevamente."
+      redirect_to :back
+    end
   end
 
   # GET    /content/:id/edit(.:format)
