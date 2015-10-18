@@ -7,7 +7,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#page-top">ParticipApp</a>
+      <%= link_to "<i class='fa fa-star'></i> ParticipApp".html_safe,
+                  root_path,
+                  class: 'navbar-brand' %>
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-colapse">
@@ -15,23 +17,36 @@
         <li class="hidden">
           <a href="#page-top"></a>
         </li>
-        <li class="page-scroll">
-          <% unless user_signed_in? %>
-            <button data-target="#sign-in" data-toggle="modal"
-                    class="btn btn-default btn-lg">
-              <i class="fa fa-sign-in"></i> Ingresar
+        <% unless user_signed_in? %>
+          <button data-target="#sign-in" data-toggle="modal"
+                  class="btn btn-default btn-lg">
+            <i class="fa fa-sign-in"></i> Ingresar
+          </button>
+          <button data-target="#sign-up" data-toggle="modal"
+                  class="btn btn-default btn-lg">
+            Crear Cuenta
+          </button>
+        <% else %>
+          <div class="dropdown">
+            <button id="user-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="true">
+              <%= current_user.first_name %>
+              <span class="caret"></span>
             </button>
-            <button data-target="#sign-up" data-toggle="modal"
-                    class="btn btn-default btn-lg">
-              Crear Cuenta
-            </button>
-          <% else %>
-            <%= link_to "<i class='fa fa-sign-out'></i> Cerrar Sesión".html_safe,
-                        destroy_user_session_path,
-                        method: :delete,
-                        class: 'btn btn-default btn-lg' %>
-          <% end %>
-        </li>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li>
+                <%= link_to "<i class='fa fa-cogs'></i> Editar perfil".html_safe,
+                            edit_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to "<i class='fa fa-sign-out'></i> Cerrar Sesión".html_safe,
+                            destroy_user_session_path,
+                            method: :delete %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -81,6 +96,26 @@
         </div>
         <div class="modal-body">
           <%= form_for @user, url: user_registration_path do |f| %>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <%= f.text_field :first_name, class: 'form-control',
+                                      placeholder: 'Ingresa tu nombre',
+                                      required: true %>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <%= f.text_field :last_name, class: 'form-control',
+                                      placeholder: 'Ingresa tu apellido',
+                                      required: true %>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
