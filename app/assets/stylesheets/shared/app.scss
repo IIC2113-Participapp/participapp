@@ -28,16 +28,17 @@ html, body {
 }
 
 .content {
-  padding-top: 100px;
+  padding-top: 125px;
   padding-bottom: 250px;
 }
 
 .footer {
   position: absolute;
-  height: 250px;
+  height: 225px;
   width: 100%;
   bottom: 0;
   left: 0;
+  margin-top: 25px;
 }
 
 .navbar-nav>li>a, .navbar-nav>li .btn-lg, .btn-group-lg>.btn {

@@ -19,16 +19,16 @@
         </li>
         <% unless user_signed_in? %>
           <li>
-            <button data-target="#sign-in" data-toggle="modal"
+            <a data-target="#sign-in" data-toggle="modal"
                     class="btn btn-default btn-lg">
               <i class="fa fa-sign-in"></i> Ingresar
-            </button>
+            </a>
           </li>
           <li>
-            <button data-target="#sign-up" data-toggle="modal"
+            <a data-target="#sign-up" data-toggle="modal"
                     class="btn btn-default btn-lg">
               Crear Cuenta
-            </button>
+            </a>
           </li>
         <% else %>
           <li>
