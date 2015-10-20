@@ -4,6 +4,7 @@ class ContentsController < ApplicationController
   # GET    /content(.:format)
   # - Muestra todos los contents de la aplicacion, paginados o no paginados.
   def index
+    @contents = Content.all
   end
 
   # GET    /content/:id(.:format)
@@ -57,6 +58,13 @@ class ContentsController < ApplicationController
   # - Post-condiciones: se actualizan las columnas de la tabla "contents" con
   # los parametros entregados por la HTTP Request.
   def update
+    if @content.update_attributes(content_params)
+      flash[:success] = "La noticia ha sido actualizada exitosamente."
+    else
+      flash[:danger] = "La noticia no pudo ser actualizada. Inténtalo nuevamente."
+    end
+
+    redirect_to :back
   end
 
   # DELETE /content/:id(.:format)
@@ -67,6 +75,14 @@ class ContentsController < ApplicationController
   # - Post-condiciones: la tabla "contents" no cuenta con una entrada
   # correspondiente al "id" del content que se recibio como parametro.
   def destroy
+    if @content
+      flash[:success] = "La noticia ha sido eliminada exitosamente."
+      @content.destroy
+    else
+      flash[:danger] = "La noticia que deseas eliminar no fue encontrada. Inténtalo nuevamente."
+    end
+
+    redirect_to :back
   end
 
   private
@@ -81,6 +97,6 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :body, :authorization_status)
+      params.require(:content).permit(:title, :body, :category_id, :authorization_status)
     end
 end

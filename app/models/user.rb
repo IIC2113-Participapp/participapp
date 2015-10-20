@@ -17,7 +17,7 @@
 #  updated_at             :datetime         not null
 #  first_name             :string
 #  last_name              :string
-#  admin                  :boolean
+#  admin                  :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def toggle_editor
-
   end
 
   def admin?

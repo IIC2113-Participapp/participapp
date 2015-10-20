@@ -4,6 +4,16 @@ html, body {
   padding: 0;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .center-align {
   display: flex;
   justify-content: center;

@@ -46,6 +46,11 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="news">
                 <li>
+                  <%= link_to "<i class='fa fa-sitemap'></i> Categorías".html_safe,
+                              categories_path,
+                              method: :get %>
+                </li>
+                <li>
                   <%= link_to "<i class='fa fa-pencil'></i> Escribir una".html_safe,
                               new_content_path,
                               method: :get %>

@@ -7,6 +7,7 @@
 #  body                 :text
 #  authorization_status :string
 #  user_id              :integer
+#  category_id          :integer
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
@@ -16,11 +17,20 @@ class Content < ActiveRecord::Base
 
   # - Agrega metodo "author".
   # - Pre-condición: ninguna.
-  # - Post-condición: retorna el "user" al que pertenece un Content.
+  # - Post-condición: retorna el User al que pertenece un Content.
   belongs_to :author, class_name: "User", foreign_key: "user_id"
 
+  # - Agrega metodo "category".
+  # - Pre-condición: ninguna.
+  # - Post-condición: retorna la Category a la que pertenece un Content.
+  belongs_to :category
+
+  validates :user, presence: true
+  validates :category, presence: true
   validates :title, presence: true
   validates :body, presence: true
+  validates :authorization_status, presence: true
+
 
   # - Cambia el "authorization_status" de una instancia de content a "status".
   # - Pre-condición: el "status" de esta instancia tiene el valor "por aprobar".

@@ -4,12 +4,30 @@
     <%= f.text_field :title, class: 'form-control' %>
   </div>
 
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <fieldset>
+        <legend>
+          Seleccionar Categoría
+        </legend>
+        <div class="center-align-space-around flex-wrap">
+          <% Category.all.each do |category| %>
+            <div class="col-xs-3 center-align flex-column">
+              <%= f.radio_button :category_id, "#{category.id}" %>
+              <p class="text-center"><%= category.name %></p>
+            </div>
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
   <div class="form-group">
     <%= f.label :body, 'Contenido', class: 'control-label' %>
     <%= f.cktext_area :body, ckeditor: {:language => 'es'} %>
   </div>
 
   <div class="center-align">
-    <%= f.submit '¡Listo!', class: 'btn btn-default btn-lg' %>
+    <%= f.submit '¡Listo!', class: 'btn btn-success btn-lg' %>
   </div>
 <% end%>

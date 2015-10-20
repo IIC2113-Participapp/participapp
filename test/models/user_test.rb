@@ -17,7 +17,7 @@
 #  updated_at             :datetime         not null
 #  first_name             :string
 #  last_name              :string
-#  admin                  :boolean
+#  admin                  :boolean          default(FALSE)
 #
 
 require 'test_helper'

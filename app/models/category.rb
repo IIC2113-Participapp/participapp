@@ -14,6 +14,8 @@ class Category < ActiveRecord::Base
   # - Agrega metodo "contents".
   # - Pre-condición: ninguna.
   # - Post-condición: retorna los "contents" relacionados a esta "category".
-  has_many :category_contents
-  has_many :contents, through: :category_contents
+  has_many :contents
+
+  validates :name, presence: true,
+                   uniqueness: true
 end
