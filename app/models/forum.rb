@@ -14,15 +14,13 @@
 
 #Espacio de opinión para una noticia específica.
 class Forum < ActiveRecord::Base
-	# Relaciones entre un "Forum" y un "Content", "User" y "Comments"
-	#
-	#Cada foro está relacionado a una noticia específica.
-	belongs_to :content
-	#Cada foro se relaciona con un usuario, quien es el que lo creó.
-	belongs_to :user
-	#Un foro tendrá muchos commentarios sobre el tema en discusión.
-	has_many :comment
-
-
+  # Relaciones entre un "Forum" y un "Content", "User" y "Comments"
+  #
+  #Cada foro está relacionado a una noticia específica.
+  belongs_to :content
+  #Cada foro se relaciona con un usuario, quien es el que lo creó.
+  belongs_to :user
+  #Un foro tendrá muchos commentarios sobre el tema en discusión.
+  has_many :comment
 
 end
