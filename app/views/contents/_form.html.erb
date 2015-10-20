@@ -1,9 +1,8 @@
-<%= form_for @content do |f| %>
-  <%= render partial: 'shared/error_messages', locals: { object: @content } %>
-
+<%= form_for @content, builder: BetterForms do |f| %>
   <div class="form-group">
     <%= f.label :title, 'Título', class: 'control-label' %>
     <%= f.text_field :title, class: 'form-control' %>
+    <%= f.errors :title %>
   </div>
 
   <div class="row">
@@ -20,6 +19,7 @@
             </div>
           <% end %>
         </div>
+        <%= f.errors :category_id %>
       </fieldset>
     </div>
   </div>
@@ -27,6 +27,7 @@
   <div class="form-group">
     <%= f.label :body, 'Contenido', class: 'control-label' %>
     <%= f.cktext_area :body, ckeditor: {:language => 'es'} %>
+    <%= f.errors :body %>
   </div>
 
   <div class="center-align">

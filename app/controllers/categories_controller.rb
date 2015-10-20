@@ -18,9 +18,9 @@ class CategoriesController < ApplicationController
     @category = Category.new category_params
 
     if @category.save
-      flash[:success] = "La noticia ha sido creada exitosamente."
+      flash[:success] = "La categoría ha sido creada exitosamente."
     else
-      flash[:danger] = "Hubo un problema al crear la noticia. Inténtalo nuevamente."
+      flash[:danger] = "Hubo un problema al crear la categoría. Inténtalo nuevamente."
     end
 
     redirect_to :back

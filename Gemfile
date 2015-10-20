@@ -23,7 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-
 # User Manager devise gem
 gem 'devise'
 
@@ -32,6 +31,9 @@ gem "font-awesome-rails"
 
 # Import CKEditor
 gem 'ckeditor'
+
+# Better Errors replaces the standard Rails error page with a much better and more useful error page.
+gem 'better_errors'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

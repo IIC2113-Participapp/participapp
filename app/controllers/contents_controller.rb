@@ -41,7 +41,7 @@ class ContentsController < ApplicationController
       redirect_to content_path @content
     else
       flash[:danger] = "Hubo un problema al crear la noticia. Inténtalo nuevamente."
-      redirect_to :back
+      render 'new'
     end
   end
 
