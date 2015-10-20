@@ -1,4 +1,6 @@
 <%= form_for @category, html: { class: 'form-inline center-align' } do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { object: @category } %>
+
   <fieldset>
     <legend><%= title %></legend>
 

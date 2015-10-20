@@ -1,4 +1,6 @@
 <%= form_for @content do |f| %>
+  <%= render partial: 'shared/error_messages', locals: { object: @content } %>
+
   <div class="form-group">
     <%= f.label :title, 'Título', class: 'control-label' %>
     <%= f.text_field :title, class: 'form-control' %>

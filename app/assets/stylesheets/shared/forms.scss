@@ -1,17 +1,29 @@
-fieldset {
-  display: block;
-  border: 2px groove;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px 0;
+@import "palette";
 
-  legend {
+form {
+  fieldset {
     display: block;
-    width: auto;
-    font-size: 14px;
-    font-weight: bold;
-    padding-left: 2px;
-    padding-right: 2px;
-    border: none;
+    border: 2px groove;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+
+    legend {
+      display: block;
+      width: auto;
+      font-size: 14px;
+      font-weight: bold;
+      padding-left: 2px;
+      padding-right: 2px;
+      border: none;
+    }
+  }
+
+  #error-explanation {
+    color: $red;
+    ul {
+      list-style: none;
+      margin: 0 0 18px 0;
+    }
   }
 }

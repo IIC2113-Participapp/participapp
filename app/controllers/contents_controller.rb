@@ -4,7 +4,7 @@ class ContentsController < ApplicationController
   # GET    /content(.:format)
   # - Muestra todos los contents de la aplicacion, paginados o no paginados.
   def index
-    @contents = Content.all
+    @categories = Category.all
   end
 
   # GET    /content/:id(.:format)

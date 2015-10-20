@@ -1,0 +1,29 @@
+<h1>Noticias por tema</h1>
+
+<%= render 'shared/search_bar' %>
+
+<div class="panel-group" id="categories">
+  <% @categories.each do |category| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#categories" href="#<%= category.id %>">
+            <%= category.name %>
+          </a>
+        </h4>
+      </div>
+      <div id="<%= category.id %>" class="panel-collapse collapse">
+        <div class="panel-body">
+          <ul id="list">
+          <% category.contents.each do |content| %>
+            <li>
+              <%= link_to "#{content.created_at.to_date} - #{content.title}", 
+                          content_path(content) %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

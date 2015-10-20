@@ -25,12 +25,10 @@ class Content < ActiveRecord::Base
   # - Post-condición: retorna la Category a la que pertenece un Content.
   belongs_to :category
 
-  validates :user, presence: true
+  validates :author, presence: true
   validates :category, presence: true
   validates :title, presence: true
   validates :body, presence: true
-  validates :authorization_status, presence: true
-
 
   # - Cambia el "authorization_status" de una instancia de content a "status".
   # - Pre-condición: el "status" de esta instancia tiene el valor "por aprobar".
