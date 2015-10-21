@@ -1,10 +1,18 @@
 class CommentsController < ApplicationController
+  before_action :comment_params, only: [:update, :destroy]
 
   #POST   /comment(.:format)
   # - Es el método encargado de crear una nueva entrada a
   # la tabla "Comment" con los parámetros especificados en
   # el formulario.
   def create
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      forum = Forum.find(@comment.forum_id)
+      redirect_to forum_path(forum)
+    else
+
+    end
   end
 
   # PUT    /comments/:id(.:format)
@@ -30,7 +38,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:forum).permit(:user_id, :coment, :forum_id, :published_time)
+    params.require(:comment).permit(:user_id, :content, :forum_id)
   end
 
 end

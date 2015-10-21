@@ -1,2 +1,21 @@
-<h1>Forums#show</h1>
-<p>Find me in app/views/forums/show.html.erb</p>
+<div class="forum-wrapper">
+  <div class="inner-left-wrapper">
+    <h2><%= @content.title %></h2>
+    <div class="well well-lg">
+      <%= "#{@content.body}".html_safe %>
+    </div>
+  </div>
+  <div class="inner-right-wrapper">
+    <h3><%= @forum.name %></h3>
+    <div class="forum-comments">
+      <% @forum.comments.order(:updated_at).each do |comment|%>
+        <div class="well">
+          <strong><%=get_comment_author(comment)%></strong> dijo:<br>
+          <%= comment.content %><br><br>
+          <%=get_comment_date(comment)%>
+        </div>
+      <% end %>
+    </div>
+    <%= render 'comments/form' %>
+  </div>
+</div>

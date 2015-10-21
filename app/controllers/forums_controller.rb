@@ -1,13 +1,17 @@
 class ForumsController < ApplicationController
+  before_action :set_forum, only: [:show, :edit, :update, :destroy]
 
   # GET    /forums(.:format)
   # - Muestra todos los foros de la aplicacion.
   def index
+    @forums = Forum.all
   end
 
   # GET    /forums/new(.:format)
   # - Despliega la vista para crear un nuevo foro.
   def new
+    @forum = Forum.new
+    @content = Content.where(authorization_status: "true" )
   end
 
   #POST   /forum(.:format)
@@ -18,6 +22,12 @@ class ForumsController < ApplicationController
   # Post-condiciones: la tabla "Forum" contiene una entrada con los parámetros
   # indicados en el formulario.
   def create
+    @forum = Forum.new(forum_params)
+    if @forum.save
+      redirect_to @forum, notice: 'Nuevo Tema Creado'
+    else
+      render :new
+    end
   end
 
   # GET    /forums/:id(.:format)
@@ -26,6 +36,7 @@ class ForumsController < ApplicationController
   # Pre-condiciones: la tabla "Forums" cuenta con una entrada que tiene como
   # ID el entregado por el HTTP Request.
   def show
+    @content = Content.find(@forum.content_id)
   end
 
   # GET    /forums/:id/edit(.:format)
@@ -56,7 +67,7 @@ class ForumsController < ApplicationController
   def destroy
   end
 
-  # POST   /forums/:id/comment(.:format)
+  # POST  /forums/:id/comment(.:format)
   # - Crea un nuevo comentario para el foro correspondiente al "id" del HTTP
   # Request.
   # - Pre-condiciones: la tabla "forum" cuenta con una entrada correspondiente
@@ -67,18 +78,19 @@ class ForumsController < ApplicationController
   def new_comment
   end
 
+
   private
 
-    # - Busca en la base de datos el "forum" que corresponde al "id" que viene
-    # como parametro en la HTTP Request.
-    # - Pre-condiciones: la variable de instancia "@forum" no esta definida.
-    # - Post-condiciones: la variable de instancia "@forum" tiene el valor del
-    # "content" con el "id" que viene como parametro en la HTTP Request.
-    def set_forum
-      @forum = Forum.find_by(id: params[:id])
-    end
+  # - Busca en la base de datos el "forum" que corresponde al "id" que viene
+  # como parametro en la HTTP Request.
+  # - Pre-condiciones: la variable de instancia "@forum" no esta definida.
+  # - Post-condiciones: la variable de instancia "@forum" tiene el valor del
+  # "content" con el "id" que viene como parametro en la HTTP Request.
+  def set_forum
+    @forum = Forum.find_by(id: params[:id])
+  end
 
-    def forum_params
-      params.require(:forum).permit(:topic, :description, :opinion, :content_id, :user_id)
-    end
+  def forum_params
+    params.require(:forum).permit(:name, :description, :content_id, :user_id)
+  end
 end

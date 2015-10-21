@@ -1,6 +1,7 @@
 module API
   module V1
     class ContentsController < ApplicationController
+      
       # GET  /api/v1/contents
       # - Es el encargado de buscar y entregar en formato 
       # JSON todos los contents de la aplicación.
