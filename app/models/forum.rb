@@ -3,13 +3,12 @@
 # Table name: forums
 #
 #  id          :integer          not null, primary key
-#  topic       :string
 #  description :string
-#  opinion     :text
 #  content_id  :integer
 #  user_id     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  name        :string
 #
 
 #Espacio de opinión para una noticia específica.
@@ -21,6 +20,6 @@ class Forum < ActiveRecord::Base
   #Cada foro se relaciona con un usuario, quien es el que lo creó.
   belongs_to :user
   #Un foro tendrá muchos commentarios sobre el tema en discusión.
-  has_many :comment
+  has_many :comments
 
 end
