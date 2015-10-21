@@ -1,0 +1,55 @@
+<h1>Usuarios</h1>
+
+<%= render 'shared/search_bar' %>
+
+<% if @users.any? %>
+  <table id="table" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-xs-6">
+          Nombre
+        </th>
+        <th class="col-xs-6">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.full_name %>
+        </td>
+        <td class="text-center">
+          <% if user.admin? %>
+            <%= link_to '<i class="fa fa-remove">Destituir Admin</i>'.html_safe,
+                        toggle_admin_path(id: user.id),
+                        method: :post,
+                        class: 'btn btn-danger btn-xs' %>
+          <% else %>
+            <%= link_to '<i class="fa fa-plus">Promover a Admin</i>'.html_safe,
+                        toggle_admin_path(id: user.id),
+                        method: :post,
+                        class: 'btn btn-success btn-xs' %>
+          <% end %>
+
+          <% if user.editor? %>
+            <%= link_to '<i class="fa fa-remove">Destituir Editor</i>'.html_safe,
+                        toggle_editor_path(id: user.id),
+                        method: :post,
+                        class: 'btn btn-danger btn-xs' %>
+          <% else %>
+            <%= link_to '<i class="fa fa-plus">Promover a Editor</i>'.html_safe,
+                        toggle_editor_path(id: user.id),
+                        method: :post,
+                        class: 'btn btn-success btn-xs' %>
+          <% end %>
+
+          <%= link_to raw('<i class="fa fa-remove">Eliminar</i>'), edit_user_registration_path(user),
+                      method: :delete,
+                      class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

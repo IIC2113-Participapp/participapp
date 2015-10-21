@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
+  get '/users', to: 'users#index'
+  post '/toggle_admin', to: 'users#toggle_admin'
+  post '/toggle_editor', to: 'users#toggle_editor'
+
   resources :forum
   resources :comment, only: [:create, :update, :destroy]
 
