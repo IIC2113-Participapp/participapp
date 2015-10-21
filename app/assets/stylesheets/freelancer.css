@@ -36,6 +36,12 @@ h6 {
   font-weight: 700;
 }
 
+.footer-above h3{
+  text-transform: none;
+  font-weight: 300;
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 hr.star-light,
 hr.star-primary {
   margin: 25px auto 30px;
@@ -63,7 +69,7 @@ hr.star-light {
 
 hr.star-light:after {
   color: #fff;
-  background-color: #3B89FC;
+  background-color: #2D66B0;
 }
 
 hr.star-primary {
