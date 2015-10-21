@@ -1,4 +1,5 @@
 class ForumsController < ApplicationController
+  before_action :set_forum, only: [:show, :edit, :update, :destroy]
 
   # GET    /forums(.:format)
   # - Muestra todos los foros de la aplicacion.
@@ -35,6 +36,7 @@ class ForumsController < ApplicationController
   # Pre-condiciones: la tabla "Forums" cuenta con una entrada que tiene como
   # ID el entregado por el HTTP Request.
   def show
+    @content = Content.find(@forum.content_id)
   end
 
   # GET    /forums/:id/edit(.:format)
@@ -88,6 +90,6 @@ class ForumsController < ApplicationController
   end
 
   def forum_params
-    params.require(:forum).permit(:topic, :description, :opinion, :content_id, :user_id)
+    params.require(:forum).permit(:name, :description, :content_id, :user_id)
   end
 end

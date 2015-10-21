@@ -13,7 +13,9 @@
 
 #Objeto que será agregado a un Foro.
 class Comment < ActiveRecord::Base
-	#Cada 'Comment' estará relacionado a un usuario.
-	belongs_to :user
+  # Cada 'Comment' estará relacionado a un usuario.
+  belongs_to :user
+  # Cada 'Comment' será parte de un Foro específico
+  belongs_to :forum
 
 end
