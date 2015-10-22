@@ -15,12 +15,11 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  admin                  :boolean          default(FALSE)
 #  editor                 :boolean          default(FALSE)
-#  default                :string
-#  false                  :string
 #  first_name             :string
 #  last_name              :string
+#  admin                  :boolean          default(FALSE)
+#  periodicity            :integer
 #
 
 class User < ActiveRecord::Base
@@ -29,8 +28,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   has_many :category_users, dependent: :destroy
-   has_many :categories, through: :category_users
+  has_many :category_users, dependent: :destroy
+  has_many :categories, through: :category_users
+
+  validates :email, presence: true,
+                   uniqueness: true
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validate :proper_periodicity, on: :update
 
   def full_name
     "#{first_name} #{last_name}"
@@ -51,6 +57,12 @@ class User < ActiveRecord::Base
   def editor?
     return editor
   end
+
+  private
+
+    def proper_periodicity
+      errors.add(:periodicity, "la periodicidad ingresada es inválida.") unless [1, 2, 5, 7, 10, 14].include?(periodicity)
+    end
 end
 
 
