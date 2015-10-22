@@ -16,11 +16,10 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  editor                 :boolean          default(FALSE)
-#  default                :string
-#  false                  :string
 #  first_name             :string
 #  last_name              :string
 #  admin                  :boolean          default(FALSE)
+#  periodicity            :integer
 #
 
 require 'test_helper'

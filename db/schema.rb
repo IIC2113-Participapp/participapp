@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021130950) do
+ActiveRecord::Schema.define(version: 20151022031702) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -81,11 +81,10 @@ ActiveRecord::Schema.define(version: 20151021130950) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "editor",                 default: false
-    t.string   "default"
-    t.string   "false"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin",                  default: false
+    t.integer  "periodicity"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
