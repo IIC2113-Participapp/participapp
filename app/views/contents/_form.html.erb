@@ -1,26 +1,15 @@
 <%= form_for @content, builder: BetterForms do |f| %>
-  <div class="form-group">
-    <%= f.label :title, 'Título', class: 'control-label' %>
-    <%= f.text_field :title, class: 'form-control' %>
-    <%= f.errors :title %>
-  </div>
-
   <div class="row">
-    <div class="form-group col-xs-12">
-      <fieldset>
-        <legend>
-          Seleccionar Categoría
-        </legend>
-        <div class="center-align-space-around flex-wrap">
-          <% Category.all.each do |category| %>
-            <div class="col-xs-3 center-align flex-column">
-              <%= f.radio_button :category_id, "#{category.id}" %>
-              <p class="text-center"><%= category.name %></p>
-            </div>
-          <% end %>
-        </div>
-        <%= f.errors :category_id %>
-      </fieldset>
+    <div class="form-group col-md-6 col-xs-12">
+      <%= f.label :title, 'Título', class: 'control-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.errors :title %>
+    </div>
+
+    <div class="form-group col-md-6 col-xs-12">
+      <%= f.label :category_id, 'Categoría', class: 'control-label' %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: 'form-control'}) %>
+      <%= f.errors :category_id %>
     </div>
   </div>
 
