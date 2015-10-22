@@ -98,6 +98,11 @@
                               categories_path,
                               method: :get %>
                 </li>
+                <li>
+                  <%= link_to "<i class='fa fa-check-circle'></i> Autorizar".html_safe,
+                              pending_authorization_path,
+                              method: :get %>
+                </li>
               </ul>
             </div>
           </li>

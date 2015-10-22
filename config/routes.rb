@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contents
   resources :categories
+  resources :contents do
+    put 'authorize', to: 'contents#authorize'
+    put 'reject', to: 'contents#reject'
+  end
+
+  get '/pending_authorization', to: 'contents#pending_authorization'
 end

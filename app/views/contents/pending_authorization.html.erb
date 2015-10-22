@@ -1,0 +1,42 @@
+<h1>Noticias por autorizar</h1>
+
+<%= render 'shared/search_bar' %>
+
+<% if @contents.any? %>
+  <table id="table" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-xs-4">
+          Nombre
+        </th>
+        <th class="col-xs-4">
+          Categoría
+        </th>
+        <th class="col-xs-4">
+          Acciones
+        </th>
+      </tr>
+    </thead>
+
+    <% @contents.each do |content| %>
+      <tr>
+        <td>
+          <%= link_to content.title, content_path(content) %>
+        </td>
+        <td>
+          <%= content.category.name %>
+        </td>
+        <td class="text-center">
+          <%= link_to '<i class="fa fa-check-circle"></i> Autorizar'.html_safe,
+                      content_authorize_path(content),
+                      method: :put,
+                      class: 'btn btn-success btn-xs' %>
+          <%= link_to '<i class="fa fa-times-circle"></i> Rechazar'.html_safe,
+                      content_reject_path(content),
+                      method: :put,
+                      class: 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

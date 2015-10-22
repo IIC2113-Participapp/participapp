@@ -25,6 +25,10 @@ class Content < ActiveRecord::Base
   # - Post-condición: retorna la Category a la que pertenece un Content.
   belongs_to :category
 
+  scope :authorized, -> { where(authorization_status: 'authorized') }
+  scope :rejected, -> { where(authorization_status: 'rejected') }
+  scope :pending, -> { where(authorization_status: 'pending') }
+
   validates :author, presence: true
   validates :category, presence: true
   validates :title, presence: true
