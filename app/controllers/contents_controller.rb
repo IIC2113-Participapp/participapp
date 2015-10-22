@@ -7,6 +7,10 @@ class ContentsController < ApplicationController
     @categories = Category.all
   end
 
+  def pending_authorization
+    @contents = Content.pending
+  end
+
   # GET    /content/:id(.:format)
   # - Muestra un content en particular. Recibe en la HTTP Request el parametro
   # "id" correspondiente a dicho content.
@@ -36,7 +40,7 @@ class ContentsController < ApplicationController
         @content.update_attribute(:authorization_status, 'authorized')
       else
         flash[:success] = "La noticia ha sido creada exitosamente. Los editores deberán aprobarla ahora."
-        @content.update_attribute(:authorization_status, 'unauthorized')
+        @content.update_attribute(:authorization_status, 'pending')
       end
       redirect_to content_path @content
     else
@@ -65,6 +69,32 @@ class ContentsController < ApplicationController
     end
 
     redirect_to :back
+  end
+
+  def reject
+    content = Content.find_by(id: params[:content_id])
+
+    if content
+      flash[:success] = "La noticia ha sido rechazada."
+      content.update_attribute(:authorization_status, 'rejected')
+    else
+      flash[:danger] = "La noticia no fue encontrada. Inténtalo nuevamente."
+    end
+
+    redirect_to pending_authorization_path
+  end
+
+  def authorize
+    content = Content.find_by(id: params[:content_id])
+
+    if content
+      flash[:success] = "La noticia ha sido autorizada."
+      content.update_attribute(:authorization_status, 'authorized')
+    else
+      flash[:danger] = "La noticia no fue encontrada. Inténtalo nuevamente."
+    end
+
+    redirect_to pending_authorization_path
   end
 
   # DELETE /content/:id(.:format)

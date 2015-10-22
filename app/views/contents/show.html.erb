@@ -1,4 +1,19 @@
-<h1><%= @content.title %></h1>
+<h1>
+  <%= @content.title %>
+
+  <% if current_user.editor? && @content.authorization_status == 'pending' %>
+    <div>
+      <%= link_to '<i class="fa fa-check-circle"></i> Autorizar'.html_safe,
+                  content_authorize_path(@content),
+                  method: :put,
+                  class: 'btn btn-success btn-xs' %>
+      <%= link_to '<i class="fa fa-times-circle"></i> Rechazar'.html_safe,
+                  content_reject_path(@content),
+                  method: :put,
+                  class: 'btn btn-danger btn-xs' %>
+    </div>
+  <% end %>
+</h1>
 
 <div>
   <%= "#{@content.body}".html_safe %>
