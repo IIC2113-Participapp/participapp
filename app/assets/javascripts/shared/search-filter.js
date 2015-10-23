@@ -39,7 +39,7 @@
   }
 
   $(function () {
-    listFilter($("#list"));
-    tableFilter($("#table"));
+    listFilter($(".search-list"));
+    tableFilter($(".search-table"));
   });
 }(jQuery));

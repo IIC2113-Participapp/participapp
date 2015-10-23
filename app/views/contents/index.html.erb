@@ -14,7 +14,7 @@
       </div>
       <div id="<%= category.id %>" class="panel-collapse collapse">
         <div class="panel-body">
-          <ul id="list">
+          <ul class="search-list">
           <% category.contents.authorized.each do |content| %>
             <li>
               <%= link_to "#{content.created_at.to_date} - #{content.title}",
