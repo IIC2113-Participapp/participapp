@@ -32,14 +32,14 @@ h4,
 h5,
 h6 {
   text-transform: uppercase;
-  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: Montserrat,"Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
-.footer-above h3{
+.footer-above h3 {
   text-transform: none;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 hr.star-light,

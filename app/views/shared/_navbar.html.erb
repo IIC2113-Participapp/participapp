@@ -20,20 +20,20 @@
         <% unless user_signed_in? %>
           <li>
             <a data-target="#sign-in" data-toggle="modal"
-                    class="btn btn-default btn-lg">
+                    class="btn btn-default">
               <i class="fa fa-sign-in"></i> Ingresar
             </a>
           </li>
           <li>
             <a data-target="#sign-up" data-toggle="modal"
-                    class="btn btn-default btn-lg">
+                    class="btn btn-default">
               Crear Cuenta
             </a>
           </li>
         <% else %>
           <li>
             <div class="dropdown">
-              <button id="user-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+              <button id="user-dropdown" class="btn btn-default dropdown-toggle"
                       type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true">
                 <i class="fa fa-newspaper-o"></i> Noticias
@@ -60,7 +60,7 @@
           </li>
           <li>
             <div class="dropdown">
-              <button id="user-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+              <button id="user-dropdown" class="btn btn-default dropdown-toggle"
                       type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true">
                 <i class="fa fa-user"></i> <%= current_user.first_name %>
@@ -81,7 +81,7 @@
           </li>
           <li>
             <div class="dropdown">
-              <button id="settings-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+              <button id="settings-dropdown" class="btn btn-default dropdown-toggle"
                       type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true">
                 <i class="fa fa-cog"></i>
@@ -139,7 +139,7 @@
               </div>
             </div>
             <div class="center-align-space-around">
-              <%= f.submit 'Ingresar', class: 'btn btn-default btn-lg' %>
+              <%= f.submit 'Ingresar', class: 'btn btn-default' %>
             </div>
           <% end %>
         </div>
@@ -201,7 +201,7 @@
               </div>
             </div>
             <div class="center-align-space-around">
-              <%= f.submit 'Ingresar', class: 'btn btn-default btn-lg' %>
+              <%= f.submit 'Ingresar', class: 'btn btn-default' %>
             </div>
           <% end %>
         </div>
