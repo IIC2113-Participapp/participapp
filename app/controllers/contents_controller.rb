@@ -1,4 +1,6 @@
 class ContentsController < ApplicationController
+  before_action :authenticate
+  before_action :authorize_editor, only: [:pending_authorization, :reject, :authorize]
   before_action :set_content, only: [:show, :edit, :update, :destroy]
 
   # GET    /content(.:format)
