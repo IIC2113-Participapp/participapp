@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate
+  before_action :authorize_editor
   before_action :set_category, only: [:edit, :update, :destroy]
 
   # GET    /category(.:format)
