@@ -29,11 +29,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def toggle_admin
     toggle!(:admin)
   end
 
   def toggle_editor
+    toggle!(:editor)
   end
 
   def admin?
@@ -41,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def editor?
-    return false
+    return editor
   end
 end
 

@@ -21,7 +21,25 @@
     });
   }
 
+  function tableFilter(table) {
+    $('#search-bar')
+      .change(function () {
+        var filter = $(this).val();
+        if(filter) {
+          $(table).find("td:not(:Contains(" + filter + "))").parent().hide();
+          $(table).find("td:Contains(" + filter + ")").parent().show();
+        } else {
+          $(table).find("tr").show();
+        }
+        return false;
+      })
+    .keyup( function () {
+      $(this).change();
+    });
+  }
+
   $(function () {
     listFilter($("#list"));
+    tableFilter($("#table"));
   });
 }(jQuery));

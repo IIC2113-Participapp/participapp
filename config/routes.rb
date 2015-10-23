@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :comments, only: [:create, :update, :destroy]
+  get '/users', to: 'users#index'
+  post '/toggle_admin', to: 'users#toggle_admin'
+  post '/toggle_editor', to: 'users#toggle_editor'
+
   resources :forums
+  resources :comments, only: [:create, :update, :destroy]
 
   # Rutas para la API versión 1. Cada ruta redirige el request a un
   # controller distinto segun su función.
