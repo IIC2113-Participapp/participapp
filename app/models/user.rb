@@ -16,7 +16,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  admin                  :boolean          default(FALSE)
-#  editor                 :boolean
+#  editor                 :boolean          default(FALSE)
 #  default                :string
 #  false                  :string
 #  first_name             :string
@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+   has_many :category_users, dependent: :destroy
+   has_many :categories, through: :category_users
 
   def full_name
     "#{first_name} #{last_name}"

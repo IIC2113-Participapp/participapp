@@ -15,7 +15,7 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  editor                 :boolean
+#  editor                 :boolean          default(FALSE)
 #  default                :string
 #  false                  :string
 #  first_name             :string
