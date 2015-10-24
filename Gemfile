@@ -56,4 +56,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'annotate'
+
+  gem 'faker'
+  gem 'hirb'
 end
