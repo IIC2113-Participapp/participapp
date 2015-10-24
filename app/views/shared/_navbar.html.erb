@@ -121,7 +121,7 @@
           <h4 class="modal-title">Iniciar sesión</h4>
         </div>
         <div class="modal-body">
-          <%= form_for @user = User.new, :as => :user, :url => session_path(@user) do |f| %>
+          <%= form_for @user, :as => :user, :url => session_path(@user) do |f| %>
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
