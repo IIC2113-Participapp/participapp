@@ -59,6 +59,15 @@ class User < ActiveRecord::Base
     return editor
   end
 
+  def self.retreive_by_periodicity
+    return joins(:category_users)
+          .joins('JOIN contents ON category_users.category_id = contents.category_id')
+          .where('contents.authorization_status' => 'authorized')
+          .where('julianday() - julianday(users.last_received) >= users.periodicity')
+          .select('users.id, contents.*')
+          .order('user_id_result')
+  end
+
   private
 
     def proper_periodicity
