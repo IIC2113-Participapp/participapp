@@ -1,13 +1,15 @@
 class NewsMailer < ApplicationMailer
 
   # - Envía un correo al usuario con el content indicado en los parámetros.
-  # - Pre-condiciones: no hay una entrada en la tabla "received_email" que
-  # relacione un usuario con un content.
-  # - Post-condiciones: hay una entrada en la tabla "received_email" que
-  # relaciona un usuario con un content.
-  def periodic_mail user, content
+  # - Pre-condiciones: en la tabla "Users", hay una entrada cuyo valor de
+  # "last_received" es X.
+  # - Post-condiciones: en la tabla "Users", la entrada mencionada anteriormente
+  # tiene un valor de X + "Time.now" en "last_received".
+  def periodic_mail user, contents
     @user = user
+    @user.update_attribute(:last_received, Time.now)
+    @contents = contents
 
-    mail to: @user.email, subject: "#{content.title}"
+    mail to: @user.email, subject: "[Participapp] novedades de hace #{@user.periodicity} días."
   end
 end

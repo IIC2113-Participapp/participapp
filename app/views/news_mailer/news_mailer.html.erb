@@ -1,0 +1,14 @@
+<h1>Novedades constitucionales de hace <%= @user.periodicity %> días atrás</h1>
+
+<%= @contents.each do |content| %>
+  <div class="well well-lg">
+    <h2><%= content.title %></h2>
+    <h3><%= User.find_by(id: content.user_id) %></h3>
+    <h4>Publicada el <%= content.created_at.strftime("%d:%m:%y") %></h4>
+    <h5>Categoría: <%= content.category.name %> </h5>
+
+    <div>
+      <%= content.body %>
+    </div>
+  </div>
+<% end %>
