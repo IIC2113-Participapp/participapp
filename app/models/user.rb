@@ -15,11 +15,12 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  editor                 :boolean          default(FALSE)
 #  first_name             :string
 #  last_name              :string
 #  admin                  :boolean          default(FALSE)
+#  editor                 :boolean          default(FALSE)
 #  periodicity            :integer
+#  last_post              :datetime
 #
 
 class User < ActiveRecord::Base
@@ -30,6 +31,8 @@ class User < ActiveRecord::Base
 
   has_many :category_users, dependent: :destroy
   has_many :categories, through: :category_users
+
+  has_many :contents, through: :category_users
 
   validates :email, presence: true,
                    uniqueness: true

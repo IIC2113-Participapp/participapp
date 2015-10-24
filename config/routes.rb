@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'static_pages/mailer_example'
+
   root to: 'static_pages#home'
 
   get 'static_pages/about'
