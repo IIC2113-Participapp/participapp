@@ -33,11 +33,7 @@ class User < ActiveRecord::Base
   has_many :categories, through: :category_users
 
   validates :email, presence: true,
-<<<<<<< HEAD
-                   uniqueness: true
-=======
                     uniqueness: true
->>>>>>> user_manager
 
   validates :first_name, presence: true
   validates :last_name, presence: true
