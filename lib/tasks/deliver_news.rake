@@ -1,6 +1,7 @@
 namespace :mailer do
   task :deliver_news => :environment do
-    mails_to_send = User.retreive_by_periodicity
+    puts 'executing delivery'
+    mails_to_send = User.fetch_for_mailing
 
     if mails_to_send.any?
       current_receiver_id = mails_to_send.first.receiver_id

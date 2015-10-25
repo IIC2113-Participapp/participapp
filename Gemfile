@@ -45,6 +45,7 @@ gem 'better_errors'
 
 gem 'passenger'
 gem 'rufus-scheduler'
+
 gem 'premailer-rails'
 gem 'nokogiri'
 

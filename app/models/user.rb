@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
     return editor
   end
 
-  def self.retreive_by_periodicity
+  def self.fetch_for_mailing
     return joins(:category_users)
           .joins('JOIN contents ON category_users.category_id = contents.category_id')
           .where('contents.authorization_status' => 'authorized')
