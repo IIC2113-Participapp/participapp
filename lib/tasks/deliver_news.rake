@@ -11,11 +11,17 @@ namespace :mailer do
         else
           user = User.find_by(id: current_receiver_id)
           puts "sending to #{user.first_name}"
-          # NewsMailer.periodic_mail(user, collection).deliver
+          NewsMailer.periodic_mail(user, collection).deliver
           collection = []
-          collection << mail_to_send
           current_receiver_id = mail_to_send.receiver_id
+          collection << mail_to_send
         end
+      end
+
+      if mails_to_send.size > 1
+        user = User.find_by(id: current_receiver_id)
+        puts "sending to #{user.first_name}"
+        NewsMailer.periodic_mail(user, collection).deliver
       end
     end
   end

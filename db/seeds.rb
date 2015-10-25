@@ -5,16 +5,16 @@ Category.create!(name: 'Educación')
 Category.create!(name: 'Medio Ambiente')
 
 puts 'Creating admin...'
-User.create!(email: 'admin@abc.net', password: 'napoleon', first_name: 'John',
+User.create!(email: 'admin@example.net', password: 'napoleon', first_name: 'John',
             last_name: 'Admin', admin: true, editor: true)
 
 puts 'Creating editor...'
-User.create!(email: 'editor@abc.net', password: 'napoleon', first_name: 'John',
+User.create!(email: 'editor@example.net', password: 'napoleon', first_name: 'John',
             last_name: 'Editor', admin: false, editor: true)
 
 puts 'Creating users...'
 20.times do |n|
-  email      = "user#{n+1}@abc.net"
+  email      = "user#{n+1}@example.net"
   first_name = Faker::Name.first_name
   last_name  = Faker::Name.last_name
   user = User.create!(email: email, password: 'macoy123', first_name: first_name,
@@ -35,7 +35,7 @@ status = ['authorized', 'pending']
 
 num_contents.times do |n|
   Content.create!(title: Faker::Lorem.sentence(rand(2..10)).chomp('.'),
-                  body: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
+                  body: Faker::Lorem.paragraph,
                   authorization_status: status.sample,
                   user_id: User.order("RANDOM()").first.id,
                   category_id: Category.order("RANDOM()").first.id,
