@@ -1,15 +1,9 @@
-@import "shared/palette";
+@import "palette";
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body.static_pages.home{
-  background: $blue;
-  background: url(image_path('background.jpg')) no-repeat center center fixed;
-  background-size: cover;
 }
 
 h1 {
@@ -32,15 +26,15 @@ h1 {
   align-items: center;
 }
 
-.center-align-space-around {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .center-align-space-between {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.center-align-space-around {
+  display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -54,44 +48,14 @@ h1 {
   padding-bottom: 250px;
 }
 
-.footer {
-  position: absolute;
-  height: 225px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  margin-top: 25px;
-}
-
-.navbar-nav>li>a, .navbar-nav>li .btn-lg, .btn-group-lg>.btn {
-  padding-right: 5px;
-  padding-left: 5px;
-}
-
-ul {
-  li {
-    margin: 5px;
-  }
-}
-
 header .container {
+  border-radius: 10px;
   padding-top: 30px;
   padding-bottom: 100px;
+  margin-bottom: 35px;
+}
+
+.dark-container {
+  color: white;
   background-color: $deep_blue_transparent;
-  border-radius: 8px;
-  margin-bottom: 34px;
-}
-
-footer .footer-above{
-  background-color: $deep_blue_transparent;
-}
-
-footer .footer-below{
-  background-color: $dark_deep_blue;
-  border-top: 1px solid $dark_deep_blue;
-  box-shadow: 0 0 2px #000;
-}
-
-footer .footer-below a{
-  color: $light_blue !important;
 }

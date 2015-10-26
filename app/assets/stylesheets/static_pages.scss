@@ -1,29 +1,34 @@
 @import "shared/palette";
 
-.star-decoration {
+.static_pages {
+  background: url(image_path('background.jpg')) no-repeat center center fixed;
+  background-size: cover;
+
+  .star-decoration {
     width: 280px;
     margin: 0px auto;
-}
 
-.star-decoration .bar {
-    background-color: #FFF;
-    width: 100px;
-    height: 4px;
-    display: inline-block;
-    margin: 32px 0px;
-}
+    .bar {
+        background-color: #FFF;
+        width: 100px;
+        height: 4px;
+        display: inline-block;
+        margin: 32px 0px;
+    }
 
-.star-decoration .star-container {
-    display: inline;
-    width: 20px;
-    height: 50px;
-}
+    .star-container {
+      display: inline;
+      width: 20px;
+      height: 50px;
+    }
 
-.star-decoration .star-light {
-    width: 50px;
-    display: inline-block;
-    line-height: 0;
-    border: 0px none;
-    margin: 0px;
-    padding: 45px 0px 0px;
+    .star-light {
+      width: 50px;
+      display: inline-block;
+      line-height: 0;
+      border: 0px none;
+      margin: 0px;
+      padding: 45px 0px 0px;
+    }
+  }
 }

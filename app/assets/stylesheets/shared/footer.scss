@@ -1,0 +1,26 @@
+@import "palette";
+
+.footer {
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  margin-top: 25px;
+}
+
+footer {
+  .footer-above {
+    background-color: $deep_blue_transparent;
+  }
+
+  .footer-below {
+    background-color: $dark_deep_blue;
+    border-top: 1px solid $dark_deep_blue;
+    box-shadow: 0 0 2px #000;
+
+    a {
+      color: $light_blue !important;
+    }
+  }
+}
