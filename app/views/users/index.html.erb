@@ -1,59 +1,61 @@
-<h1>Usuarios</h1>
+<div class="dark-container">
+  <h1>Usuarios</h1>
 
-<%= render 'shared/search_bar' %>
+  <%= render 'shared/search_bar' %>
 
-<% if @users.any? %>
-  <table class="search-table table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="col-xs-6">
-          Nombre
-        </th>
-        <th class="col-xs-3">
-          ¿Admin?
-        </th>
-        <th class="col-xs-3">
-          ¿Editor?
-        </th>
-      </tr>
-    </thead>
+  <% if @users.any? %>
+    <table class="search-table table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-xs-6">
+            Nombre
+          </th>
+          <th class="col-xs-3">
+            ¿Admin?
+          </th>
+          <th class="col-xs-3">
+            ¿Editor?
+          </th>
+        </tr>
+      </thead>
 
-    <% @users.each do |user| %>
-      <tr>
-        <td class="center-align-space-between">
-          <%= user.full_name %>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="center-align-space-between">
+            <%= user.full_name %>
 
-          <%= link_to raw('<i class="fa fa-remove"></i>'), edit_user_registration_path(user),
-                      method: :delete,
-                      class: 'btn btn-danger btn-xs' %>
-        </td>
-        <td class="text-center">
-          <% if user.admin? %>
-            <%= link_to '<i class="fa fa-times-circle"></i> Destituir Admin'.html_safe,
-                        toggle_admin_path(id: user.id),
-                        method: :post,
+            <%= link_to raw('<i class="fa fa-remove"></i>'), edit_user_registration_path(user),
+                        method: :delete,
                         class: 'btn btn-danger btn-xs' %>
-          <% else %>
-            <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Admin'.html_safe,
-                        toggle_admin_path(id: user.id),
-                        method: :post,
-                        class: 'btn btn-success btn-xs' %>
-          <% end %>
-        </td>
-        <td class="text-center">
-          <% if user.editor? %>
-            <%= link_to '<i class="fa fa-times-circle"></i> Destituir Editor'.html_safe,
-                        toggle_editor_path(id: user.id),
-                        method: :post,
-                        class: 'btn btn-danger btn-xs' %>
-          <% else %>
-            <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Editor'.html_safe,
-                        toggle_editor_path(id: user.id),
-                        method: :post,
-                        class: 'btn btn-success btn-xs' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+          </td>
+          <td class="text-center">
+            <% if user.admin? %>
+              <%= link_to '<i class="fa fa-times-circle"></i> Destituir Admin'.html_safe,
+                          toggle_admin_path(id: user.id),
+                          method: :post,
+                          class: 'btn btn-danger btn-xs' %>
+            <% else %>
+              <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Admin'.html_safe,
+                          toggle_admin_path(id: user.id),
+                          method: :post,
+                          class: 'btn btn-success btn-xs' %>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <% if user.editor? %>
+              <%= link_to '<i class="fa fa-times-circle"></i> Destituir Editor'.html_safe,
+                          toggle_editor_path(id: user.id),
+                          method: :post,
+                          class: 'btn btn-danger btn-xs' %>
+            <% else %>
+              <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Editor'.html_safe,
+                          toggle_editor_path(id: user.id),
+                          method: :post,
+                          class: 'btn btn-success btn-xs' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

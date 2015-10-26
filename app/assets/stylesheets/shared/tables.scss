@@ -1,0 +1,9 @@
+@import "palette";
+
+.table.table-bordered.table-hover {
+  tbody {
+    tr:hover {
+      background-color: $deep_blue;
+    }
+  }
+}
