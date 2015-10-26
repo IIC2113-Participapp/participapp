@@ -13,9 +13,8 @@
 .navbar .navbar-brand{
   padding: 16px 0;
 }
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus{
-  color: $light_blue !important;
+.navbar .navbar-brand:hover{
+  color: $light_blue;
 }
 
 .navbar ul.nav li{
@@ -30,12 +29,8 @@
   background-color: $deep_blue;
 }
 
-.navbar .dropdown-toggle:hover,
-.navbar .dropdown-toggle:focus,
-.navbar .dropdown-toggle:active,
-.navbar .dropdown-toggle.open,
-.navbar .btn.btn-default:hover {
-  color: $light_blue !important;
-  background-color: $dark_deep_blue !important;
+.navbar .dropdown-toggle:hover, .navbar .btn.btn-default:hover {
+  color: $light_blue;
+  background-color: $dark_deep_blue;
   transition: background-color 0.3s;
 }

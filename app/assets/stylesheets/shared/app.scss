@@ -1,7 +1,15 @@
+@import "shared/palette";
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body.static_pages.home{
+  background: $blue;
+  background: url(image_path('background.jpg')) no-repeat center center fixed;
+  background-size: cover;
 }
 
 h1 {
@@ -64,4 +72,26 @@ ul {
   li {
     margin: 5px;
   }
+}
+
+header .container {
+  padding-top: 30px;
+  padding-bottom: 100px;
+  background-color: $deep_blue_transparent;
+  border-radius: 8px;
+  margin-bottom: 34px;
+}
+
+footer .footer-above{
+  background-color: $deep_blue_transparent;
+}
+
+footer .footer-below{
+  background-color: $dark_deep_blue;
+  border-top: 1px solid $dark_deep_blue;
+  box-shadow: 0 0 2px #000;
+}
+
+footer .footer-below a{
+  color: $light_blue !important;
 }
