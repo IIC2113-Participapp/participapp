@@ -24,6 +24,8 @@
 #
 
 class User < ActiveRecord::Base
+  before_create :set_last_received_to_now
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -69,6 +71,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+    def set_last_received_to_now
+      self.last_received = Time.now
+    end
 
     def proper_periodicity
       errors.add(:periodicity, "la periodicidad ingresada es inválida.") unless [1, 2, 5, 7, 10, 14].include?(periodicity)
