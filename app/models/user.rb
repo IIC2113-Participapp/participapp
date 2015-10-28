@@ -2,25 +2,18 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  first_name             :string
-#  last_name              :string
-#  admin                  :boolean          default(FALSE)
-#  editor                 :boolean          default(FALSE)
-#  periodicity            :integer
-#  last_received          :datetime
+#  id                  :integer          not null, primary key
+#  email               :string           default(""), not null
+#  encrypted_password  :string           default(""), not null
+#  remember_created_at :datetime
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  editor              :boolean          default(FALSE)
+#  first_name          :string
+#  last_name           :string
+#  admin               :boolean          default(FALSE)
+#  periodicity         :integer
+#  last_received       :datetime
 #
 
 class User < ActiveRecord::Base
@@ -79,13 +72,3 @@ class User < ActiveRecord::Base
       errors.add(:periodicity, "la periodicidad ingresada es inválida.") unless [1, 2, 5, 7, 10, 14].include?(periodicity)
     end
 end
-
-
-# Los métodos de los controladores relacionados con los usuarios, son generados por devise, y por defecto no
-# están incluidos en el código, el uso correcto de la gema indica que solo se deben agregar los controladores al proyecto
-# cuando sea necesario modificar alguno, dado que hasta este punto no necesitamos hacer ningún cambio no se agregarán todos
-# controladores, que a pesar de no estar explicitamente en el proyecto son una parte escencial del funcionamiento de
-# la aplicación.
-#
-# Por esta razón se agrega en este mismo directorio el archivo ./../controllers/userManager.txt, que indica la funcionalidad
-# de cada método junto con sus pre y postcondiciones.
