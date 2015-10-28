@@ -11,15 +11,19 @@
       <h3><%= @forum.name %></h3>
       <div class="forum-comments">
         <% @forum.comments.order(:updated_at).each do |comment|%>
-          <div class="well">
-            <strong><%=get_comment_author(comment)%></strong> dijo:<br>
-            <%= comment.content %><br><br>
+          <div class="well" data-filter="<%= comment.id %>">
+            <strong><%= comment.user.full_name %></strong> dijo:
+            <% if current_user.id == comment.user_id %>
+              <a class="edit-comment fa fa-pencil-square-o pull-right"></a>
+            <% end %>
+            <br>
+            <p class="comment-content"><%= comment.content %></p>
             <%=get_comment_date(comment)%>
           </div>
         <% end %>
       </div>
 
-      <%= render 'comments/form' %>
+      <%= render "comments/form" %>
     </div>
   </div>
 </div>
