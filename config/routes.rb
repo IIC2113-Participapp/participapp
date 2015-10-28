@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+
   root to: 'static_pages#home'
 
   get 'static_pages/about'
   get 'static_pages/contact'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :comments, only: [:create, :update, :destroy]
+  get '/users', to: 'users#index'
+  put '/toggle_admin', to: 'users#toggle_admin'
+  put '/toggle_editor', to: 'users#toggle_editor'
+  delete '/destroy_user', to: 'users#destroy'
+
   resources :forums
+  resources :comments, only: [:create, :update, :destroy]
 
   # Rutas para la API versión 1. Cada ruta redirige el request a un
   # controller distinto segun su función.
@@ -18,6 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contents
   resources :categories
+  resources :contents do
+    put 'authorize', to: 'contents#authorize'
+    put 'reject', to: 'contents#reject'
+  end
+
+  get '/pending_authorization', to: 'contents#pending_authorization'
 end

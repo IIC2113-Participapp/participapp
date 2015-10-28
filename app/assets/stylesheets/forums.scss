@@ -1,32 +1,11 @@
-.panel-heading.link a {
-  color: white;
-  font-size: 20px;
-}
+.forums {
+  .panel-heading.link a {
+    color: white;
+    font-size: 20px;
+  }
 
-.forum-wrapper {
-	min-width: 800px;
-	margin: 30px 0;
-}
-
-.forum-wrapper > div {
-	width: 50%;
-}
-
-.inner-left-wrapper {
-	float: left;
-}
-
-.inner-left-wrapper .well {
-	max-height: 400px;
-	overflow-y: auto;
-}
-
-.inner-right-wrapper {
-	padding-left: 20px;
-	float: right;
-}
-
-.inner-right-wrapper .forum-comments {
-	max-height: 300px;
-	overflow-y: auto;
+  .forum-comments {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }

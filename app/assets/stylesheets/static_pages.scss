@@ -1,9 +1,32 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import "shared/palette";
 
 .static_pages {
-  background: $blue;
+
+  .star-decoration {
+    width: 280px;
+    margin: 0px auto;
+
+    .bar {
+      background-color: #FFF;
+      width: 100px;
+      height: 4px;
+      display: inline-block;
+      margin: 32px 0px;
+    }
+
+    .star-container {
+      display: inline;
+      width: 20px;
+      height: 50px;
+    }
+
+    .star-light {
+      width: 50px;
+      display: inline-block;
+      line-height: 0;
+      border: 0px none;
+      margin: 0px;
+      padding: 45px 0px 0px;
+    }
+  }
 }

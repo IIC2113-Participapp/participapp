@@ -1,3 +1,10 @@
+@import "palette";
+
+body {
+  background: url(image_path('background.jpg')) no-repeat center center fixed;
+  background-size: cover;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -24,15 +31,15 @@ h1 {
   align-items: center;
 }
 
-.center-align-space-around {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .center-align-space-between {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.center-align-space-around {
+  display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -46,22 +53,19 @@ h1 {
   padding-bottom: 250px;
 }
 
-.footer {
-  position: absolute;
-  height: 225px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
+.dark-container {
+  color: white;
+  background-color: $deep_blue_transparent;
+  border-radius: 10px;
+  padding: 20px;
   margin-top: 25px;
-}
+  margin-bottom: 50px;
 
-.navbar-nav>li>a, .navbar-nav>li .btn-lg, .btn-group-lg>.btn {
-  padding-right: 2px;
-  padding-left: 2px;
-}
+  legend {
+    color: white;
+  }
 
-ul {
-  li {
-    margin: 5px;
+  .well {
+    color: $dark_deep_blue;
   }
 }

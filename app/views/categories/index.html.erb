@@ -1,34 +1,36 @@
-<h1>Categorías</h1>
+<div class="dark-container">
+  <h1>Categorías</h1>
 
-<%= render partial: 'form', locals: { title: 'Crear Categoría' } %>
+  <%= render partial: 'form', locals: { title: 'Crear Categoría' } %>
 
-<% if @categories.any? %>
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th class="col-md-9 col-xs-6">
-          Nombre
-        </th>
-        <th class="col-md-3 col-xs-6">
-          Acciones
-        </th>
-      </tr>
-    </thead>
+  <% if @categories.any? %>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-md-9 col-xs-6">
+            Nombre
+          </th>
+          <th class="col-md-3 col-xs-6">
+            Acciones
+          </th>
+        </tr>
+      </thead>
 
-    <% @categories.each do |category| %>
-      <tr>
-        <td>
-          <%= category.name %>
-        </td>
-        <td class="text-center">
-          <%= link_to raw('<i class="fa fa-edit">Editar</i>'), edit_category_path(category),
-                      class: 'btn btn-warning btn-sm' %>
+      <% @categories.each do |category| %>
+        <tr>
+          <td>
+            <%= category.name %>
+          </td>
+          <td class="text-center">
+            <%= link_to raw('<i class="fa fa-edit">Editar</i>'), edit_category_path(category),
+                        class: 'btn btn-warning btn-sm' %>
 
-          <%= link_to raw('<i class="fa fa-remove">Eliminar</i>'), category_path(category),
-                      method: :delete,
-                      class: 'btn btn-danger btn-sm' %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+            <%= link_to raw('<i class="fa fa-remove">Eliminar</i>'), category_path(category),
+                        method: :delete,
+                        class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

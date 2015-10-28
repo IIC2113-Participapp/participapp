@@ -10,19 +10,25 @@
     <%= f.text_field :description, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <label class="control-label" for="forum_category"> Categoría </label>
-    <select class="form-control" id="forum_category">
-        <option>Seleccionar categoría</option>
-      <% Category.order(:name).each do |category| %>
-        <option value= "<%= category.id %>" > <%= category.name %></option>
-      <% end %>
-    </select>
-  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="forum_category"> Categoría </label>
+        <select class="form-control" id="forum_category">
+            <option>Seleccionar categoría</option>
+          <% Category.order(:name).each do |category| %>
+            <option value= "<%= category.id %>" > <%= category.name %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :content_id, 'Noticia', class: 'control-label' %>
-    <%= f.grouped_collection_select :content_id, Category.order(:name), :contents, :name, :id, :title, { :prompt => "Seleccionar noticia" }, { class: 'form-control' } %>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <%= f.label :content_id, 'Noticia', class: 'control-label' %>
+        <%= f.grouped_collection_select :content_id, Category.order(:name), :contents, :name, :id, :title, { :prompt => "Seleccionar noticia" }, { class: 'form-control' } %>
+      </div>
+    </div>
   </div>
 
   <%= f.hidden_field :user_id, value: current_user.id %>

@@ -1,0 +1,62 @@
+<div class="dark-container">
+  <h1>Usuarios</h1>
+
+  <%= render 'shared/search_bar' %>
+
+  <% if @users.any? %>
+    <table class="search-table table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="col-xs-6">
+            Nombre
+          </th>
+          <th class="col-xs-3">
+            ¿Admin?
+          </th>
+          <th class="col-xs-3">
+            ¿Editor?
+          </th>
+        </tr>
+      </thead>
+
+      <% @users.each do |user| %>
+        <tr>
+          <td class="center-align-space-between">
+            <%= user.full_name %>
+
+            <%= link_to raw('<i class="fa fa-remove"></i>'),
+                        destroy_user_path(id: user.id),
+                        method: :delete,
+                        class: 'btn btn-danger btn-xs' %>
+          </td>
+          <td class="text-center">
+            <% if user.admin? %>
+              <% url = raw('<i class="fa fa-times-circle"></i> Destituir Admin') %>
+              <% btn_class = 'btn btn-danger btn-xs' %>
+            <% else %>
+              <% url = raw('<i class="fa fa-plus-circle"></i> Promover a Admin') %>
+              <% btn_class = 'btn btn-success btn-xs' %>
+            <% end %>
+
+            <%= link_to url, toggle_admin_path(id: user.id),
+                        method: :put,
+                        class: btn_class %>
+          </td>
+          <td class="text-center">
+            <% if user.editor? %>
+              <% url = raw('<i class="fa fa-times-circle"></i> Destituir Editor') %>
+              <% btn_class = 'btn btn-danger btn-xs' %>
+            <% else %>
+              <% url = raw('<i class="fa fa-plus-circle"></i> Promover a Editor') %>
+              <% btn_class = 'btn btn-success btn-xs' %>
+            <% end %>
+
+            <%= link_to url, toggle_editor_path(id: user.id),
+                        method: :put,
+                        class: btn_class %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
