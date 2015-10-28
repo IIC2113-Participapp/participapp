@@ -8,21 +8,25 @@ class UsersController < ApplicationController
   end
 
   def toggle_admin
-    @user.toggle_admin
+    if @user then @user.toggle_admin else error_flash end
     redirect_to users_path
   end
 
   def toggle_editor
-    @user.toggle_editor
+    if @user then @user.toggle_editor else error_flash end
     redirect_to users_path
   end
 
   def destroy
-    @user.destroy
+    if @user then @user.destroy else error_flash end
     redirect_to users_path
   end
 
   private
+    def error_flash
+      flash[:danger] = "No se encontró el usuario. Inténtalo nuevamente."
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

@@ -11,8 +11,8 @@ class CategoriesController < ApplicationController
   end
 
   # POST   /category(.:format)
-  # - Crea una category a partir de los parametros que recibe por la HTTP Request.
-  # En particular, recibe el parametro "name".
+  # - Crea una category a partir de los parametros que recibe por la HTTP
+  # Request. En particular, recibe el parametro "name".
   # - Pre-condiciones: la tabla "categories" no cuenta con esta category.
   # - Post-condiciones: se crea en la tabla "categories" una nueva entrada, con
   # atributos iguales a los parametros entregados por la HTTP Request.
@@ -22,7 +22,8 @@ class CategoriesController < ApplicationController
     if @category.save
       flash[:success] = "La categoría ha sido creada exitosamente."
     else
-      flash[:danger] = "Hubo un problema al crear la categoría. Inténtalo nuevamente."
+      flash[:danger] = "Hubo un problema al crear la categoría. " +
+                       "Inténtalo nuevamente."
     end
 
     redirect_to :back
@@ -37,14 +38,16 @@ class CategoriesController < ApplicationController
   # PUT    /category/:id(.:format)
   # - Actualiza una category a partir de los parametros que recibe por la HTTP
   # Request. En particular, recibe el parametro "name".
-  # - Pre-condiciones: la tabla "categories" cuenta con una category desactualizada.
+  # - Pre-condiciones: la tabla "categories" cuenta con una category
+  # desactualizada.
   # - Post-condiciones: se actualizan las columnas de la tabla "categories" con
   # los parametros entregados por la HTTP Request.
   def update
     if @category.update_attributes(category_params)
       flash[:success] = "La categoría ha sido actualizada exitosamente."
     else
-      flash[:danger] = "La categoría no pudo ser actualizada. Inténtalo nuevamente."
+      flash[:danger] = "La categoría no pudo ser actualizada. " +
+                       "Inténtalo nuevamente."
     end
 
     redirect_to categories_path
@@ -62,7 +65,8 @@ class CategoriesController < ApplicationController
       @category.destroy
       flash[:success] = "La categoría ha sido eliminada exitosamente."
     else
-      flash[:danger] = "La categoría que deseas eliminar no fue encontrada. Inténtalo nuevamente."
+      flash[:danger] = "La categoría que deseas eliminar no fue encontrada. " +
+                       "Inténtalo nuevamente."
     end
 
     redirect_to :back
