@@ -16,8 +16,8 @@
 !/log/.keep
 /tmp
 
-Passengerfile.json
-config/initializers/devise.rb
-config/secrets.yml
+/Passengerfile.json
+/config/initializers/devise.rb
+/config/secrets.yml
 
-public/assets/*
+/public/assets/*
