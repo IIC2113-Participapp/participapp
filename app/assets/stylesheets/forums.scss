@@ -4,8 +4,26 @@
     font-size: 20px;
   }
 
+  .panel-footer {
+    color: #18BC9C;
+  }
+
   .forum-comments {
     max-height: 300px;
     overflow-y: auto;
+    margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+      color: #bbb;
+    }
+
+    a:hover {
+      color: #888;
+    }
+
+    p {
+      font-size: 15px;
+    }
   }
 }
