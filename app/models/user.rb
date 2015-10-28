@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   private
 
     def set_last_received_to_now
-      self.last_received = Time.now
+      self.last_received = 30.days.ago
     end
 
     def proper_periodicity
