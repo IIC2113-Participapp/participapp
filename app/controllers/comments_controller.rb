@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :comment_params, only: [:update, :destroy]
+  before_action :set_comment, only: [:update, :destroy]
+  before_action :comment_params, only: [:create, :destroy]
 
   #POST   /comment(.:format)
   # - Es el método encargado de crear una nueva entrada a
@@ -22,6 +23,8 @@ class CommentsController < ApplicationController
   # - Post-condiciones: se actualizan las columnas de la tabla "Comment" con
   # los parametros entregados por la HTTP Request.
   def update
+    @comment.update(content: params[:content])
+    render json: { data: 'Comentario Editado' }
   end
 
   # DELETE/comment/:id(.:format)
@@ -36,6 +39,10 @@ class CommentsController < ApplicationController
 
 
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:user_id, :content, :forum_id)

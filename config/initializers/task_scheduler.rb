@@ -3,5 +3,5 @@ require 'rake'
 require 'rufus/scheduler'
 scheduler = Rufus::Scheduler.new
 scheduler.every '6h' do
-  system 'bundle exec rake mailer:deliver_news'
+  system 'bundle exec rake mailer:deliver_news --trace RAILS_ENV=production'
 end
