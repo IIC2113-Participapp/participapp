@@ -68,4 +68,33 @@ h1 {
   .well {
     color: $dark-deep-blue;
   }
+
+  .actions input{
+    background-color: $deep_blue_transparent;
+    color: white;
+  }
 }
+
+form {
+  input {
+    display: block;
+    border: 2px groove;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 10px 0;
+    margin-top: 0px;
+    color: black;
+
+    label {
+      display: block;
+      width: auto;
+      font-size: 14px;
+      font-weight: bold;
+      padding-left: 2px;
+      padding-right: 2px;
+      border: none;
+    }
+  }
+}
+
+
