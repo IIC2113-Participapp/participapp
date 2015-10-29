@@ -14,21 +14,24 @@ Category.create!(name: 'Defensa')
 Category.create!(name: 'Avances Proceso Constituyente')
 
 puts 'Creating admin...'
-User.create!(email: 'admin@example.net', password: 'napoleon', first_name: 'John',
-            last_name: 'Admin', admin: true, editor: true)
+User.create!(email: 'admin@example.net', password: 'napoleon',
+             first_name: 'John', last_name: 'Admin', admin: true, editor: true,
+             periodicity: 1)
 
 puts 'Creating editor...'
-User.create!(email: 'editor@example.net', password: 'napoleon', first_name: 'John',
-            last_name: 'Editor', admin: false, editor: true)
+User.create!(email: 'editor@example.net', password: 'napoleon',
+            first_name: 'John', last_name: 'Editor', admin: false, editor: true,
+            periodicity: 1)
 
 puts 'Creating users...'
 20.times do |n|
   email      = "user#{n+1}@example.net"
   first_name = Faker::Name.first_name
   last_name  = Faker::Name.last_name
-  user = User.create!(email: email, password: 'macoy123', first_name: first_name,
-                     last_name: last_name, periodicity: [1, 2, 5, 7, 10, 14].sample,
-                     last_received: rand(14.days).seconds.ago)
+  user = User.create!(email: email, password: 'macoy123',
+                      first_name: first_name, last_name: last_name,
+                      periodicity: [1, 2, 5, 7, 10, 14].sample,
+                      last_received: rand(14.days).seconds.ago)
 
   num_related_categories = rand(1..num_categories)
   num_related_categories.times do |i|
@@ -325,5 +328,3 @@ Content.create!(title: "Ricardo Lagos: \"Los miedos surgen porque se acabó el v
         user_id: User.order("RANDOM()").first.id,
         category_id: Category.where(name: "Sistema Electoral").take.id,
         created_at: rand(14.days).seconds.ago)
-
-
