@@ -27,19 +27,22 @@ jQuery(function() {
       content = well.children("p");
       id = well.attr("data-filter");
       var width = content.css("width");
-      var comment = $("<textarea id='edit-comment-text' class='form-control' autofocus>"+content.text()+"</textarea>").change(function(){
-        edit_val = $(this).val();
+      var comment = $("<textarea id='edit-comment-text' class='form-control' autofocus>"+content.text()+"</textarea>").keypress(function(e){
+        var key = e.which;
+        if (key == 13){
+          edit_val = $(this).val();
 
-        $.ajax({
-          url: '/comments/' + id,
-          type: 'PUT',
-          data: {content: edit_val},
-          success: function(data){
-            well.children('textarea').replaceWith("<p class='comment-content'>" + edit_val + "</p>");
-            $('.forum-comments').append(well);
-            commenting = false;
-          }
-        });
+          $.ajax({
+            url: '/comments/' + id,
+            type: 'PUT',
+            data: {content: edit_val},
+            success: function(data){
+              well.children('textarea').replaceWith("<p class='comment-content'>" + edit_val + "</p>");
+              $('.forum-comments').append(well);
+              commenting = false;
+            }
+          });
+        }
       });
       content.replaceWith(comment);
       $('#edit-comment-text').css('width', width).css('background-color', 'transparent');
