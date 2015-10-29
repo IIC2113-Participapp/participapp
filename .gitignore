@@ -16,8 +16,6 @@
 !/log/.keep
 /tmp
 
-
 /Passengerfile.json
-/config/secrets.yml
 
 /public/assets/*
