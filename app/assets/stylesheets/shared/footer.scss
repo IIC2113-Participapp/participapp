@@ -11,16 +11,16 @@
 
 footer {
   .footer-above {
-    background-color: $deep_blue_transparent;
+    background-color: $deep-blue-transparent;
   }
 
   .footer-below {
-    background-color: $dark_deep_blue;
-    border-top: 1px solid $dark_deep_blue;
+    background-color: $dark-deep-blue;
+    border-top: 1px solid $dark-deep-blue;
     box-shadow: 0 0 2px #000;
 
     a {
-      color: $light_blue !important;
+      color: $light-blue !important;
     }
   }
 }
