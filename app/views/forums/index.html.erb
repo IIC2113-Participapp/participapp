@@ -1,19 +1,19 @@
 <div class="dark-container">
   <h1>Forums</h1>
   <div id="wrapper">
-    <div class="">
-      <div class="panel-group">
-        <% @forums.each do |forum| %>
-          <div class="panel panel-success">
-            <div class="panel-heading link"><%= link_to forum.name, forum_path(forum) %></div>
-            <div class="panel-body"><%= forum.description %></div>
-            <div class="panel-footer">Creado por: <%= forum_creator(forum) %></div>
+    <div class="row">
+      <% @forums.each do |forum| %>
+        <div class="col-xs-6 col-md-3">
+          <div class="panel-group">
+            <div class="panel panel-success">
+              <div class="panel-heading link"><%= link_to forum.name, forum_path(forum) %></div>
+              <div class="panel-body"><%= forum.description %></div>
+              <div class="panel-footer">Creado por: <%= forum_creator(forum) %></div>
+            </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-    <div class="form-group col-xs-12">
-      <%= button_to 'Crear Tema', new_forum_path, method: :get ,class: "btn btn-success btn-lg" %>
-    </div>
+    <%= button_to 'Crear Tema', new_forum_path, method: :get ,class: "btn btn-success btn-lg" %>
   </div>
 </div>

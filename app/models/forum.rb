@@ -3,7 +3,7 @@
 # Table name: forums
 #
 #  id          :integer          not null, primary key
-#  description :string
+#  description :text
 #  content_id  :integer
 #  user_id     :integer
 #  created_at  :datetime         not null
@@ -22,4 +22,6 @@ class Forum < ActiveRecord::Base
   #Un foro tendrá muchos commentarios sobre el tema en discusión.
   has_many :comments
 
+  validates :name, presence: true,
+                   uniqueness: true
 end

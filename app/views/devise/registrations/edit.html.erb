@@ -1,117 +1,111 @@
-<h1>Editar Perfil</h1>
+<div class="dark-container">
+  <h1>Editar Perfil</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-             html: { method: :put }) do |f| %>
-  <div class="row">
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :first_name, 'Nombre', class: 'control-label' %>
-      <%= f.text_field :first_name, class: 'form-control' %>
-      <%= f.errors :first_name %>
+  <%= form_for(resource, as: resource_name,
+               url: registration_path(resource_name),
+               html: { method: :put }) do |f| %>
+
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :first_name, 'Nombre', class: 'control-label' %>
+        <%= f.text_field :first_name, class: 'form-control' %>
+        <%= f.errors :first_name %>
+      </div>
+
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :last_name, 'Apellido', class: 'control-label' %>
+        <%= f.text_field :last_name, class: 'form-control' %>
+        <%= f.errors :last_name %>
+      </div>
     </div>
 
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :last_name, 'Apellido', class: 'control-label' %>
-      <%= f.text_field :last_name, class: 'form-control' %>
-      <%= f.errors :last_name %>
-    </div>
-  </div>
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :email, 'e-mail', class: 'control-label' %>
+        <%= f.email_field :email, class: 'form-control', autofocus: true %>
+        <%= f.errors :email %>
+      </div>
 
-  <div class="row">
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :email, 'e-mail', class: 'control-label' %>
-      <%= f.email_field :email, class: 'form-control', autofocus: true %>
-      <%= f.errors :email %>
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :periodicity, 'Periodicidad de feed',
+                    class: 'control-label' %>
+        <%= f.select(:periodicity, options_for_select([
+          ['Cada 1 día', 1],
+          ['Cada 2 días', 2],
+          ['Cada 5 días', 5],
+          ['Cada 7 días', 7],
+          ['Cada 10 días', 10],
+          ['Cada 14 días', 14]],
+          current_user.periodicity), {}, {class: 'form-control'}) %>
+        <%= f.errors :periodicity %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <fieldset>
+          <legend>
+            Inscribir categorías de interés
+          </legend>
+          <div class="center-align-space-around">
+            <% options = [Category.all[0, Category.count/2],
+                          Category.all[Category.count/2, Category.count]] %>
+            <% 2.times do |index| %>
+              <div>
+                <% options[index].each do |category| %>
+                  <div class='super-checkbox'>
+                    <% if current_user.categories.include?(category) %>
+                      <input type="checkbox" name="user[category_ids][]"
+                            id="category_users_ids_<%=category.id%>"
+                            value="<%=category.id%>"
+                            checked="true">
+                    <% else %>
+                      <input type="checkbox" name="user[category_ids][]"
+                            id="category_users_ids_<%=category.id%>"
+                            value="<%=category.id%>">
+                    <% end %>
+                    <label for="category_users_ids_<%=category.id%>"
+                           data-value="<%=category.id%>"><%=category.name%></label>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </fieldset>
+      </div>
     </div>
 
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :periodicity, 'Periodicidad de feed', class: 'control-label' %>
-      <%= f.select(:periodicity, options_for_select([
-        ['Cada 1 día', 1],
-        ['Cada 2 días', 2],
-        ['Cada 5 días', 5],
-        ['Cada 7 días', 7],
-        ['Cada 10 días', 10],
-        ['Cada 14 días', 14]]), {}, {class: 'form-control'}) %>
-      <%= f.errors :periodicity %>
-    </div>
-  </div>
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :password, 'Nueva contraseña', class: 'control-label' %>
+        <i>(déjala vacía si no deseas cambiarla)</i>
+        <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
+        <%= f.errors :password %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>
-      Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :password_confirmation, 'Confirma tu nueva contraseña', class: 'control-label' %>
+        <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+        <%= f.errors :password_confirmation %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-6">
+        <%= f.label :current_password, 'Contraseña actual', class: 'control-label' %>
+        <i>(para validar los cambios)</i>
+        <%= f.password_field :current_password, class: 'form-control', autocomplete: "off", required: true %>
+        <%= f.errors :current_password %>
+      </div>
+    </div>
+
+    <div class="center-align">
+      <%= f.submit "¡Listo!", class: 'btn btn-success btn-lg' %>
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="form-group col-xs-12">
-      <fieldset>
-        <legend>
-          Inscribir categorías de interés
-        </legend>
-        <div class="center-align-space-around">
-          <div>
-            <% Category.all[0, Category.count/2].each do |category| %>
-              <div class='super-checkbox'>
-                <% if current_user.categories.include?(category) %>
-                  <input type="checkbox" name="user[category_ids][]"
-                        id="category_users_ids_<%=category.id%>"
-                        value="<%=category.id%>" checked="true">
-                <% else %>
-                  <input type="checkbox" name="user[category_ids][]"
-                        id="category_users_ids_<%=category.id%>"
-                        value="<%=category.id%>">
-                <% end %>
-                <label for="category_users_ids_<%=category.id%>"
-                       data-value="<%=category.id%>"><%=category.name%></label>
-              </div>
-            <% end %>
-          </div>
-          <div>
-            <% Category.all[Category.count/2, Category.count].each do |category| %>
-              <div class='super-checkbox'>
-                <input type="checkbox" name="user[category_ids][]"
-                       id="category_users_ids_<%=category.id%>" value="<%=category.id%>">
-                <label for="category_users_ids_<%=category.id%>"
-                       data-value="<%=category.id%>"><%=category.name%></label>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :password, 'Nueva contraseña', class: 'control-label' %>
-      <i>(déjala vacía si no deseas cambiarla)</i>
-      <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
-      <%= f.errors :password %>
-    </div>
-
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :password_confirmation, 'Confirma tu nueva contraseña', class: 'control-label' %>
-      <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
-      <%= f.errors :password_confirmation %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-xs-12 col-md-6">
-      <%= f.label :current_password, 'Contraseña actual', class: 'control-label' %>
-      <i>(para validar los cambios)</i>
-      <%= f.password_field :current_password, class: 'form-control', autocomplete: "off", required: true %>
-      <%= f.errors :current_password %>
-    </div>
-  </div>
-
-  <div class="center-align">
-    <%= f.submit "¡Listo!", class: 'btn btn-success btn-lg' %>
-  </div>
-<% end %>
-
-<%= button_to "Cancelar mi cuenta",
-              registration_path(resource_name),
-              data: { confirm: "Are you sure?" },
-              class: 'btn btn-danger btn-sm',
-              method: :delete %>
+  <%= button_to "Cancelar mi cuenta",
+                registration_path(resource_name),
+                data: { confirm: "Are you sure?" },
+                class: 'btn btn-danger btn-sm',
+                method: :delete %>
+</div>

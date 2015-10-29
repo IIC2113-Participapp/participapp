@@ -1,13 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-colapse">
+      <button type="button" class="navbar-toggle"
+              data-toggle="collapse" data-target="#navbar-colapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "<i class='fa fa-star'></i> ParticipApp".html_safe,
+      <%= link_to raw("<i class='fa fa-star'></i> ParticipApp"),
                   root_path,
                   class: 'navbar-brand' %>
     </div>
@@ -31,9 +32,42 @@
             </a>
           </li>
         <% else %>
+          <% if current_user.admin? || current_user.editor? %>
+            <li>
+              <div class="dropdown">
+                <button id="settings-dropdown"
+                        class="btn btn-default btn-lg dropdown-toggle"
+                        type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="true">
+                  <i class="fa fa-cog"></i>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="settings">
+                  <% if current_user.admin? %>
+                    <li>
+                      <%= link_to raw("<i class='fa fa-users'></i> Usuarios"),
+                          users_path,
+                          method: :get %>
+                    </li>
+                  <% end %>
+                  <li>
+                    <%= link_to raw("<i class='fa fa-sitemap'></i> Categorías"),
+                                categories_path,
+                                method: :get %>
+                  </li>
+                  <li>
+                    <%= link_to raw("<i class='fa fa-check-circle'></i> Autorizar"),
+                                pending_authorization_path,
+                                method: :get %>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          <% end %>
           <li>
             <div class="dropdown">
-              <button id="user-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+              <button id="user-dropdown"
+                      class="btn btn-default btn-lg dropdown-toggle"
                       type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true">
                 <i class="fa fa-newspaper-o"></i> Noticias
@@ -41,17 +75,17 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="news">
                 <li>
-                  <%= link_to "<i class='fa fa-pencil'></i> Escribir una".html_safe,
+                  <%= link_to raw("<i class='fa fa-pencil'></i> Escribir una"),
                               new_content_path,
                               method: :get %>
                 </li>
                 <li>
-                  <%= link_to "<i class='fa fa-list-alt'></i> Ver todas".html_safe,
+                  <%= link_to raw("<i class='fa fa-list-alt'></i> Ver todas"),
                               contents_path,
                               method: :get %>
                 </li>
                 <li>
-                  <%= link_to "<i class='fa fa-comments'></i> Foro".html_safe,
+                  <%= link_to raw("<i class='fa fa-comments'></i> Foro"),
                       forums_path,
                       method: :get %>
                 </li>
@@ -60,7 +94,8 @@
           </li>
           <li>
             <div class="dropdown">
-              <button id="user-dropdown" class="btn btn-default btn-lg dropdown-toggle"
+              <button id="user-dropdown"
+                      class="btn btn-default btn-lg dropdown-toggle"
                       type="button" data-toggle="dropdown" aria-haspopup="true"
                       aria-expanded="true">
                 <i class="fa fa-user"></i> <%= current_user.first_name %>
@@ -68,40 +103,13 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="user">
                 <li>
-                  <%= link_to "<i class='fa fa-cogs'></i> Editar perfil".html_safe,
+                  <%= link_to raw("<i class='fa fa-cogs'></i> Editar perfil"),
                               edit_user_registration_path %>
                 </li>
                 <li>
-                  <%= link_to "<i class='fa fa-sign-out'></i> Cerrar Sesión".html_safe,
+                  <%= link_to raw("<i class='fa fa-sign-out'></i> Cerrar Sesión"),
                               destroy_user_session_path,
                               method: :delete %>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div class="dropdown">
-              <button id="settings-dropdown" class="btn btn-default btn-lg dropdown-toggle"
-                      type="button" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="true">
-                <i class="fa fa-cog"></i>
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="settings">
-                <li>
-                  <%= link_to "<i class='fa fa-users'></i> Usuarios".html_safe,
-                      users_path,
-                      method: :get %>
-                </li>
-                <li>
-                  <%= link_to "<i class='fa fa-sitemap'></i> Categorías".html_safe,
-                              categories_path,
-                              method: :get %>
-                </li>
-                <li>
-                  <%= link_to "<i class='fa fa-check-circle'></i> Autorizar".html_safe,
-                              pending_authorization_path,
-                              method: :get %>
                 </li>
               </ul>
             </div>
@@ -113,18 +121,24 @@
 </nav>
 
 <% unless user_signed_in? %>
-  <div class="modal fade" id="sign-in" tabindex="-1" role="dialog" aria-labelledby="signin" aria-hidden="true">
+  <div id="sign-in" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="signin" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-hidden="true">
+                  &times;
+          </button>
           <h4 class="modal-title">Iniciar sesión</h4>
         </div>
         <div class="modal-body">
-          <%= form_for @user, :as => :user, :url => session_path(@user) do |f| %>
+          <%= form_for @user, as: :user, url: session_path(@user) do |f| %>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <span class="input-group-addon">
+                  <i class="fa fa-envelope"></i>
+                </span>
                 <%= f.email_field :email, class: 'form-control',
                                   placeholder: 'Ingresa tu e-mail',
                                   required: true %>
@@ -132,7 +146,9 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <i class="fa fa-key"></i>
+                </span>
                 <%= f.password_field :password, class: 'form-control',
                                      placeholder: 'Ingresa tu contraseña',
                                      required: true %>
@@ -147,28 +163,38 @@
     </div>
   </div>
 
-  <div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="signup" aria-hidden="true">
+  <div id="sign-up" class="modal fade" tabindex="-1" role="dialog"
+       aria-labelledby="signup" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-hidden="true">
+                  &times;
+          </button>
           <h4 class="modal-title">Crear Cuenta</h4>
         </div>
         <div class="modal-body">
           <%= form_for @user, url: user_registration_path do |f| %>
-            <div class="form-group">
-              <div class="row">
-                <div class="col-xs-6">
+            <div class="row">
+              <div class="col-xs-12 col-md-6">
+                <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                      <i class="fa fa-user"></i>
+                    </span>
                     <%= f.text_field :first_name, class: 'form-control',
                                       placeholder: 'Ingresa tu nombre',
                                       required: true %>
                   </div>
                 </div>
-                <div class="col-xs-6">
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <span class="input-group-addon">
+                      <i class="fa fa-user"></i>
+                    </span>
                     <%= f.text_field :last_name, class: 'form-control',
                                       placeholder: 'Ingresa tu apellido',
                                       required: true %>
@@ -178,7 +204,9 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <span class="input-group-addon">
+                  <i class="fa fa-envelope"></i>
+                </span>
                 <%= f.email_field :email, class: 'form-control',
                                   placeholder: 'Ingresa tu e-mail',
                                   required: true %>
@@ -186,7 +214,9 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <i class="fa fa-key"></i>
+                </span>
                 <%= f.password_field :password, class: 'form-control',
                                      placeholder: 'Ingresa tu contraseña',
                                      required: true %>
@@ -194,7 +224,9 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <span class="input-group-addon">
+                  <i class="fa fa-key"></i>
+                </span>
                 <%= f.password_field :password_confirmation, class: 'form-control',
                                      placeholder: 'Repite tu contraseña',
                                      required: true %>

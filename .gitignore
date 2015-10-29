@@ -16,8 +16,13 @@
 !/log/.keep
 /tmp
 
+
 # Ignore generated assets
 /public/assets/*
 
 ## Directory-based project format:
 .idea/
+/Passengerfile.json
+
+
+

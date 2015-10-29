@@ -24,35 +24,36 @@
           <td class="center-align-space-between">
             <%= user.full_name %>
 
-            <%= link_to raw('<i class="fa fa-remove"></i>'), edit_user_registration_path(user),
+            <%= link_to raw('<i class="fa fa-remove"></i>'),
+                        destroy_user_path(id: user.id),
                         method: :delete,
                         class: 'btn btn-danger btn-xs' %>
           </td>
           <td class="text-center">
             <% if user.admin? %>
-              <%= link_to '<i class="fa fa-times-circle"></i> Destituir Admin'.html_safe,
-                          toggle_admin_path(id: user.id),
-                          method: :post,
-                          class: 'btn btn-danger btn-xs' %>
+              <% url = raw('<i class="fa fa-times-circle"></i> Destituir Admin') %>
+              <% btn_class = 'btn btn-danger btn-xs' %>
             <% else %>
-              <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Admin'.html_safe,
-                          toggle_admin_path(id: user.id),
-                          method: :post,
-                          class: 'btn btn-success btn-xs' %>
+              <% url = raw('<i class="fa fa-plus-circle"></i> Promover a Admin') %>
+              <% btn_class = 'btn btn-success btn-xs' %>
             <% end %>
+
+            <%= link_to url, toggle_admin_path(id: user.id),
+                        method: :put,
+                        class: btn_class %>
           </td>
           <td class="text-center">
             <% if user.editor? %>
-              <%= link_to '<i class="fa fa-times-circle"></i> Destituir Editor'.html_safe,
-                          toggle_editor_path(id: user.id),
-                          method: :post,
-                          class: 'btn btn-danger btn-xs' %>
+              <% url = raw('<i class="fa fa-times-circle"></i> Destituir Editor') %>
+              <% btn_class = 'btn btn-danger btn-xs' %>
             <% else %>
-              <%= link_to '<i class="fa fa-plus-circle"></i> Promover a Editor'.html_safe,
-                          toggle_editor_path(id: user.id),
-                          method: :post,
-                          class: 'btn btn-success btn-xs' %>
+              <% url = raw('<i class="fa fa-plus-circle"></i> Promover a Editor') %>
+              <% btn_class = 'btn btn-success btn-xs' %>
             <% end %>
+
+            <%= link_to url, toggle_editor_path(id: user.id),
+                        method: :put,
+                        class: btn_class %>
           </td>
         </tr>
       <% end %>
