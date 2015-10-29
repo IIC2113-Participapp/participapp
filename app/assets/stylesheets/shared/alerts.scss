@@ -1,9 +1,15 @@
+@import "palette";
+
 .alert {
   position: absolute;
   width: 100%;
   font-size: 2em;
   text-align: center;
   z-index: 100;
-  top: 150px;
+  top: 75px;
   margin: 10px 0px;
+
+  &.alert-success {
+    background-color: $blue;
+  }
 }

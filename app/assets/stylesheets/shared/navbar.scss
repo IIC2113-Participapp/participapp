@@ -1,8 +1,8 @@
 @import "shared/palette";
 
 .navbar {
-  background-color: $deep_blue;
-  border-bottom: 1px solid $dark_deep_blue;
+  background-color: $deep-blue;
+  border-bottom: 1px solid $dark-deep-blue;
   box-shadow: 0 0 2px #000;
 
   .navbar-brand {
@@ -10,7 +10,7 @@
     align-items: center;
 
     &:hover, &:focus {
-      color: $light_blue !important;
+      color: $light-blue !important;
     }
   }
 
@@ -22,7 +22,7 @@
     font-size: 15px;
     border-radius: 0;
     border: 0;
-    background-color: $deep_blue;
+    background-color: $deep-blue;
     padding: 20px 14px !important;
   }
 
@@ -31,8 +31,8 @@
   .dropdown-toggle:active,
   .dropdown-toggle.open,
   .btn.btn-default:hover {
-    color: $light_blue !important;
-    background-color: $dark_deep_blue !important;
+    color: $light-blue !important;
+    background-color: $dark-deep-blue !important;
     transition: background-color 0.3s;
   }
 }
