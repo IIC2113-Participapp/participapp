@@ -8,7 +8,7 @@
             <div class="panel panel-success">
               <div class="panel-heading link"><%= link_to forum.name, forum_path(forum) %></div>
               <div class="panel-body"><%= forum.description %></div>
-              <div class="panel-footer">Creado por: <%= forum_creator(forum) %></div>
+              <div class="panel-footer">Creado por: <%= forum.user.full_name %></div>
             </div>
           </div>
         </div>

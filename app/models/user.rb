@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
   has_many :category_users, dependent: :destroy
   has_many :categories, through: :category_users
+  has_many :forums
 
   validates :email, presence: true,
                     uniqueness: true
