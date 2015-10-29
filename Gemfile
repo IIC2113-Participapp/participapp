@@ -49,6 +49,9 @@ gem 'rufus-scheduler'
 gem 'premailer-rails'
 gem 'nokogiri'
 
+gem 'faker'
+gem 'hirb'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -60,7 +63,4 @@ group :development, :test do
   gem 'spring'
 
   gem 'annotate'
-
-  gem 'faker'
-  gem 'hirb'
 end
