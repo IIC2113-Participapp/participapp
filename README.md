@@ -1,5 +1,7 @@
 # Participapp
 
+#### [participapp.cloudapp.net](participapp.cloudapp.net)
+
 ## Grupo 4
 > Esteban Sandoval  ([ejsandoval@uc.cl](mailto:ejsandoval@uc.cl))
 
@@ -43,3 +45,33 @@ editor. In this case, we will assume you use nano editor and bash shell:
   ```
 
 5. Run the server by executing `rails s`
+
+## Running tests
+
+1. Prepare the test database by running:
+
+  ```sh
+  $ rake db:drop db:create db:migrate db:seed RAILS_ENV=test
+  ```
+
+2. Execute the tests by running:
+
+  ```sh
+  $ bundle exec rspec spec/user_spec.rb
+  ```
+
+## Running metrics
+
+We are using `MetricFu` for this.
+
+1. Make sure that you have the gem installed by running `bundle`
+
+2. Prepare the metrics by running:
+
+  ```sh
+  $ rake metrics:all
+  ```
+3. Visit the directory `tmp/metric_fu/output`, and open `index.html` with your
+browser.
+
+You should now be able to see all the metrics.
