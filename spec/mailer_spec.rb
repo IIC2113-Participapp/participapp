@@ -1,15 +1,19 @@
-require 'rspec'
+require 'rails_helper'
+require 'spec_helper'
 
 describe 'Mailer gets activated' do
 
-  it 'should detect user who must receive and e-mail' do
-    true.should == false
+  it 'should detect users who must receive an e-mail' do
+    user=FactoryGirl.create(:user)
+    user.periodicity=7
+    user.last_received =1.week.ago
+   User.fetch_for_mailing.should include(user)
   end
 end
 
 describe 'Mailer detect an user' do
 
-  it 'its mail should containt the right categories' do
+  it 'send mail should containt the right categories' do
     true.should == false
   end
 end
