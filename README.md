@@ -57,7 +57,7 @@ editor. In this case, we will assume you use nano editor and bash shell:
 2. Execute the tests by running:
 
   ```sh
-  $ bundle exec rspec spec/user_spec.rb
+  $ bundle exec rspec
   ```
 
 ## Running metrics
