@@ -21,8 +21,8 @@ feature 'Sign in user' do
   it 'should accept the request and render a success message' do
     visit root_path
 
-    fill_in 'sign_in_user_email', :with => 'user1@abc.net'
-    fill_in 'sign_in_user_password', :with => 'macoy123'
+    fill_in 'sign_in_user_email', :with => 'admin@example.net'
+    fill_in 'sign_in_user_password', :with => 'napoleon'
     click_button 'sign_in'
 
     expect(page).to have_content 'Signed in successfully.' 
