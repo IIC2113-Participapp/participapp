@@ -1,29 +1,13 @@
 namespace :mailer do
   task :deliver_news => :environment do
     puts 'executing delivery'
-    mails_to_send = User.fetch_for_mailing
 
-    if mails_to_send.any?
-      current_receiver_id = mails_to_send.first.receiver_id
-      collection = []
-      mails_to_send.each do |mail_to_send|
-        if mail_to_send.receiver_id == current_receiver_id
-          collection << mail_to_send
-        else
-          user = User.find_by(id: current_receiver_id)
-          puts "sending to #{user.first_name}"
-          NewsMailer.periodic_mail(user, collection).deliver
-          collection = []
-          current_receiver_id = mail_to_send.receiver_id
-          collection << mail_to_send
-        end
-      end
+    mails_to_send = User.fetch_for_mailing.group_by { |row| row.receiver_id }
 
-      if mails_to_send.size > 1
-        user = User.find_by(id: current_receiver_id)
-        puts "sending to #{user.first_name}"
-        NewsMailer.periodic_mail(user, collection).deliver
-      end
+    mails_to_send.each do |key, value|
+      user = User.find_by(id: key)
+      puts "sending to #{user.first_name}"
+      NewsMailer.periodic_mail(user, value).deliver
     end
   end
 end

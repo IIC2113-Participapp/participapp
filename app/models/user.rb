@@ -58,9 +58,11 @@ class User < ActiveRecord::Base
     return joins(:category_users)
           .joins('JOIN contents ON category_users.category_id = contents.category_id')
           .where('contents.authorization_status' => 'authorized')
+          .where('julianday(users.last_received) < julianday(contents.created_at)')
           .where('julianday() - julianday(users.last_received) >= users.periodicity')
           .select('users.id AS receiver_id, contents.*')
           .order('receiver_id')
+          .uniq
   end
 
   private
