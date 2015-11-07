@@ -1,3 +1,11 @@
+# CommentsController
+#
+# + create
+# + update
+# + destroy
+# - set_comment
+# - comment_params
+#
 class CommentsController < ApplicationController
   before_action :authenticate
   before_action :set_comment, only: [:update, :destroy]

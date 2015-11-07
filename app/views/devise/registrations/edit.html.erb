@@ -29,14 +29,9 @@
       <div class="form-group col-xs-12 col-md-6">
         <%= f.label :periodicity, 'Periodicidad de feed',
                     class: 'control-label' %>
-        <%= f.select(:periodicity, options_for_select([
-          ['Cada 1 día', 1],
-          ['Cada 2 días', 2],
-          ['Cada 5 días', 5],
-          ['Cada 7 días', 7],
-          ['Cada 10 días', 10],
-          ['Cada 14 días', 14]],
-          current_user.periodicity), {}, {class: 'form-control'}) %>
+        <%= f.select(:periodicity,
+                     options_for_periodicity(current_user.periodicity),
+                     {}, {class: 'form-control'}) %>
         <%= f.errors :periodicity %>
       </div>
     </div>

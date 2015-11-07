@@ -28,11 +28,16 @@ class Content < ActiveRecord::Base
   has_many :forums
 
   scope :authorized, -> { where(authorization_status: 'authorized') }
-  scope :rejected, -> { where(authorization_status: 'rejected') }
   scope :pending, -> { where(authorization_status: 'pending') }
 
   validates :author, presence: true
   validates :category, presence: true
   validates :title, presence: true
   validates :body, presence: true
+
+  delegate :name, to: :category, prefix: true
+
+  def change_auth_status status
+    self.update_attribute(:authorization_status, status)
+  end
 end

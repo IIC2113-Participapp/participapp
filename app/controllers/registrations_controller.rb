@@ -1,3 +1,9 @@
+# RegistrationsController < Devise::RegistrationsController
+#
+# + update
+# - sign_up_params
+# - account_update_params
+#
 class RegistrationsController < Devise::RegistrationsController
 
   def update

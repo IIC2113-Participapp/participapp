@@ -1,3 +1,9 @@
+# ContentsController
+#
+# + home
+# + about
+# + contact
+#
 class StaticPagesController < ApplicationController
   def home
     @user = User.new

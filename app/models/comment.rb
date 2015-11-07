@@ -11,6 +11,7 @@
 #  updated_at     :datetime         not null
 #
 
+# Modela comentarios de los foros.
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :forum

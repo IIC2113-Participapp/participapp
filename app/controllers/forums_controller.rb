@@ -1,3 +1,15 @@
+# ContentsController
+#
+# + index
+# + show
+# + new
+# + create
+# + edit
+# + update
+# + destroy
+# - set_forum
+# - forum_params
+#
 class ForumsController < ApplicationController
   before_action :set_forum, only: [:show, :edit, :update, :destroy]
 
@@ -35,8 +47,8 @@ class ForumsController < ApplicationController
       flash[:success] = "Foro creado exitosamente"
       redirect_to @forum
     else
-      flash[:danger] = "Hubo un problema al crear el foro. "\
-                       "Inténtalo nuevamente."
+      flash.now[:danger] = "Hubo un problema al crear el foro. "\
+                           "Inténtalo nuevamente."
       render :new
     end
   end

@@ -1,3 +1,12 @@
+# UsersController
+#
+# + index
+# + toggle_admin
+# + toggle_editor
+# + destroy
+# - error_flash
+# - set_user
+#
 class UsersController < ApplicationController
   before_action :authenticate
   before_action :authorize_admin

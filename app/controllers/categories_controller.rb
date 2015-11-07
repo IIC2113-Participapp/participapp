@@ -1,3 +1,13 @@
+# CategoriesController
+#
+# + index
+# + create
+# + edit
+# + update
+# + destroy
+# - set_category
+# - category_params
+#
 class CategoriesController < ApplicationController
   before_action :authenticate
   before_action :authorize_editor

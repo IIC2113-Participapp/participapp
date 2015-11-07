@@ -1,7 +1,7 @@
 <div class="dark-container">
   <h1>Categorías</h1>
 
-  <%= render partial: 'form', locals: { title: 'Crear Categoría' } %>
+  <%= render 'form', title: 'Crear Categoría' %>
 
   <% if @categories.any? %>
     <table class="table table-bordered table-hover">

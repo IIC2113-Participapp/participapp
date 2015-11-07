@@ -1,3 +1,6 @@
+# Enables inline error rendering in forms.
+# + errors
+#
 class BetterForms < ActionView::Helpers::FormBuilder
   def errors(name)
     if @object.errors[name]

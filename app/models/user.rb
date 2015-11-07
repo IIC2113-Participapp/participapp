@@ -16,6 +16,7 @@
 #  last_received       :datetime
 #
 
+# Modela usuarios.
 class User < ActiveRecord::Base
   before_create :set_last_received_to_one_month_ago
 

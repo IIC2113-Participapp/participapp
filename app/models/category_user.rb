@@ -9,6 +9,7 @@
 #  updated_at  :datetime         not null
 #
 
+# Tabla intermedia para relacionar "Categories" con "Users" (n:n).
 class CategoryUser < ActiveRecord::Base
   belongs_to :category
   belongs_to :user

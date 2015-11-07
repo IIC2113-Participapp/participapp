@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 20151025162726) do
   create_table "contents", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.string   "authorization_status"
+    t.string   "authorization_status", default: "pending"
     t.integer  "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "category_id"
   end
 

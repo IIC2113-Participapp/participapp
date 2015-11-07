@@ -27,7 +27,7 @@
     <div class="col-xs-12 col-md-6">
       <div class="form-group">
         <%= f.label :content_id, 'Noticia', class: 'control-label' %>
-        <%= f.grouped_collection_select :content_id, Category.order :name,
+        <%= f.grouped_collection_select :content_id, Category.order(:name),
                                         :contents, :name, :id, :title,
                                         { :prompt => 'Seleccionar noticia' },
                                         { class: 'form-control' } %>
