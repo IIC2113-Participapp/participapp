@@ -1,6 +1,8 @@
+include ActionView::Helpers::TextHelper
+
 class NewsMailer < ApplicationMailer
 
-  # - Envía un correo al usuario con el content indicado en los parámetros.
+  # - Envía un correo al usuario con los contents indicados en los parámetros.
   # - Pre-condiciones: en la tabla "Users", hay una entrada cuyo valor de
   # "last_received" es X.
   # - Post-condiciones: en la tabla "Users", la entrada mencionada anteriormente
@@ -11,6 +13,7 @@ class NewsMailer < ApplicationMailer
     @contents = contents
 
     mail to: @user.email,
-      subject: "[Participapp] novedades de hace #{@user.periodicity} días."
+         subject: "ParticipApp: novedades de hace "\
+                  "#{pluralize(@user.periodicity, 'día')}."
   end
 end

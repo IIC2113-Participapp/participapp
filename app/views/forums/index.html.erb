@@ -6,14 +6,23 @@
         <div class="col-xs-6 col-md-3">
           <div class="panel-group">
             <div class="panel panel-success">
-              <div class="panel-heading link"><%= link_to forum.name, forum_path(forum) %></div>
-              <div class="panel-body"><%= forum.description %></div>
-              <div class="panel-footer">Creado por: <%= forum.user.full_name %></div>
+              <div class="panel-heading link">
+                <%= link_to forum.name, forum_path(forum) %>
+              </div>
+              <div class="panel-body">
+                <%= forum.description %>
+              </div>
+              <div class="panel-footer">
+                Creado por: <%= forum.user.full_name %>
+              </div>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    <%= button_to 'Crear Tema', new_forum_path, method: :get ,class: "btn btn-success btn-lg" %>
+
+    <%= button_to 'Crear Tema', new_forum_path,
+                  method: :get,
+                  class: 'btn btn-success btn-lg' %>
   </div>
 </div>

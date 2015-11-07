@@ -1,16 +1,16 @@
 <div class="jumbotron">
-  <h1>Novedades constitucionales de hace <%= @user.periodicity %> días atrás</h1>
+  <h1>
+    Novedades constitucionales de hace
+    <%= pluralize(@user.periodicity, "día") %>.
+  </h1>
   <p>Participapp</p>
 </div>
 
 <% @contents.each do |content| %>
-  <div class="well well-lg">
+  <div>
     <h2><%= content.title %></h2>
     <h4>Publicada el <%= content.created_at.strftime("%d:%m:%y") %></h4>
-    <h5>Categoría: <%= Category.find_by(id: content.category_id).name %> </h5>
-
-    <div>
-      <%= "#{content.body}".html_safe %>
-    </div>
+    <h5>Categoría: <%= Category.find_by(id: content.category_id).name %></h5>
+    <%= "#{content.body}".html_safe %>
   </div>
 <% end %>

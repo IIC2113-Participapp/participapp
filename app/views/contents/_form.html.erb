@@ -8,7 +8,8 @@
 
     <div class="form-group col-md-6 col-xs-12">
       <%= f.label :category_id, 'Categoría', class: 'control-label' %>
-      <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class: 'form-control'}) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name,
+                              {}, {class: 'form-control'}) %>
       <%= f.errors :category_id %>
     </div>
   </div>

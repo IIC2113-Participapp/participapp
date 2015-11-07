@@ -28,11 +28,11 @@
             <%= content.category.name %>
           </td>
           <td class="text-center">
-            <%= link_to '<i class="fa fa-check-circle"></i> Autorizar'.html_safe,
+            <%= link_to raw('<i class="fa fa-check-circle"></i> Autorizar'),
                         content_authorize_path(content),
                         method: :put,
                         class: 'btn btn-success btn-xs' %>
-            <%= link_to '<i class="fa fa-times-circle"></i> Rechazar'.html_safe,
+            <%= link_to raw('<i class="fa fa-times-circle"></i> Rechazar'),
                         content_reject_path(content),
                         method: :put,
                         class: 'btn btn-danger btn-xs' %>

@@ -17,7 +17,7 @@
 #
 
 class User < ActiveRecord::Base
-  before_create :set_last_received_to_now
+  before_create :set_last_received_to_one_month_ago
 
   # Include default devise modules. Others available are:
   # :recoverable, :trackable, :confirmable, :lockable,
@@ -57,25 +57,27 @@ class User < ActiveRecord::Base
 
   def self.fetch_for_mailing
     return joins(:category_users)
-      .joins('JOIN contents ON category_users.category_id = '\
-       'contents.category_id')
-      .where('contents.authorization_status' => 'authorized')
-      .where('julianday(users.last_received) < julianday(contents.created_at)')
-      .where('julianday() - julianday(users.last_received)'\
-       '>= users.periodicity')
-      .select('users.id AS receiver_id, contents.*')
-      .order('receiver_id')
-      .uniq
+          .joins('JOIN contents ON category_users.category_id = '\
+                 'contents.category_id')
+          .where('contents.authorization_status' => 'authorized')
+          .where('julianday(users.last_received) < '\
+                 'julianday(contents.created_at)')
+          .where('julianday() - julianday(users.last_received)'\
+                 '>= users.periodicity')
+          .select('users.id AS receiver_id, contents.*')
+          .order('receiver_id')
+          .uniq
   end
 
   private
 
-    def set_last_received_to_now
+    def set_last_received_to_one_month_ago
       self.last_received = 30.days.ago
     end
 
     def proper_periodicity
-      errors.add(:periodicity, "la periodicidad ingresada "\
-       "es inválida.") unless [1, 2, 5, 7, 10, 14].include?(periodicity)
+      unless [1, 2, 5, 7, 10, 14].include?(periodicity)
+        errors.add(:periodicity, "la periodicidad ingresada es inválida.")
+      end
     end
 end

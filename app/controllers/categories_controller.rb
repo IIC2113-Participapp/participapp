@@ -3,14 +3,14 @@ class CategoriesController < ApplicationController
   before_action :authorize_editor
   before_action :set_category, only: [:edit, :update, :destroy]
 
-  # GET    /category(.:format)
+  # GET /category(.:format)
   # - Muestra todas las categories de la aplicacion, paginadas o no paginadas.
   def index
     @category = Category.new
     @categories = Category.all
   end
 
-  # POST   /category(.:format)
+  # POST /category(.:format)
   # - Crea una category a partir de los parametros que recibe por la HTTP
   # Request. En particular, recibe el parametro "name".
   # - Pre-condiciones: la tabla "categories" no cuenta con esta category.
@@ -29,13 +29,13 @@ class CategoriesController < ApplicationController
     redirect_to :back
   end
 
-  # GET    /category/:id/edit(.:format)
+  # GET /category/:id/edit(.:format)
   # - Despliega la vista para editar una category existente. Recibe en la HTTP
   # Request el "id" correspondiente a dicha category.
   def edit
   end
 
-  # PUT    /category/:id(.:format)
+  # PUT /category/:id(.:format)
   # - Actualiza una category a partir de los parametros que recibe por la HTTP
   # Request. En particular, recibe el parametro "name".
   # - Pre-condiciones: la tabla "categories" cuenta con una category
@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
     if @category.update_attributes(category_params)
       flash[:success] = "La categoría ha sido actualizada exitosamente."
     else
-      flash[:danger] = "La categoría no pudo ser actualizada. " +
+      flash[:danger] = "La categoría no pudo ser actualizada. "\
                        "Inténtalo nuevamente."
     end
 
@@ -65,7 +65,7 @@ class CategoriesController < ApplicationController
       @category.destroy
       flash[:success] = "La categoría ha sido eliminada exitosamente."
     else
-      flash[:danger] = "La categoría que deseas eliminar no fue encontrada. " +
+      flash[:danger] = "La categoría que deseas eliminar no fue encontrada. "\
                        "Inténtalo nuevamente."
     end
 

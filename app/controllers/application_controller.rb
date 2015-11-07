@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Redirige al usuario a la root_path si no ha iniciado sesion.
   def authenticate
     unless user_signed_in?
       flash[:danger] = "Debes iniciar sesión para realizar esto."
@@ -10,6 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Redirige al usuario a la root_path si no es administrador.
   def authorize_admin
     unless current_user.admin?
       flash[:danger] = "No tienes permiso para realizar esto."
@@ -17,6 +19,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Redirige al usuario a la root_path si no es editor.
   def authorize_editor
     unless current_user.editor?
       flash[:danger] = "No tienes permiso para realizar esto."

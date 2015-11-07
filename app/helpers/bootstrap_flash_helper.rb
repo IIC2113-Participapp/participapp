@@ -14,11 +14,12 @@ module BootstrapFlashHelper
         text = content_tag(:div,
                            content_tag(:button, raw("&times;"),
                                        :class => "close",
-                                        :"data-dismiss" => "alert") +
+                                       :"data-dismiss" => "alert") +
                            msg, :class => "alert fade in alert-#{type}")
         flash_messages << text if msg
       end
     end
+
     flash_messages.join("\n").html_safe
   end
 end

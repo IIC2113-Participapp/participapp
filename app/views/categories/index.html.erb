@@ -22,10 +22,12 @@
             <%= category.name %>
           </td>
           <td class="text-center">
-            <%= link_to raw('<i class="fa fa-edit">Editar</i>'), edit_category_path(category),
+            <%= link_to raw('<i class="fa fa-edit">Editar</i>'),
+                        edit_category_path(category),
                         class: 'btn btn-warning btn-sm' %>
 
-            <%= link_to raw('<i class="fa fa-remove">Eliminar</i>'), category_path(category),
+            <%= link_to raw('<i class="fa fa-remove">Eliminar</i>'),
+                        category_path(category),
                         method: :delete,
                         class: 'btn btn-danger btn-sm' %>
           </td>

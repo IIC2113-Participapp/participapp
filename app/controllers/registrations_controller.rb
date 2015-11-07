@@ -6,8 +6,9 @@ class RegistrationsController < Devise::RegistrationsController
       CategoryUser.where(user_id: current_user.id).delete_all
       params[:user][:category_ids].each do |id|
         category = Category.find_by(id: id)
-        @user.categories << category unless category.nil?
-        || @user.categories.include?(category)
+        unless category.nil? || @user.categories.include?(category)
+          @user.categories << category
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 <%= form_for :comment, url: comments_path do |f| %>
   <div class="form-group">
-    <%= f.text_area :content, placeholder: "Escribir un comentario...", class: 'form-control' %>
-    <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.text_area :content, placeholder: 'Escribir un comentario...',
+                    class: 'form-control' %>
     <%= f.hidden_field :forum_id, value: @forum.id %>
   </div>
   <div class="form-group">
