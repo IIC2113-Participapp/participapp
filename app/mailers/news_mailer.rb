@@ -10,6 +10,7 @@ class NewsMailer < ApplicationMailer
     @user.update_attribute(:last_received, Time.now)
     @contents = contents
 
-    mail to: @user.email, subject: "[Participapp] novedades de hace #{@user.periodicity} días."
+    mail to: @user.email,
+      subject: "[Participapp] novedades de hace #{@user.periodicity} días."
   end
 end

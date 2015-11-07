@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   before_action :authenticate
-  before_action :authorize_editor, only: [:pending_authorization, :reject, :authorize]
+  before_action :authorize_editor,
+   only: [:pending_authorization, :reject, :authorize]
   before_action :set_content, only: [:show, :edit, :update, :destroy]
 
   # GET    /content(.:format)
@@ -41,12 +42,14 @@ class ContentsController < ApplicationController
         flash[:success] = "La noticia ha sido creada exitosamente."
         @content.update_attribute(:authorization_status, 'authorized')
       else
-        flash[:success] = "La noticia ha sido creada exitosamente. Los editores deberán aprobarla ahora."
+        flash[:success] = "La noticia ha sido creada exitosamente."\
+         "Los editores deberán aprobarla ahora."
         @content.update_attribute(:authorization_status, 'pending')
       end
       redirect_to content_path @content
     else
-      flash[:danger] = "Hubo un problema al crear la noticia. Inténtalo nuevamente."
+      flash[:danger] = "Hubo un problema al crear la noticia."\
+       "Inténtalo nuevamente."
       render 'new'
     end
   end
@@ -67,7 +70,8 @@ class ContentsController < ApplicationController
     if @content.update_attributes(content_params)
       flash[:success] = "La noticia ha sido actualizada exitosamente."
     else
-      flash[:danger] = "La noticia no pudo ser actualizada. Inténtalo nuevamente."
+      flash[:danger] = "La noticia no pudo ser actualizada."\
+       "Inténtalo nuevamente."
     end
 
     redirect_to :back
@@ -111,7 +115,8 @@ class ContentsController < ApplicationController
       flash[:success] = "La noticia ha sido eliminada exitosamente."
       @content.destroy
     else
-      flash[:danger] = "La noticia que deseas eliminar no fue encontrada. Inténtalo nuevamente."
+      flash[:danger] = "La noticia que deseas eliminar no fue encontrada."\
+       "Inténtalo nuevamente."
     end
 
     redirect_to :back
@@ -129,6 +134,7 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :body, :category_id, :authorization_status)
+      params.require(:content)
+      .permit(:title, :body, :category_id, :authorization_status)
     end
 end

@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   # PUT    /comments/:id(.:format)
   # - Actualiza un comment a partir de los parametros que recibe por la HTTP
   # Request. Solamente puede cambiar el .
-  # - Pre-condiciones: la base de datos cuenta con un comment con el ID indicado.
+  # - Pre-condiciones: la base de datos cuenta con un comment con el ID indicado
   # - Post-condiciones: se actualizan las columnas de la tabla "Comment" con
   # los parametros entregados por la HTTP Request.
   def update
