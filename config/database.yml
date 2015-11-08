@@ -21,5 +21,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter : postgresql
+  pool    : 5
+  timeout : 5000
+
+  host    : localhost
+  database: participapp_db
+  username: <%= ENV['PGDB_USER'] %>
+  password: <%= ENV['PGDB_PASS'] %>
