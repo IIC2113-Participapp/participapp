@@ -71,3 +71,7 @@ group :development, :test do
 
   gem 'annotate'
 end
+
+group :production do 
+  gem 'pg'
+end
