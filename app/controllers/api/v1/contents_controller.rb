@@ -32,8 +32,14 @@ module Api
         # Buscamos el id de un Administrador y Category para asignarselo a todas las noticias
         # obtenidas de fuentes externas.
         user_id = User.where(admin: true).first.id
+        # TODO: crear category si no existe        
         category_id = Category.find_by(name: "Proceso Constituyente").id
-
+        if category_id.nil? 
+          category = Category.create({
+            name: "Proceso Constituyente"
+            })
+          category_id = category.id
+        end
         contents = JSON.parse(params["contents"])
         #TODO(iaferrer): usar map para hacer mejor el create
         contents.each do |fuente|
