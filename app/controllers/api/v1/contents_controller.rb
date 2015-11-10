@@ -33,13 +33,13 @@ module Api
         # obtenidas de fuentes externas.
         user_id = User.where(admin: true).first.id
         # TODO: crear category si no existe        
-        category_id = Category.find_by(name: "Proceso Constituyente").id
-        if category_id.nil? 
+        category = Category.find_by(name: "Proceso Constituyente")
+        if category.nil? 
           category = Category.create({
             name: "Proceso Constituyente"
             })
-          category_id = category.id
         end
+        category_id = category.id
         contents = JSON.parse(params["contents"])
         #TODO(iaferrer): usar map para hacer mejor el create
         contents.each do |fuente|
