@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'contents', to: 'contents#index'
       get 'contents/:id', to: 'contents#show'
-      get 'contents/category/:id', to: 'categories#show'
+      post 'contents', to: 'contents#create'
+      get 'categories', to: 'categories#index'
+      get 'categories/:id', to: 'categories#show'
     end
   end
 
