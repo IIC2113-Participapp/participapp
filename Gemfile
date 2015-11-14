@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rails-i18n', '~> 4.0.0'
+
 # User Manager devise gem
 gem 'devise'
 
@@ -47,14 +49,9 @@ gem 'passenger'
 gem 'rufus-scheduler'
 gem 'non-stupid-digest-assets'
 
-
-
-#testing
 gem 'nokogiri'
 gem 'faker'
 gem 'hirb'
-
-#mailer css
 
 # Métricas con metric_fu
 gem 'metric_fu'
@@ -75,6 +72,6 @@ group :development, :test do
   gem 'annotate'
 end
 
-group :production do 
+group :production do
   gem 'pg'
 end
