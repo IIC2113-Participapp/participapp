@@ -47,11 +47,14 @@ gem 'passenger'
 gem 'rufus-scheduler'
 gem 'non-stupid-digest-assets'
 
-gem 'premailer-rails'
-gem 'nokogiri'
 
+
+#testing
+gem 'nokogiri'
 gem 'faker'
 gem 'hirb'
+
+#mailer css
 
 # Métricas con metric_fu
 gem 'metric_fu'
