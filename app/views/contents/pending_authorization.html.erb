@@ -29,13 +29,11 @@
           </td>
           <td class="text-center">
             <%= link_to raw('<i class="fa fa-check-circle"></i> Autorizar'),
-                        content_change_auth_status_path(content,
-                                                        status: 'authorized'),
+                        content_auth_status_path(content, status: 'authorized'),
                         method: :put,
                         class: 'btn btn-success btn-xs' %>
             <%= link_to raw('<i class="fa fa-times-circle"></i> Rechazar'),
-                        content_change_auth_status_path(content,
-                                                        status: 'rejected'),
+                        content_auth_status_path(content, status: 'rejected'),
                         method: :put,
                         class: 'btn btn-danger btn-xs' %>
           </td>

@@ -5,13 +5,11 @@
     <% if current_user.editor? && @content.authorization_status == 'pending' %>
       <div>
         <%= link_to '<i class="fa fa-check-circle"></i> Autorizar'.html_safe,
-                    content_change_auth_status_path(@content,
-                                                    status: 'authorized'),
+                    content_auth_status_path(@content, status: 'authorized'),
                     method: :put,
                     class: 'btn btn-success btn-xs' %>
         <%= link_to '<i class="fa fa-times-circle"></i> Rechazar'.html_safe,
-                    content_change_auth_status_path(@content,
-                                                    status: 'rejected'),
+                    content_auth_status_path(@content, status: 'rejected'),
                     method: :put,
                     class: 'btn btn-danger btn-xs' %>
       </div>

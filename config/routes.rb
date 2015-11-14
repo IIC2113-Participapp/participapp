@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :categories, except: [:show, :new]
   resources :contents do
-    put 'change_auth_status', to: 'contents#change_auth_status'
+    put 'auth_status', to: 'contents#change_auth_status'
   end
 
   get '/pending_authorization', to: 'contents#pending_authorization'

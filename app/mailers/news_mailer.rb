@@ -1,5 +1,9 @@
 include ActionView::Helpers::TextHelper
 
+# NewsMailer
+#
+# + periodic_mail
+#
 class NewsMailer < ApplicationMailer
 
   # - Envía un correo al usuario con los contents indicados en los parámetros.
