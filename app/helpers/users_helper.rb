@@ -1,4 +1,5 @@
 # UsersHelper
+#
 # + options_for_periodicity
 #
 module UsersHelper

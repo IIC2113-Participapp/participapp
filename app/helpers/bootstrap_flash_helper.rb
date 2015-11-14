@@ -1,4 +1,5 @@
 # BootstrapFlashHelper
+#
 # + bootstrap_flash
 #
 module BootstrapFlashHelper

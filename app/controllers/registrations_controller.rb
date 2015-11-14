@@ -8,13 +8,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     super
+
+    CategoryUser.where(user_id: current_user.id).delete_all
     if params[:user][:category_ids]
-      CategoryUser.where(user_id: current_user.id).delete_all
-      params[:user][:category_ids].each do |id|
+      cat_ids = params[:user][:category_ids].uniq
+
+      cat_ids.each do |id|
         category = Category.find_by(id: id)
-        unless category.nil? || @user.categories.include?(category)
-          @user.categories << category
-        end
+        @user.categories << category if category
       end
     end
   end

@@ -12,7 +12,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       # GET /api/v1/contents
-      # - Entregar en formato JSON todos los contents.
+      # - Entrega en formato JSON todos los contents.
       def index
         contents = Content.all
         render json: { contents: contents }
@@ -22,7 +22,7 @@ module Api
       # - Entrega en formato JSON el content asociado al ID indicado en la HTTP
       # Request.
       def show
-        content = Content.find(params[:id])
+        content = Content.find_by(id: params[:id])
         render json: { content: content }
       end
 
@@ -32,27 +32,17 @@ module Api
       # - Post-condiciones: se crea en la tabla "contents" una nueva entrada a
       # partir del JSON.
       def create
-        user_id = User.where(admin: true).first.id
-        category_id = Category.find_by(name: "Proceso Constituyente").id
-        if category_id.nil?
-          category = Category.create({ name: "Proceso Constituyente" })
-          category_id = category.id
-        end
+        usr_id = User.where(admin: true).first.id
+
+        cat_id = Category.find_by(name: "Prensa").id
+        cat_id = Category.create({ name: "Prensa" }).id unless cat_id
 
         contents = JSON.parse(params["contents"])
-        # TODO(iaferrer): usar map para hacer mejor el create
-        contents.each do |fuente|
-          fuente["news-list"].each do |n|
-
-            body_content = ""
-            n["body"].each do |body|
-              body_content = body_content + body
-            end
-
-            # Crea un Content con los parámetros entregados por el scraper.
-            Content.create({ title: n["title"], body: body_content,
-                             authorization_status: 'pending',
-                             category_id: category_id, user_id: user_id })
+        contents.each do |source|
+          source["news-list"].each do |n|
+            body = n["body"].join()
+            Content.create({ title: n["title"], body: body, category_id: cat_id,
+                             user_id: usr_id, authorization_status: 'pending' })
           end
         end
 

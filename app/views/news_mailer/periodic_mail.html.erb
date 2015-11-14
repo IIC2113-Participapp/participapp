@@ -1,122 +1,160 @@
-
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
-  <tbody>
-  <tr>
-    <td>
-      <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-        <tbody>
-        <tr>
-          <td width="100%">
-            <table bgcolor="#303030" width="560" cellpadding="0" cellspacing="0" border="0" align="center" style="border-top-left-radius:5px;border-top-right-radius:5px;" class="devicewidth">
-              <tbody>
-
+  <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0"
+         id="backgroundTable" st-sortable="header">
+    <tbody>
+      <tr>
+        <td>
+          <table width="560" cellpadding="0" cellspacing="0" border="0"
+                 align="center" class="devicewidth">
+            <tbody>
               <tr>
-                <td height="10" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
-
-              <tr>
-                <td>
-                  <table width="194" align="left" border="0" cellpadding="0" cellspacing="0">
+                <td width="100%">
+                  <table bgcolor="#303030" width="560" cellpadding="0"
+                         cellspacing="0" border="0" align="center"
+                        style="border-top-left-radius:5px;
+                               border-top-right-radius:5px;"
+                         class="devicewidth">
                     <tbody>
-                    <tr>
-                      <td width="20"></td>
-                      <td width="174" height="60" align="left">
-                        <div class="imgpop">
-
-                           <h2 style="color:white;">Participapp</h2>
-                          <hr class="star-light">
-                        </div>
-                      </td>
-                    </tr>
+                      <tr>
+                        <td height="10"
+                            style="font-size:1px; line-height:1px;
+                                   mso-line-height-rule: exactly;">
+                          &nbsp;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table width="194" align="left" border="0"
+                                 cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td width="20"></td>
+                                <td width="174" height="60" align="left">
+                                  <div class="imgpop">
+                                    <h2 style="color:white;">Participapp</h2>
+                                    <hr class="star-light">
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="10"
+                            style="font-size:1px; line-height:1px;
+                                   mso-line-height-rule: exactly;">
+                          &nbsp;
+                        </td>
+                        <p style="color:white;">
+                          Novedades constitucionales de hace
+                          <%= pluralize(@user.periodicity, "día") %>.
+                        </p>
+                      </tr>
                     </tbody>
                   </table>
                 </td>
               </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% @contents.each do |content| %>
+  <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0"
+         border="0" id="backgroundTable" st-sortable="left-image">
+    <tbody>
+      <tr>
+        <td>
+          <table width="560" cellpadding="0" cellspacing="0" border="0"
+                 align="center" class="devicewidth">
+            <tbody>
               <tr>
-                <td height="10" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                <p style="color:white;">  Novedades constitucionales de hace
-                  <%= pluralize(@user.periodicity, "día") %>.</p>
-              </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<% @contents.each do |content| %>
-<table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="left-image">
-  <tbody>
-  <tr>
-    <td>
-      <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-        <tbody>
-        <tr>
-          <td width="100%">
-            <table bgcolor="#ffffff" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-              <tbody>
-              <tr>
-                <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
-              <tr>
-                <td>
-                  <table width="520" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidthinner">
+                <td width="100%">
+                  <table bgcolor="#ffffff" width="560" cellpadding="0"
+                         cellspacing="0" border="0" align="center"
+                         class="devicewidth">
                     <tbody>
-                    <tr>
-                      <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td style="font-family: Helvetica, arial, sans-serif; font-size: 20px; color: #2d2a26; text-align:left; line-height: 25px; font-weight: bold;">
-                        <%= content.title %>
-                      </td>
-                        <%= content.created_at.strftime("%d/%m/%y") %>
-                    </tr>
-                    <tr>
-                      <td width="100%" height="15" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-
-                    </tr>
-                    <tr>
-                      <p style="color:#D83018; font-style: italic ">
-                      Porque estás suscrito a <%= Category.find_by(id: content.category_id).name %>.
-                      </p>
-                    </tr>
-
-                    <tr>
-                      <td style="font-family: Helvetica, arial, sans-serif; font-size: 14px; color: #7a6e67; text-align:left; line-height: 24px;">
-                        <%= "#{content.body}".html_safe %>
-                      </td>
-                    </tr>
-
+                      <tr>
+                        <td height="20"
+                            style="font-size:1px; line-height:1px;
+                                   mso-line-height-rule: exactly;">
+                           &nbsp;
+                         </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table width="520" cellpadding="0" cellspacing="0"
+                                 border="0" align="center"
+                                 class="devicewidthinner">
+                            <tbody>
+                              <tr>
+                                <td width="100%" height="15"
+                                    style="font-size:1px; line-height:1px;
+                                           mso-line-height-rule: exactly;">
+                                   &nbsp;
+                                 </td>
+                              </tr>
+                              <tr>
+                                <td style="font-family: Helvetica, arial;
+                                           font-size: 20px; color: #2d2a26;
+                                           text-align:left; line-height: 25px;
+                                           font-weight: bold;">
+                                  <%= content.title %>
+                                </td>
+                                <%= content.created_at.strftime("%d/%m/%y") %>
+                              </tr>
+                              <tr>
+                                <td width="100%" height="15"
+                                    style="font-size:1px; line-height:1px;
+                                           mso-line-height-rule: exactly;">
+                                  &nbsp;
+                                </td>
+                              </tr>
+                              <tr>
+                                <p style="color:#D83018; font-style: italic ">
+Porque estás suscrito a <%= Category.find_by(id: content.category_id).name %>.
+                                </p>
+                              </tr>
+                              <tr>
+                                <td style="font-family: Helvetica, arial;
+                                           font-size: 14px; color: #7a6e67;
+                                           text-align:left; line-height: 24px;">
+                                  <%= "#{content.body}".html_safe %>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="20" style="font-size:1px; line-height:1px;
+                                               mso-line-height-rule: exactly;">
+                          &nbsp;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="5" bgcolor="#2d2a26"
+                            style="font-size:1px; line-height:1px;
+                                   mso-line-height-rule: exactly;">
+                          &nbsp;
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </td>
               </tr>
-              <tr>
-                <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
-
-              <tr>
-                <td height="5" bgcolor="#2d2a26" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
-
-              </tbody>
-            </table>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<% end %>"
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
 </body>
 </html>

@@ -9,10 +9,9 @@ Category.create!(name: 'Derechos Humanos')
 Category.create!(name: 'Nacionalidad')
 Category.create!(name: 'Economía')
 Category.create!(name: 'Sistema Electoral')
-Category.create!(name: 'Relaciones Internacionales')
 Category.create!(name: 'Defensa')
 Category.create!(name: 'Avances Proceso Constituyente')
-Category.create!(name: 'Proceso Constituyente')
+Category.create!(name: 'Prensa')
 
 puts 'Creating admin...'
 User.create!(email: 'admin@example.net', password: 'napoleon',
