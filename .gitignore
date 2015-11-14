@@ -16,17 +16,9 @@
 !/log/.keep
 /tmp
 
-
 # Ignore generated assets
 /public/assets/*
 
 ## Directory-based project format:
 .idea/
 /Passengerfile.json
-
-
-
-
-spec/helpers/mailer_helper_spec.rb
-
-Gemfile.lock
