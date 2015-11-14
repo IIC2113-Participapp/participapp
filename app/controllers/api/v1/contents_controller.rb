@@ -34,8 +34,9 @@ module Api
       def create
         usr_id = User.where(admin: true).first.id
 
-        cat_id = Category.find_by(name: "Prensa").id
-        cat_id = Category.create({ name: "Prensa" }).id unless cat_id
+        cat = Category.find_by(name: "Prensa")
+        cat = Category.create({ name: "Prensa" }) unless cat
+        cat_id = cat.id
 
         contents = JSON.parse(params["contents"])
         contents.each do |source|
