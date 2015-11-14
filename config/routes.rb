@@ -32,4 +32,6 @@ Rails.application.routes.draw do
   end
 
   get '/pending_authorization', to: 'contents#pending_authorization'
+
+  get 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
 end
