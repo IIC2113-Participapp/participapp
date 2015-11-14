@@ -27,8 +27,7 @@ module Api
                         authorization_status: content.authorization_status }
         end
 
-        category_resp = { name: category.name,
-                          contents: contents }
+        category_resp = { name: category.name, contents: contents }
 
         render json: {category: category_resp}
       end

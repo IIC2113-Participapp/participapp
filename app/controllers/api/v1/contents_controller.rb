@@ -40,10 +40,11 @@ module Api
 
         contents = JSON.parse(params["contents"])
         contents.each do |source|
-          source["news-list"].each do |n|
-            body = n["body"].join()
-            Content.create({ title: n["title"], body: body, category_id: cat_id,
-                             user_id: usr_id, authorization_status: 'pending' })
+          source["news-list"].each do |news|
+            body = news["body"].join()
+            Content.create({ title: news["title"], body: body,
+                             category_id: cat_id, user_id: usr_id,
+                             authorization_status: 'pending' })
           end
         end
 
