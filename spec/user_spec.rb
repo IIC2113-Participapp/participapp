@@ -13,7 +13,7 @@ feature 'Sign up user' do
     fill_in 'user_password_confirmation', :with => user.password_confirmation
     click_button 'Sign up'
 
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content '¡Bienvenido! Has sido identificado.'
   end
 end
 
@@ -25,7 +25,7 @@ feature 'Sign in user' do
     fill_in 'sign_in_user_password', :with => 'napoleon'
     click_button 'Sign in'
 
-    expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content 'Has iniciado sesión correctamente.'
 
     logout(:user)
   end
