@@ -1,17 +1,23 @@
 @import "palette";
 
 .footer {
-  position: absolute;
-  height: 225px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  margin-top: 25px;
+  //position: absolute;
+  //display: block;
+  //height: auto;
+  //width: 100%;
+  //bottom: 0;
+  //left: 0;
+  //margin-top: 25px;
+  height: 2em;
 }
 
 footer {
   .footer-above {
     background-color: $deep-blue-transparent;
+  }
+
+  .footer-above-hidden {
+    display: none;
   }
 
   .footer-below {

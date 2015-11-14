@@ -1,28 +1,32 @@
 <footer class="footer text-center">
-  <div class="footer-above">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <p><i class="fa fa-check-square-o fa-3x"></i></p>
-          <h3>Inscríbete a temas</h3>
-        </div>
+  <% unless user_signed_in? %>
+    <div class="footer-above">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <p><i class="fa fa-check-square-o fa-3x"></i></p>
+            <h3>Inscríbete a temas</h3>
+          </div>
 
-        <div class="col-md-3">
-          <p><i class="fa fa-calendar fa-3x"></i></p>
-          <h3>Escoge periodicidad</h3>
-        </div>
+          <div class="col-md-3">
+            <p><i class="fa fa-calendar fa-3x"></i></p>
+            <h3>Escoge periodicidad</h3>
+          </div>
 
-        <div class="col-md-3">
-          <p><i class="fa fa-envelope fa-3x"></i></p>
-          <h3>Recibe feed según elección</h3>
-        </div>
-        <div class="col-md-3">
-          <p><i class="fa fa-comments fa-3x"></i></p>
-          <h3>Comparte</h3>
+          <div class="col-md-3">
+            <p><i class="fa fa-envelope fa-3x"></i></p>
+            <h3>Recibe feed según elección</h3>
+          </div>
+          <div class="col-md-3">
+            <p><i class="fa fa-comments fa-3x"></i></p>
+            <h3>Comparte</h3>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% else %>
+  <div class="footer-above-hidden"></div>
+  <% end %>
   <div class="footer-below">
     <div class="container">
       <div class="row">

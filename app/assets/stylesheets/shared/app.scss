@@ -44,13 +44,21 @@ h1 {
 }
 
 .wrapper {
-  position: relative;
   min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -2em;
 }
 
 .content {
   padding-top: 125px;
-  padding-bottom: 250px;
+  padding-bottom: 0px;
+}
+
+
+.push {
+  height: 2em;
+
 }
 
 .dark-container {
@@ -59,7 +67,7 @@ h1 {
   border-radius: 10px;
   padding: 20px;
   margin-top: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 
   legend {
     color: white;

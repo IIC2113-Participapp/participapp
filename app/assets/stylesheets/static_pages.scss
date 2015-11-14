@@ -2,6 +2,10 @@
 
 .static_pages {
 
+  .img-responsive, .intro-text .name, .intro-text .star-decoration, .intro-text .sub-title{
+    opacity: 0;
+  }
+
   .star-decoration {
     width: 280px;
     margin: 0px auto;
@@ -27,6 +31,25 @@
       border: 0px none;
       margin: 0px;
       padding: 45px 0px 0px;
+    }
+  }
+}
+
+.about{
+  .dark-container {
+    color: white;
+    background-color: $deep-blue;
+    border-radius: 10px;
+    padding: 10px 40px;
+    margin-top: 25px;
+    margin-bottom: 50px;
+
+    legend {
+      color: white;
+    }
+
+    .well {
+      color: $dark-deep-blue;
     }
   }
 }
