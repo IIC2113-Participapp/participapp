@@ -5,6 +5,7 @@
 
   <div class="panel-group" id="categories">
     <% @categories.each do |category| %>
+      <% if category.contents.authorized.any? %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -27,6 +28,7 @@
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>

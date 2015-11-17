@@ -2,8 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#home'
 
-  get 'about', to: 'static_pages#about', as: 'about'
-  get 'static_pages/contact'
+  get 'about', to: 'static_pages#about'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   get '/users', to: 'users#index'
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: [:show, :new]
-  resources :contents do
+  resources :contents, except: [:edit, :update] do
     put 'auth_status', to: 'contents#change_auth_status'
   end
 

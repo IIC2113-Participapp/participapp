@@ -30,5 +30,6 @@ class Content < ActiveRecord::Base
 
   def change_auth_status status
     self.update_attribute(:authorization_status, status)
+    self.update_attribute(:created_at, DateTime.now) if status == 'authorized'
   end
 end

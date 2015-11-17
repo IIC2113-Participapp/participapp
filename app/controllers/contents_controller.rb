@@ -5,18 +5,18 @@
 # + show
 # + new
 # + create
-# + edit
-# + update
 # + change_auth_status
 # + destroy
 # - set_content
 # - content_params
+# - authorized_contents_only
 #
 class ContentsController < ApplicationController
   before_action :authenticate
-  before_action :authorize_editor, only: [:pending_authorization, :reject,
-                                          :authorize]
-  before_action :set_content, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_editor, only: [:pending_authorization,
+                                          :change_auth_status]
+  before_action :set_content, only: [:show, :destroy]
+  before_action :authorized_contents_only, only: [:show]
 
   # GET /content(.:format)
   # - Muestra todos los contents de la aplicacion, paginados o no paginados.
@@ -62,36 +62,13 @@ class ContentsController < ApplicationController
                           "Los editores deberán aprobarla ahora."
       end
 
-      redirect_to content_path @content
+      redirect_to contents_path
     else
       flash.now[:danger] = "Hubo un problema al crear la noticia. "\
                            "Inténtalo nuevamente."
 
       render 'new'
     end
-  end
-
-  # GET /content/:id/edit(.:format)
-  # - Despliega la vista para editar un content existente. Recibe el parametro
-  # "id" correspondiente a un content en la HTTP Request.
-  def edit
-  end
-
-  # PUT /content/:id(.:format)
-  # - Actualiza un content a partir de los parametros que recibe por la HTTP
-  # Request. En particular, recibe los parametros "title" y "body".
-  # - Pre-condiciones: la base de datos cuenta con un content desactualizado.
-  # - Post-condiciones: se actualizan las columnas de la tabla "contents" con
-  # los parametros entregados por la HTTP Request.
-  def update
-    if @content.update_attributes(content_params)
-      flash[:success] = "La noticia ha sido actualizada exitosamente."
-    else
-      flash[:danger] = "La noticia no pudo ser actualizada. "\
-                       "Inténtalo nuevamente."
-    end
-
-    redirect_to :back
   end
 
   # PUT /contents/:content_id/change_auth_status(.:format)
@@ -147,5 +124,14 @@ class ContentsController < ApplicationController
     def content_params
       params.require(:content)
             .permit(:title, :body, :category_id, :authorization_status)
+    end
+
+    def authorized_contents_only
+      status = @content.authorization_status
+
+      if status == 'rejected' || (status == 'pending' && !current_user.editor?)
+        flash[:danger] = "La noticia que buscas no está autorizada."
+        redirect_to root_path
+      end
     end
 end
