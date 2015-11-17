@@ -15,4 +15,12 @@ class Category < ActiveRecord::Base
   has_many :users, through: :category_users
 
   validates :name, presence: true, uniqueness: true
+
+  def approved_contents
+    return contents.where(authorization_status: "authorized")
+  end
+
+  def self.with_contents
+    return Category.all.select { |category| category.contents.any? }
+  end
 end

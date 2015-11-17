@@ -2,8 +2,8 @@
   <h1 class="center-align-space-between">
     Forums
 
-    <%= button_to 'Crear Tema', new_forum_path,
-                  method: :get, class: 'btn btn-success btn-lg' %>
+    <%= link_to 'Crear Tema', new_forum_path,
+                method: :get, class: 'btn btn-success btn-lg' %>
   </h1>
 
   <% @forums.each do |forum| %>
@@ -13,6 +13,14 @@
           <%= link_to forum.name, forum_path(forum) %>
         </div>
         <div class="panel-body">
+          <p>
+            <em>
+              Sobre la noticia
+              <strong>
+                <%= Content.find_by(id: forum.content_id).title %>
+              </strong>
+            </em>
+          </p>
           <%= forum.description %>
         </div>
         <div class="panel-footer">

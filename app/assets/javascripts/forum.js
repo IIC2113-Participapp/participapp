@@ -1,7 +1,7 @@
 jQuery(function() {
+  var contents = $('#forum_content_id').html();
 
   return $('#forum-category').change(function() {
-    var contents = $('#forum_content_id').html();
     var category, options;
     category = $('#forum-category :selected').text();
     options = $(contents).filter("optgroup[label=\'" + category.trim() + "\']").html();
