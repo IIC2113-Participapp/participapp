@@ -44,7 +44,7 @@ class ForumsController < ApplicationController
     @forum.user = current_user
 
     if @forum.save
-      flash[:success] = "Foro creado exitosamente"
+      flash[:success] = "El foro ha sido creado exitosamente."
       redirect_to @forum
     else
       flash.now[:danger] = "Hubo un problema al crear el foro. "\

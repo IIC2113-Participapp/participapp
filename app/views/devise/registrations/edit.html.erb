@@ -1,9 +1,8 @@
 <div class="dark-container">
   <h1>Editar Perfil</h1>
 
-  <%= form_for(resource, as: resource_name,
-               url: registration_path(resource_name),
-               html: { method: :put }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+               html: { method: :put }, builder: BetterForms) do |f| %>
 
     <div class="row">
       <div class="form-group col-xs-12 col-md-6">
@@ -35,6 +34,7 @@
         <%= f.errors :periodicity %>
       </div>
     </div>
+
     <div class="row">
       <div class="form-group col-xs-12">
         <fieldset>
@@ -76,7 +76,6 @@
         <%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
         <%= f.errors :password %>
       </div>
-
       <div class="form-group col-xs-12 col-md-6">
         <%= f.label :password_confirmation, 'Confirma tu nueva contraseña', class: 'control-label' %>
         <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>

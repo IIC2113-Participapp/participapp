@@ -1,0 +1,65 @@
+<%= form_for @user, url: user_registration_path do |f| %>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :first_name, placeholder: 'Ingresa tu nombre',
+                            class: 'form-control', required: true %>
+        </div>
+        <%= f.errors :first_name %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :last_name, placeholder: 'Ingresa tu apellido',
+                            class: 'form-control', required: true %>
+        </div>
+        <%= f.errors :last_name %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <%= f.email_field :email, placeholder: 'Ingresa tu e-mail',
+                        class: 'form-control', required: true %>
+    </div>
+    <%= f.errors :email %>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-key"></i>
+      </span>
+      <%= f.password_field :password, placeholder: 'Ingresa tu contraseña',
+                           class: 'form-control', required: true %>
+    </div>
+    <%= f.errors :password %>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class="fa fa-key"></i>
+      </span>
+      <%= f.password_field :password_confirmation, placeholder: 'Repite tu contraseña',
+                           class: 'form-control', required: true %>
+    </div>
+    <%= f.errors :password_confirmation %>
+  </div>
+
+  <div class="center-align-space-around">
+    <%= f.submit 'Sign up', class: 'btn btn-default' %>
+  </div>
+<% end %>
