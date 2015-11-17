@@ -1,8 +1,9 @@
 # Participapp
 
-#### [participapp.cloudapp.net](http://participapp.cloudapp.net)
+#### [participapp2.cloudapp.net](http://participapp2.cloudapp.net)
 
 ## Grupo 4
+
 > Esteban Sandoval  ([ejsandoval@uc.cl](mailto:ejsandoval@uc.cl))
 
 > Franco Muñoz      ([famunoz13@uc.cl](mailto:famunoz13@uc.cl))
@@ -16,6 +17,26 @@
 > Nicolás Cerda     ([nlcerda@uc.cl](mailto:nlcerda@uc.cl))
 
 > Sebastián Salata  ([sasalata@uc.cl](mailto:sasalata@uc.cl))
+
+## ¿En qué consiste?
+
+ParticipApp es una aplicación web que reúne a ciudadanos interesados en el
+Proceso Constituyente y que no disponen de mucho tiempo para buscar noticias
+actualizadas por su cuenta.
+
+Los usuarios se registran en la página y seleccionan temas de interés, además
+de la periodicidad con la que desean recibir el contenido. Luego, la aplicación
+se encarga de enviar mails con las novedades del proceso según estas
+preferencias.
+
+Las noticias se obtienen a través de dos fuentes primarias:
+* Los mismos usuarios de la aplicación, quienes pueden redactar noticias que
+deben ser aprobadas por los editores (moderadores) de la aplicación.
+* Prensa externa, mediante un
+[scraper](https://github.com/IIC2113-Participapp/news-miner).
+
+Para cada noticia, los usuarios pueden crear un foro donde podrán discutir sus
+opiniones sobre ellas.
 
 ## Development Setup
 
