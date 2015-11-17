@@ -75,3 +75,7 @@ h1 {
     color: $dark-deep-blue;
   }
 }
+
+.panel-heading.link a, .panel-body {
+  color: $dark-deep-blue !important;
+}

@@ -1,28 +1,24 @@
 <div class="dark-container">
-  <h1>Forums</h1>
-  <div id="wrapper">
-    <div class="row">
-      <% @forums.each do |forum| %>
-        <div class="col-xs-6 col-md-3">
-          <div class="panel-group">
-            <div class="panel panel-success">
-              <div class="panel-heading link">
-                <%= link_to forum.name, forum_path(forum) %>
-              </div>
-              <div class="panel-body">
-                <%= forum.description %>
-              </div>
-              <div class="panel-footer">
-                Creado por: <%= forum.user.full_name %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <h1 class="center-align-space-between">
+    Forums
 
     <%= button_to 'Crear Tema', new_forum_path,
-                  method: :get,
-                  class: 'btn btn-success btn-lg' %>
-  </div>
+                  method: :get, class: 'btn btn-success btn-lg' %>
+  </h1>
+
+  <% @forums.each do |forum| %>
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading link">
+          <%= link_to forum.name, forum_path(forum) %>
+        </div>
+        <div class="panel-body">
+          <%= forum.description %>
+        </div>
+        <div class="panel-footer">
+          Creado por: <%= forum.user.full_name %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
