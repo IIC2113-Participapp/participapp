@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -48,7 +48,6 @@ gem 'better_errors'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'passenger'
 gem 'rufus-scheduler'
 gem 'non-stupid-digest-assets'
 gem 'nokogiri'
@@ -77,5 +76,6 @@ group :development, :test do
 end
 
 group :production do
+  gem 'puma'
   gem 'pg'
 end

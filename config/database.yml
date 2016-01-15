@@ -25,7 +25,7 @@ production:
   pool    : 5
   timeout : 5000
 
-  host    : localhost
+  host    : db
+  port    : 5432
   database: participapp_db
-  username: <%= ENV['PGDB_USER'] %>
-  password: <%= ENV['PGDB_PASS'] %>
+  username: postgres

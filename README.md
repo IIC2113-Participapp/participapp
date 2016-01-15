@@ -40,7 +40,7 @@ opiniones sobre ellas.
 
 ## Development Setup
 
-1. Clone this repo.
+1. Clone and cd into this repository
 
 2. Run `bundle install`
 
@@ -51,10 +51,10 @@ editor. In this case, we will assume you use nano editor and bash shell:
   $ nano $HOME/.bashrc
   ```
 
-  Setup the variables by writing them as follows:
+  Set the required environment variables:
   ```sh
-  export PAPP_GMAIL_USERNAME="your-application's-email"
-  export PAPP_GMAIL_PASSWORD="your-application's-email-password"
+  $ export PAPP_GMAIL_USERNAME="your-application's-email"
+  $ export PAPP_GMAIL_PASSWORD="your-application's-email-password"
   ```
 
 4. Setup the DB as follows:
@@ -66,6 +66,30 @@ editor. In this case, we will assume you use nano editor and bash shell:
   ```
 
 5. Run the server by executing `rails s`
+
+## Docker
+
+```sh
+# Set the required environment variables
+$ export SECRET_KEY_BASE=anystring
+$ export DEVISE_SECRET_KEY=anystring
+$ export PAPP_GMAIL_USERNAME="your-application's-email"
+$ export PAPP_GMAIL_PASSWORD="your-application's-email-password"
+
+# Build
+$ docker-compose build
+
+# Run
+$ docker-compose up -d
+
+# Setup the database
+$ docker-compose run web rake db:reset
+```
+
+To stop:
+```sh
+$ docker-compose stop
+```
 
 ## Running tests
 
