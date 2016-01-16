@@ -60,9 +60,7 @@ editor. In this case, we will assume you use nano editor and bash shell:
 4. Setup the DB as follows:
 
   ```sh
-  $ rake db:create
-  $ rake db:migrate
-  $ rake db:seed
+  $ bundle exec rake db:create db:migrate db:seed
   ```
 
 5. Run the server by executing `rails s`
@@ -86,6 +84,9 @@ $ docker-compose up -d
 $ docker-compose run web rake db:reset
 ```
 
+The server's machine should now be redirecting its port 80 to the container's
+port 3000.
+
 To stop:
 ```sh
 $ docker-compose stop
@@ -96,7 +97,7 @@ $ docker-compose stop
 1. Prepare the test database by running:
 
   ```sh
-  $ rake db:drop db:create db:migrate db:seed RAILS_ENV=test
+  $ bundle exec rake db:drop db:create db:migrate db:seed RAILS_ENV=test
   ```
 
 2. Execute the tests by running:
