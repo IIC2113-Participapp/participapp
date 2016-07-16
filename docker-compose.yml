@@ -1,5 +1,6 @@
 postgres_db:
   image: postgres:9.5.0
+
 web:
   build: .
   command: rails server puma -b 0.0.0.0
