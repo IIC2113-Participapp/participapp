@@ -20,12 +20,12 @@ User.create!(email: 'admin@example.net', password: 'napoleon',
 
 puts 'Creating editor...'
 User.create!(email: 'editor@example.net', password: 'napoleon',
-            first_name: 'John', last_name: 'Editor', admin: false, editor: true,
-            periodicity: 1)
+             first_name: 'John', last_name: 'Editor', admin: false, editor: true,
+             periodicity: 1)
 
 puts 'Creating users...'
 20.times do |n|
-  email      = "user#{n+1}@example.net"
+  email      = "user#{n + 1}@example.net"
   first_name = Faker::Name.first_name
   last_name  = Faker::Name.last_name
   user = User.create!(email: email, password: 'macoy123',
@@ -34,17 +34,17 @@ puts 'Creating users...'
                       last_received: rand(14.days).seconds.ago)
 
   num_related_categories = rand(1..num_categories)
-  num_related_categories.times do |i|
+  num_related_categories.times do |_i|
     category = Category.all.sample
-    user.categories << Category.all.sample unless user.categories.include?(category)
+    user.categories << category unless user.categories.include?(category)
   end
 end
 
 puts 'Creating contents...'
-status = ['authorized', 'pending']
+status = %w(authorized pending)
 
-Content.create!(title: "8 conceptos del proceso para la Nueva Constitución",
-        body: "<ol>
+Content.create!(title: '8 conceptos del proceso para la Nueva Constitución',
+                body: "<ol>
             <li><b>Educación Cívica y Constitucional</b><br>
             A modo de preparación para el proceso constituyente se llevarán a cabo una serie de instancias de formación ciudadana en temas cívico-constitucionales. De este modo se busca garantizar la participación informada de todos los chilenos y chilenas.<br>
             </li>
@@ -75,12 +75,13 @@ Content.create!(title: "8 conceptos del proceso para la Nueva Constitución",
             </li>
             </ol>
             <b>Fuente</b><a href='http://www.gob.cl/2015/10/13/8-conceptos-del-proceso-para-la-nueva-constitucion/'> Prensa Presidencial</a>",
-        authorization_status: "pending",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Avances Proceso Constituyente").take.id,
-        created_at: rand(14.days).seconds.ago)
-Content.create!(title: "Discurso de la Presidenta de la República al anunciar el proceso constituyente",
-        body: "<h4>La Presidenta Michelle Bachelet afirmó que \"Chile necesita una nueva  y mejor Constitución, nacida en democracia y que exprese la voluntad popular. Una legítima y respetada por todos, que la conviertan en un motor de unidad nacional\".<br />
+                authorization_status: 'pending',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Avances Proceso Constituyente').take.id,
+                created_at: rand(14.days).seconds.ago)
+
+Content.create!(title: 'Discurso de la Presidenta de la República al anunciar el proceso constituyente',
+                body: "<h4>La Presidenta Michelle Bachelet afirmó que \"Chile necesita una nueva  y mejor Constitución, nacida en democracia y que exprese la voluntad popular. Una legítima y respetada por todos, que la conviertan en un motor de unidad nacional\".<br />
               <br />
               Asimismo, sostuvo que \"el proceso de elaboración de una nueva Constitución ya está en marcha. Partió del momento en que millones de chilenos y chilenas manifestaran en las urnas su voluntad de cambio\".<br />
               <br />
@@ -122,50 +123,50 @@ Content.create!(title: "Discurso de la Presidenta de la República al anunciar e
               <p>Estamos todos convocados y haremos todo lo necesario para que nadie se sienta excluido. Por el contrario, daremos garantías para que todas las voces de Chile puedan expresarse y sean parte de un  cambio que es necesario para consolidar un país más libre, más justo y que encamina a todos hacia un destino mejor.</p>
               <p>¡Viva Chile!</p></blockquote>
               <b>Fuente</b><a href='http://www.gob.cl/2015/10/13/discurso-de-la-presidenta-de-la-republica-al-anunciar-el-proceso-constituyente/'> Prensa Presidencial</a>",
-        authorization_status: "pending",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Avances Proceso Constituyente").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'pending',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Avances Proceso Constituyente').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Gremios empresariales difieren del proceso constituyente anunciado por el Gobierno",
-        body: "<h4>Mientras que el presidente de la CCS, Peter Hill calific&oacute; de &#34;positivo&#34; el hecho de que se extienda la discusi&oacute;n hasta 2017, el titular de la ABIF, Segismundo Schulin-Zeuthen, asegur&oacute; que la incertidumbre se extender&aacute; por tres a&ntilde;os m&aacute;s.</h4><br>
+Content.create!(title: 'Gremios empresariales difieren del proceso constituyente anunciado por el Gobierno',
+                body: "<h4>Mientras que el presidente de la CCS, Peter Hill calific&oacute; de &#34;positivo&#34; el hecho de que se extienda la discusi&oacute;n hasta 2017, el titular de la ABIF, Segismundo Schulin-Zeuthen, asegur&oacute; que la incertidumbre se extender&aacute; por tres a&ntilde;os m&aacute;s.</h4><br>
         <p>SANTIAGO.- Dispares reacciones gener&oacute; el proceso constituyente que anoche anunci&oacute; la Presidenta Michelle Bachelet, para reformar la Carta Marga del pa&iacute;s.<br><br>Por un lado, el <b>presidente de la C&aacute;mara de Comercio de Santiago (CCS), Peter Hill</b>, valor&oacute; el itinerario expuesto por la Mandataria y asegur&oacute; que extender la discusi&oacute;n hasta el a&ntilde;o 2017 permitir&aacute; contar con un proyecto bien pensado y estudiado.<br><br>Al respecto, el l&iacute;der gremial indic&oacute; que \"creo que llevar todo esto hasta el a&ntilde;o 2017 lo encuentro muy positivo, porque las cosas hay que hacerlas con tiempo, hay que analizarlas bien, hay que estudiarlas. Y no solamente eso, esto va a quedar en manos del Congreso y el parlamento que tengamos el a&ntilde;o 2017, para mi eso es importante\".<br><br>\"Ojal&aacute; que todas las reformas y todas las cosas se hagan de esta manera, que se hagan pensando en el tiempo, analizarlas bien. Obviamente que bien estudiadas y bien analizadas, las cosas pueden ser mucho mejor\", enfatiz&oacute;.<br><br>Consultado sobre si faltaron certezas para el sector privado respecto a los contenidos, Hill indic&oacute; que pese a que no conoce los detalles \"lo que le&iacute; y que me dej&oacute; muy contento es la posibilidad de que todo esto se analice con tiempo y estudio para el a&ntilde;o 2017\".<br><br>En esa l&iacute;nea, desestim&oacute; que la discusi&oacute;n sobre la nueva Constituci&oacute;n pueda afectar las inversiones para ese a&ntilde;o.<br><br>Por otra parte, el <b>presidente de la Asociaci&oacute;n de Bancos, Segismundo Schulin-Zeuthen</b>, critic&oacute; duramente la extensi&oacute;n del proceso constituyente y se&ntilde;al&oacute; que con ello se extender&aacute; la incertidumbre que a su juicio han generado las reformas del Gobierno por tres a&ntilde;os m&aacute;s.<br><br>\"Desgraciadamente vamos a mantener la incertidumbre por otros tres a&ntilde;os. Yo creo que ya el escenario est&aacute; complicado y lo que de alguna manera est&aacute;n pidiendo los distintos actores del sistema es retomar las confianzas y esto en definitiva no va en ese sentido\", sostuvo.<br><br>\"O sea, son tres a&ntilde;os en que no se va a saber cu&aacute;l va a ser la nueva Constituci&oacute;n, qu&eacute; va a pasar con los derechos de propiedad. Por consiguiente, lo que se est&aacute; planteando de que es fundamental para el pa&iacute;s invertir y retomar el crecimiento, yo creo que no ayuda\", fustig&oacute;.<br><br>Consultado sobre los dichos de Bachelet ante los empresarios que forman parte del Centro de Estudios P&uacute;blicos (CEP) la semana pasada, donde asegur&oacute; que no se modificar&aacute; el derecho a la propiedad en la nueva Carta Fundamental, Schulin-Zeuthen manifest&oacute; sus dudas. \"Lo vamos a ver, si aqu&iacute; quedan abiertas todas las opciones\".<br><br>\"El tema es que nunca se ha dicho en el fondo qu&eacute; es lo que se va a reformar. Para mi lo &uacute;nico positivo es que va a ser por la v&iacute;a institucional y que va requerir dos tercios del parlamento, pero son tres a&ntilde;os. Hubiese esperado que dentro de todas las reformas que se est&aacute;n discutiendo, esto se pospusiera\", enfatiz&oacute;.<br><br>En cuanto a su visi&oacute;n sobre c&oacute;mo cree que este proceso afecte el crecimiento y la inversi&oacute;n, el dirigente respondi&oacute;: \"p&oacute;ngase en el lado de un empresario, en que tengo que invertir y tomar riesgos. Siempre hay riesgos, pero si a eso se le agrega el factor de la incertidumbre de todas las reformas obviamente no es el mejor escenario, yo creo que no lo mejora\".</p>
               <b>Fuente</b><a href='http://www.emol.com/noticias/Economia/2015/10/14/754367/Camara-de-Comercio-de-Santiago-valora-itinerario-del-proceso-constituyente-del-Gobierno.html'> emol</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Economía").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Economía').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Infografía: Conoce las etapas del proceso constituyente",
-        body: "<h4>La Presidenta anunció hoy en cadena nacional los pasos a seguir para formular una nueva Carta Fundamental para nuestro país. Estas son las etapas para concretar el reemplazo de la actual Constitución por una nacida en democracia.</h4>
+Content.create!(title: 'Infografía: Conoce las etapas del proceso constituyente',
+                body: "<h4>La Presidenta anunció hoy en cadena nacional los pasos a seguir para formular una nueva Carta Fundamental para nuestro país. Estas son las etapas para concretar el reemplazo de la actual Constitución por una nacida en democracia.</h4>
         <br><p><img src='http://www.gob.cl/wp-content/uploads/2015/10/151013-InfoNuevaConst3-5.png'/></p>
               <b>Fuente</b><a href='http://www.gob.cl/2015/10/13/infografia-conoce-las-etapas-del-proceso-constituyente/' align='center'> Prensa Presidencial</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Avances Proceso Constituyente").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Avances Proceso Constituyente').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Economistas publican manifiesto por nueva Constitución",
-        body: "<h4>El texto advierte que dilatar la decisión de efectuar el Proceso Constituyente \“empeora la situación al aumentar el descontento ciudadano\”.</h4>
+Content.create!(title: 'Economistas publican manifiesto por nueva Constitución',
+                body: "<h4>El texto advierte que dilatar la decisión de efectuar el Proceso Constituyente \“empeora la situación al aumentar el descontento ciudadano\”.</h4>
         <br><p>Cincuenta y nueve connotados economistas que se declaran de<strong> \“distintas sensibilidades\”,</strong> suscribieron un manifiesto publicado en la edición dominical del periódico <em>El Mercurio</em>, donde<strong> formulan un llamado a la ciudadanía a protagonizar el Proceso Constituyente que impulsa la Presidenta Michelle Bachelet y a participar en él sin temores y con la plena seguridad de que \“este proceso es una oportunidad para lograr un desarrollo económico sostenible en el tiempo\”.</strong></p><p>Los economistas, docentes de distintas universidades del país y del exterior, <strong>plantean que el Plebiscito es el \“camino que garantiza un proceder justo y permite un debate público sobre la conveniencia de distintos procedimientos para definir la Carta Fundamental</strong>, ya sea a través de una comisión de expertos, una comisión bicameral, una convención constituyente, o una combinación\”.</p><p>Asimismo el texto suscrito señala que <strong>\“la falta de confianza de la ciudadanía en los partidos políticos y el Congreso, el alto nivel de apatía y rechazo hacia la política tradicional, las altas tasas de abstención electoral y el grado de ilegitimidad con que se percibe la actual Constitución requiere una decisión responsable en este ámbito\”.</strong></p><p>El texto advierte que dilatar la decisión de efectuar el Proceso Constituyente<strong> \“empeora la situación al aumentar el descontento ciudadano\”.</strong></p><p>El argumento de los economistas es que además de confianza de las personas en las instituciones, el desarrollo económico de Chile a largo plazo requiere instituciones que confíen en<strong> \“la capacidad de los ciudadanos de participar en la definición de ese patrón de desarrollo, en función del tipo de sociedad que aspiran construir\”.</strong></p><p>Entre los firmantes se incluyen el ex director del Banco Central, Roberto Zalher, el economista y Premio Nacional de Humanidades y Ciencias Sociales, Ricardo French-Davis; la académica de la UDP Claudia Sanhueza; Daniel Hojman, académico de Universidad de Chile; el ex subsecretario de Economía Álvaro Díaz, el profesor de la Universidad de Oxford y de Santiago, José Gabriel Palma; Felipe Saffie, académico Universidad de Maryland, Esteban Puentes  de la Universidad de Chile; Andras Uthoff de la Universidad de Berkeley; Marcela Cabezas Keller de la Universidad Católica y de Boston University;  la académica de la Universidad Católica de Valparaíso y Magíster en Asuntos Públicos del Instituto de Ciencias Políticas de París, Fabiola Cabrera; Sofía Lobos economista formada en la Universidad de Chile y en la Universidad de Manchester; la doctorante de University College London Bárbara Flores; además del actual Decano de la Facultad de Economía USACH y ex presidente del Partido Socialista (PS) Gonzalo Martner, y un conjunto de personalidades del campo de la economía.</p>
               <b>Fuente</b><a href='http://www.24horas.cl/economia/economistas-publican-manifiesto-por-nueva-constitucion-1692648'> 24horas.cl</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Economía").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Economía').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Ciclo de discusiones sobre proceso constituyente: \"derecho a la educación y la libertad de enseñanza\"",
-        body: "<h4>En la séptima sesión del Ciclo de Discusiones sobre proceso constituyente y nueva constitución política expuso el Rector de la U. Diego Portales, Carlos Peña y los comentarios estuvieron a cargo de Ernesto Aguila y Flavio Quezada.</h4>
+Content.create!(title: 'Ciclo de discusiones sobre proceso constituyente: "derecho a la educación y la libertad de enseñanza"',
+                body: "<h4>En la séptima sesión del Ciclo de Discusiones sobre proceso constituyente y nueva constitución política expuso el Rector de la U. Diego Portales, Carlos Peña y los comentarios estuvieron a cargo de Ernesto Aguila y Flavio Quezada.</h4>
         <br><p align='center'><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/tulR3kNj8lY\"
          frameborder=\"0\" allowfullscreen></iframe></p>
               <b>Fuente</b><a href='http://www.uchile.cl/multimedia/114946/ciclo-sobre-proceso-constituyente-derecho-a-la-educacion'> uchile.cl</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Educación").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Educación').take.id,
+                created_at: rand(14.days).seconds.ago)
 
 Content.create!(title: "Seminario Internacional: \“Recuperar los bienes comunes: Desafío en el proceso constituyente del Chile extractivista\”",
-        body: "<p><br>El periodo político que estamos viviendo en Chile, está marcado por el agotamiento de la política de los consensos que ha primado los últimos 25 años, que entre otras cosas, tuvo como consecuencia mantener y profundizar un marco constitucional ilegítimo creado en dictadura y un sistema político antidemocrático. Pero también, por la irrupción de ciudadanos y ciudadanas que demandan reformas estructurales al modelo chileno a nivel de su marco constitucional. La Constitución crea el Estado subsidiario, protege la libre empresa y la propiedad privada al mismo nivel que las garantías constitucionales esenciales, no garantiza los derechos sociales o colectivos, y sienta las bases para la privatización y depredación de los bienes comunes como los minerales y el agua, la biodiversidad, el aire, la memoria, entre otros.<br />
+                body: "<p><br>El periodo político que estamos viviendo en Chile, está marcado por el agotamiento de la política de los consensos que ha primado los últimos 25 años, que entre otras cosas, tuvo como consecuencia mantener y profundizar un marco constitucional ilegítimo creado en dictadura y un sistema político antidemocrático. Pero también, por la irrupción de ciudadanos y ciudadanas que demandan reformas estructurales al modelo chileno a nivel de su marco constitucional. La Constitución crea el Estado subsidiario, protege la libre empresa y la propiedad privada al mismo nivel que las garantías constitucionales esenciales, no garantiza los derechos sociales o colectivos, y sienta las bases para la privatización y depredación de los bienes comunes como los minerales y el agua, la biodiversidad, el aire, la memoria, entre otros.<br />
          <br />
         Un proceso constituyente es una posibilidad privilegiada de debatir qué país somos y cuál queremos ser, por ello, queremos convocar al <b>Seminario Internacional: “Recuperar los bienes comunes: Desafío en el proceso constituyente del Chile extractivista”</b>. En pocas ocasiones contamos con la oportunidad de mirarnos y escucharnos como actores sociales que, desde distintos ámbitos. hablamos de la necesidad de un Chile que supere el extractivismo: el mundo campesino, sindical, indígena, socioambiental, estudiantil, mujeres, científico, jurídico, las regiones, en fin, ese país del que todos y todas hacemos parte y queremos construir colectivamente. <br />
          <br />
@@ -173,13 +174,13 @@ Content.create!(title: "Seminario Internacional: \“Recuperar los bienes comune
          <br />
         </p>
               <b>Fuente</b><a href='http://olca.cl/articulo/nota.php?id=105605'> OLCA: Observatorio Latinoamericano de Conflictos Ambientales</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Medio Ambiente").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Medio Ambiente').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Proceso constituyente sin pueblos indígenas",
-        body: "<h4>Como el proceso constituyente implicaría un cambio legislativo mayor y como una nueva Constitución tendría un impacto directo en las vidas de los pueblos indígenas, entonces, resulta razonable preguntarse si el Gobierno está pensando establecer algún tipo de mecanismo específico para consultar a los pueblos originarios sobre el tema. </h4>
+Content.create!(title: 'Proceso constituyente sin pueblos indígenas',
+                body: "<h4>Como el proceso constituyente implicaría un cambio legislativo mayor y como una nueva Constitución tendría un impacto directo en las vidas de los pueblos indígenas, entonces, resulta razonable preguntarse si el Gobierno está pensando establecer algún tipo de mecanismo específico para consultar a los pueblos originarios sobre el tema. </h4>
         <br><p>El 28 de abril pasado, por cadena nacional, la Presidenta anunció que el proceso constituyente se iniciará en septiembre, es decir, a la fecha, en poco menos de dos semanas. Sostuvo que se haría un proceso abierto a la ciudadanía, a través de debates, consultas y cabildos, todo lo cual “deberá desembocar en la Nueva Carta Fundamental, plenamente democrática y ciudadana, que todos nos merecemos”.</p>
         <p>La formulación de una nueva Constitución como un proceso que desata el diálogo de la ciudadanía parece apropiado en un momento político donde las élites están profundamente divididas respecto de los contenidos y mecanismos que debiesen orientar el reemplazo de la actual Constitución.  También se explicó que la primera etapa será una de educación cívica, que abarcará seis a ocho meses y en la que se explicará a la ciudadanía la importancia de la Constitución y por qué resulta relevante cambiarla. Sin el apoyo claro y rotundo de los partidos para iniciar un cambio constitucional, se recurre a la ciudadanía para dinamizar un proceso de diálogo sobre las reglas del juego que debiesen organizarnos.</p>
         <p>No cabe duda que se trata de un debate relevante y crucial para el futuro democrático. El éxito de esta fórmula dependerá muchísimo de metodología para organizar estos cabildos y debates ciudadanos. Y aquí nos enfrentamos también con otra pregunta relevante: ¿cómo el Gobierno piensa involucrar a los pueblos indígenas en esta discusión constitucional? ¿Piensa del todo involucrarlos?</p>
@@ -191,13 +192,13 @@ Content.create!(title: "Proceso constituyente sin pueblos indígenas",
         <p>Más de alguien podría señalar que no corresponde en esta etapa tan preliminar consultar a los pueblos indígenas. El Gobierno no está aún estableciendo una nueva Constitución. Simplemente lo que hace es generar una política (administrativa) que busca indagar, consultar y debatir sobre las características que debiese tener una nueva Carta Magna. Pero ¿no debiese este proceso –por muy preliminar que se trate– involucrar un proceso de consulta de buena fe con las comunidades indígenas y tribales del país? ¿No resulta acaso recomendable incorporar a los pueblos indígenas en este proceso de diálogo, respetando a sus autoridades, procedimientos y pareceres?</p>
         <p>Simbólica y políticamente, sería del todo pertinente dar inicio al proceso constituyente reconociéndonos como una sociedad diversa, donde conviven diferentes culturas y cosmovisiones. Un diálogo de esta naturaleza ayudaría a sentar las bases de un verdadero nuevo trato. Un proceso constituyente que no considere esta dimensión se verá trunco e incrementará la ya profunda desconfianza de los pueblos indígenas hacia el Estado de Chile.</p>
               <b>Fuente</b><a href='http://www.elmostrador.cl/noticias/opinion/2015/08/26/proceso-constituyente-sin-pueblos-indigenas/'> ElMostrador</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Nacionalidad").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Nacionalidad').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Presidenta Bachelet y proceso constituyente: \"Queremos generar condiciones para que todos puedan y quieran participar\"",
-        body: "<h4>La Mandataria indicó que será el próximo Congreso quien tenga que tomar la decisión sobre el mecanismo debido a que tendrá \"mayor representatividad y legitimidad\", al ser elegido con un nuevo sistema electoral, una nueva ley de partidos y una nueva ley de financiamiento.</h4>
+Content.create!(title: 'Presidenta Bachelet y proceso constituyente: "Queremos generar condiciones para que todos puedan y quieran participar"',
+                body: "<h4>La Mandataria indicó que será el próximo Congreso quien tenga que tomar la decisión sobre el mecanismo debido a que tendrá \"mayor representatividad y legitimidad\", al ser elegido con un nuevo sistema electoral, una nueva ley de partidos y una nueva ley de financiamiento.</h4>
         <br><p><strong>\"Lo que queremos generar son las condiciones para que no s&oacute;lo todos puedan participar, sino que para que todos quieran participar\"</strong>, asegur&oacute; esta ma&ntilde;ana la Presidenta Michelle Bachelet durante el seminario realizado por el Programa de Naciones Unidas para el Desarrollo (PNUD) sobre cambios constitucionales en el mundo, al referirse al <a href=\"http://www.latercera.com/noticia/politica/2015/10/674-651215-9-bachelet-delega-en-proximo-congreso-mecanismo-para-nueva-constitucion.shtml\">proceso constituyente anunciado la semana pasada</a> y que se encuentra en la primera etapa denominada de \"educaci&oacute;n c&iacute;vica\", la que se extender&aacute; hasta marzo de 2016.</p>
         <p>En la oportunidad, la Mandataria defendi&oacute; la decisi&oacute;n de cambiar la Constituci&oacute;n por una nueva y resalt&oacute; la importancia de la participaci&oacute;n de la ciudadan&iacute;a. \"<strong>Este no es un proyecto que le pertenece a un sector pol&iacute;tico o a un gobierno, esta es una tarea de Chile en su conjunto, es la ciudadan&iacute;a la que tiene que levantarse para construir una propuesta</strong>\", dijo la Presidenta.</p>
         <p>Bachelet agreg&oacute; que \"la certidumbre no radica s&oacute;lo en la permanencia del texto sino que en la forma en que se elaboran y aprueban los cambios, y<strong> la principal fuente de certidumbre es la legitimidad, en Chile esta es una buena raz&oacute;n para elaborar democr&aacute;tica y participativamente la carta fundamental</strong>\".</p>
@@ -205,26 +206,26 @@ Content.create!(title: "Presidenta Bachelet y proceso constituyente: \"Queremos 
         <p>\"<strong>Desde el 2017 vamos a tener un Congreso elegido en gran parte con un nuevo sistema electoral, con una nueva ley de partidos pol&iacute;ticos y con una nueva ley de financiamiento electoral, no estoy diciendo que este Congreso no tenga legitimidad ni representatividad, pero el pr&oacute;ximo va a tener una mayor representatividad y legitimidad. As&iacute; Chile podr&aacute; tener una Constituci&oacute;n elaborada democr&aacute;ticamente que sea factor de uni&oacute;n y de orgullo, y dejar&aacute; de estar anclada a un pasado de divisi&oacute;n y autoritarismo</strong>\", indic&oacute; la Mandataria.</p>
         <p>La Presidenta puntualiz&oacute; que se garantizar&aacute; la transparencia en el proceso y que \"tengo confianza en Chile, en lo que somos y en lo que podemos lograr juntos, es un desaf&iacute;o, no me cabe duda que como pa&iacute;s y como pueblo estaremos a la altura que corresponde\".</p></p>
               <b>Fuente</b><a href='http://www.latercera.com/noticia/politica/2015/10/674-652002-9-presidenta-bachelet-y-proceso-constituyente-queremos-generar-condiciones-para.shtml'> LaTercera</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Sistema Representativo").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Sistema Representativo').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Corte Suprema creará comisión para analizar una eventual nueva Constitución",
-        body: "<h4>En las Jornadas de Reflexión 2015, se determinó que la comisión se ocupará prioritariamente de establecer \"los principios que deben servir de guía al diseño del Poder Judicial a nivel constitucional\".</h4>
+Content.create!(title: 'Corte Suprema creará comisión para analizar una eventual nueva Constitución',
+                body: "<h4>En las Jornadas de Reflexión 2015, se determinó que la comisión se ocupará prioritariamente de establecer \"los principios que deben servir de guía al diseño del Poder Judicial a nivel constitucional\".</h4>
         <br><p><strong>La Corte Suprema decidi&oacute; crear una comis&oacute;n para analizar una eventual nueva Constituci&oacute;n</strong>. La decisi&oacute;n se tom&oacute; en las Jornadas de Reflexi&oacute;n 2015 de la entidad.</p>
         <p><strong>En la cita, que encabez&oacute; el presidente Sergio Mu&ntilde;oz, las \"autoridades consideraron relevante desarrollar la tarea de an&aacute;lisis ante una eventual reformulaci&oacute;n de nuestra Carta Fundamental\"</strong>, se&ntilde;alaron en un comunicado.</p>
         <p>Por lo tanto, se resolvi&oacute; \"conformar una comisi&oacute;n para consolidar el estudio de las distintas materias que se estimen oportunas, relevantes y pertinentes de examinar, no s&oacute;lo en lo referente a la funci&oacute;n eminentemente jurisdiccional, sino a los dem&aacute;s t&oacute;picos relativos al Poder Judicial que sean materia de la preceptiva constitucional\".</p>
         <p>La comisi&oacute;n se centrar&aacute; prioritariamente en establecer \"los principios que deben servir de gu&iacute;a al dise&ntilde;o del Poder Judicial a nivel constitucional, debiendo evaluar, especialmente, aquellas tem&aacute;ticas relativas a su rol y funciones en la sociedad y el Estado, el nombramiento de los magistrados que integran los tribunales superiores y el cese extraordinario de funciones de estos, entre otras\".</p>
         <p>La instancia estar&aacute; conformada por un miembro de cada una de las Salas de la Corte y adem&aacute;s podr&aacute; participar \"cualquier ministro que tenga inter&eacute;s\".</p>
         <b>Fuente</b><a href='http://www.latercera.com/noticia/politica/2015/10/674-652941-9-corte-suprema-creara-comision-para-analizar-una-eventual-nueva-constitucion.shtml'> LaTercera</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Poder Judicial").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Poder Judicial').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "ONU Mujeres apoya Seminario sobre Nueva Constitución y Derechos Humanos de las Mujeres de Corporación Humanas",
-        body: "<p>El encuentro, realizado el martes 18 de agosto, reunió a expertas internacionales que abordaron experiencias comparadas en procesos constituyentes latinoamericanos y panelistas nacionales quienes se refirieron a los desafíos y expectativas de una Nueva Constitución para Chile.</p>
+Content.create!(title: 'ONU Mujeres apoya Seminario sobre Nueva Constitución y Derechos Humanos de las Mujeres de Corporación Humanas',
+                body: "<p>El encuentro, realizado el martes 18 de agosto, reunió a expertas internacionales que abordaron experiencias comparadas en procesos constituyentes latinoamericanos y panelistas nacionales quienes se refirieron a los desafíos y expectativas de una Nueva Constitución para Chile.</p>
         <p>Con el fin de abordar los desafíos y expectativas de una nueva Constitución para Chile, Corporación Humanas  realizó el Seminario “Nueva Constitución y Derechos Humanos de las Mujeres”<b> </b>con el apoyo del Programa Fortalecimiento de Organizaciones de la Sociedad Civil que Promueven la Igualdad de Género en Chile de ONU Mujeres y la Unión Europea.</p>
         <p>El encuentro contó con la participación de Claudia Pascual Grau, Ministra Directora del Servicio Nacional de la Mujer; María Inés Salamanca, coordinadora del Programa ONU Mujeres en Chile; Carolina Carrera, presidenta de la Corporación Humanas; y distintas expositoras internacionales, quienes se refirieron a las experiencias comparadas de los distintos procesos constituyentes latinoamericanos y el impacto en los derechos humanos de las mujeres.</p>
         <p>María Inés Salamanca, Coordinadora del Programa ONU Mujeres en Chile, destacó la relevancia de llevar a cabo estas discusiones y el impacto que esto tiene para las mujeres. “Con el tiempo, hemos evidenciado que las reformas y procesos constituyentes son oportunidades para que los países integren o amplíen las disposiciones sobre la igualdad de género en sus constituciones. Esto está en consonancia con la Convención sobre la Eliminación de Todas las Formas de Discriminación contra la Mujer, que llama a los Estados firmantes a incorporar el principio de la igualdad de género en sus constituciones&#8221;, dijo.</p>
@@ -238,26 +239,26 @@ Content.create!(title: "ONU Mujeres apoya Seminario sobre Nueva Constitución y 
         <p>“El debate constitucional y el poder establecer una nueva Constitución es clave por tres razones. La Constitución lo que hace es distribuir poder político, económico y poder social y cultural en una sociedad. Estas son las prioridades y ejes relevantes a los cuales poner atención cuando estanos discutiendo sus cambios o reforma”,<b> </b>concluye Fuentes.</p>
         <p>Finalmente, Miriam Henríquez, abogada  y profesora de la Universidad Alberto Hurtado, planteó una serie de preguntas que debieran considerarse durante el  proceso constituyente, especialmente con el propósito de alcanzar una democracia de género. “Esto es aquella que no se limita a contemplar normas procedimentales ni derechos formalmente atribuidos a todas las personas, sino que considera como elemento indispensable la variable de género en la edificación de un pacto social genuinamente legítimo”.</p>
         <b>Fuente</b><a href='http://www.onu.cl/onu/onu-mujeres-apoya-seminario-sobre-nueva-constitucion-y-derechos-humanos-de-las-mujeres-de-corporacion-humanas/'> ONU Chile</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Derechos Humanos").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Derechos Humanos').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "La oportunidad de tener una Constitución legítima",
-        body: "<h4>Para Gabriel Salazar, esta es la oportunidad de que Chile tenga, por primera vez, una constitución legítima. Esto, según él, sólo se podría lograr a través de Asamblea Constituyente. Sin políticos entremedio</h4><br>
+Content.create!(title: 'La oportunidad de tener una Constitución legítima',
+                body: "<h4>Para Gabriel Salazar, esta es la oportunidad de que Chile tenga, por primera vez, una constitución legítima. Esto, según él, sólo se podría lograr a través de Asamblea Constituyente. Sin políticos entremedio</h4><br>
         <p>La construcción social del Estado es el <em>principal de los Derechos Humanos,</em> y constituye la <em>más estratégica </em>de las tareas históricas que le corresponde a la soberanía popular (o ciudadana). No es un derecho, por tanto, ‘delegable’ (aunque la Historia muestra que hay sido repetidamente ‘usurpado’ por los clases políticas).</p>
         <p>La participación soberana de la ciudadanía en los procesos de construcción y/o reconstrucción del Estado garantiza la <em>legitimidad</em> del sistema político. La no participación, por el contrario, genera ilegitimidad, e inevitables situaciones de inestabilidad institucional. Ninguna de las constituciones que ha tenido Chile ha sido legítima: ni la de 1833, ni la de 1925, ni la de 1980. La única Constitución Política que fue elaborada y dictada por una Asamblea ciudadana libremente electa y deliberante fue la de 1828, que no duró un año, pues fue derogada por el golpe de Estado organizado por Diego Portales en 1829, mediante un ejército mercenario. Es la razón por la que la “oligarquía” aristocrática gobernó Chile durante un siglo (1833-1925) por sí misma y para sí misma, <em>sin ciudadanos reales</em>. Entre 1925 y 1973 la clase política civil gobernó el país transformando la soberanía ciudadana en una masa social peticionista, dueña, sólo, de un inocuo voto individual (la soberanía no es una voluntad individual, sino colectiva, y necesita, para ser colectiva, deliberar como comunidad  y tomar decisiones en tanto que comunidad).</p>
         <p>La soberanía no radica, en consecuencia, ni en la ley escrita ni en la clase política ni en el Estado, sino, exclusiva e inherentemente, en el poder deliberante de la ciudadanía. Desde comienzos del siglo XXI la ciudadanía ha estado tomando conciencia de la soberanía que le es inherente. Es lo que explica por qué, al día de hoy – y entre otras razones –, la clase política dispone de un vergonzante 97 % de desprestigio.</p>
         <blockquote><p>Ninguna de las constituciones que ha tenido Chile ha sido legítima: ni la de 1833, ni la de 1925, ni la de 1980. La única Constitución Política que fue elaborada y dictada por una Asamblea ciudadana libremente electa y deliberante fue la de 1828, que no duró un año, pues fue derogada por el golpe de Estado organizado por Diego Portales</p></blockquote>
         <p>En el itinerario constituyente propuesto por la presidente Michelle Bachelet se da a la ciudadanía una participación <em>guiada</em> (paternal), meramente <em>consultiva</em>, mientras se deposita en el Congreso (es decir en la clase política desprestigiada) la decisión de fijar el procedimiento constituyente final, eligiendo entre cuatro alternativas, dos de las cuales conceden a los políticos el poder determinante en la redacción de la Constitución. Es un diseño que embarga – una vez más – la soberanía popular, para  mantener en la clase política, de hecho, la totalidad del “poder constituyente”. Por eso, como historiador, apoyo un proceso netamente ciudadano y soberano, que remate en una Asamblea Constituyente libremente electa. Sin políticos entremedio.</p><br>
         <b>Fuente</b><a href='http://www.quepasa.cl/articulo/politica/2015/10/la-oportunidad-de-tener-una-constitucion-legitima.shtml/'> QuéPasa</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Sistema Representativo").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Sistema Representativo').take.id,
+                created_at: rand(14.days).seconds.ago)
 
-Content.create!(title: "Ricardo Lagos: \"Los miedos surgen porque se acabó el veto\"",
-        body: "<h4>PAunque estima que el proceso constituyente anunciado por el gobierno \"es demasiado largo\", el ex Presidente lo considera un paso positivo. La clave, a su juicio, radica ahora en conseguir el mayor de los consensos y, en esa línea, advierte que \"puede ser más fácil discutir el cómo si ya conocemos el qué\".</h4><br>
+Content.create!(title: 'Ricardo Lagos: "Los miedos surgen porque se acabó el veto"',
+                body: "<h4>PAunque estima que el proceso constituyente anunciado por el gobierno \"es demasiado largo\", el ex Presidente lo considera un paso positivo. La clave, a su juicio, radica ahora en conseguir el mayor de los consensos y, en esa línea, advierte que \"puede ser más fácil discutir el cómo si ya conocemos el qué\".</h4><br>
         <p>Cita legislaciones de otros pa&iacute;ses, revisa los procesos constituyentes de la historia local, cuenta las an&eacute;cdotas que fueron dando forma al texto vigente. En definitiva, Ricardo Lagos navega a sus anchas por la marea constitucional.</p>
         <p>Por eso le incomoda que un periodista haya afirmado que se viene &ldquo;subiendo al carro de la nueva Constituci&oacute;n&rdquo;, cuando su participaci&oacute;n en el debate se remonta a la negociaci&oacute;n de las reformas de 1989. &ldquo;Es evidente que Chile debe plantearse si la Constituci&oacute;n que hoy tenemos es suficiente para abordar la totalidad de los temas que aparecer&aacute;n con fuerza ma&ntilde;ana&rdquo;, escribi&oacute; -a mayor abundamiento, en un libro en 2010-. Y fue esa misma preocupaci&oacute;n, as&iacute; como su obsesi&oacute;n por las nuevas tecnolog&iacute;as, la que lo llev&oacute; a formar #tuconstitucion, una plataforma digital donde las personas debaten sobre contenidos y mecanismos para una nueva Carta Magna.</p>
         <p>Con igual motivaci&oacute;n recibe ahora el proceso anunciado por la Presidenta Bachelet, aunque advierte que su &eacute;xito depender&aacute; del consenso que logre generar. Su mensaje es claro: &ldquo;La Constituci&oacute;n debe ser un punto de encuentro&rdquo;.</p>
@@ -324,7 +325,7 @@ Content.create!(title: "Ricardo Lagos: \"Los miedos surgen porque se acabó el v
         <p><strong>&iquest;Usted se cuadra con el proceso planteado por la Presidenta?</strong></p>
         <p>Uno como expresidente es un ciudadano m&aacute;s. No me planteo el tema, pero s&iacute; creo que uno debiera hacer un esfuerzo porque esas dudas que existen se puedan disipar, como se disiparon en Chile Solidario. Y debi&eacute;ramos hacer todos los esfuerzos para que se disipen. Est&aacute; bien plantearlas, pero una vez planteadas hay que suponer que la autoridad es lo suficientemente seria como para no buscar instrumentalizar el debate, porque en ese instante se estar&iacute;a autoderrotando la b&uacute;squeda de un proceso constituyente. Pensar que se va a instrumentalizar en favor de una u otra mirada, por ning&uacute;n motivo. Por eso me gustar&iacute;a a m&iacute; el m&aacute;s amplio arco de consenso sobre este tema, y bienvenido lo que uno pueda hacer para empujar en esa direcci&oacute;n.</p>
         <b>Fuente</b><a href='http://www.latercera.com/noticia/politica/2015/10/674-652913-9-ricardo-lagos-los-miedos-surgen-porque-se-acabo-el-veto.shtml'> LaTercera</a>",
-        authorization_status: "authorized",
-        user_id: User.order("RANDOM()").first.id,
-        category_id: Category.where(name: "Sistema Electoral").take.id,
-        created_at: rand(14.days).seconds.ago)
+                authorization_status: 'authorized',
+                user_id: User.order('RANDOM()').first.id,
+                category_id: Category.where(name: 'Sistema Electoral').take.id,
+                created_at: rand(14.days).seconds.ago)
